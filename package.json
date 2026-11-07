@@ -1,0 +1,1 @@
+{"name":"electrodynamics-watch","private":true,"scripts":{"render:math":"node scripts/render-math.cjs"},"devDependencies":{"mathjax-full":"3.2.2"}}

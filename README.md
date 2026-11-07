@@ -34,3 +34,9 @@ The notes are original summaries of standard electrodynamics. They are a compact
 ## Verification
 
 JavaScript syntax and content completeness checked in the delivered version. Real-watch testing remains necessary; screen shape, font rendering and browser caching behavior differ by device.
+
+## Typeset equations
+
+Displayed formulas use bundled SVGs, pre-rendered with MathJax 3.2.2. They remain sharp when text size changes and are precached for offline reading. Long equations scroll horizontally without shrinking. Plain-text alternatives are preserved for accessibility, search, and image-load failures. Card 40 contains prose, not equations.
+
+To edit equations, update `scripts/equations.json` and the corresponding plain-text formulas in `public/content.js` (or `make_content.py`). Run `npm ci` and `npm run render:math`, then bump the service-worker cache version. Commit the generated `public/math/`, `public/math-index.js`, and `public/sw.js` files. Render can still use the no-op build command because generated assets are committed.
