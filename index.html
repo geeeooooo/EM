@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#121a29">
+  <meta name="description" content="Electromagnetism reference: Maxwell's equations in vacuum and matter, with complete differential-to-integral and integral-to-differential derivations.">
+  <title>Electromagnetism · Field Notes</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']],
+        packages: {'[+]': ['ams']}
+      },
+      svg: { fontCache: 'local' },
+      options: {skipHtmlTags: ['script','noscript','style','textarea','pre','code']}
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="hero">
+    <div class="shell">
+      <div class="eyebrow">FIELD NOTES / MS PHYSICS</div>
+      <h1>Electromagnetism</h1>
+      <p class="subtitle">Maxwell's equations, understood and derived.</p>
+      <div class="controls" aria-label="Reading controls">
+        <label class="sr-only" for="search">Search sections</label>
+        <input id="search" type="search" placeholder="Search topics…" autocomplete="off">
+        <button id="decrease" aria-label="Decrease text size" title="Smaller text">A−</button>
+        <button id="increase" aria-label="Increase text size" title="Larger text">A+</button>
+      </div>
+      <nav class="nav" aria-label="Sections">
+        <a href="#toolkit">Theorems</a><a href="#vacuum">Vacuum</a><a href="#matter">Matter</a><a href="#sources">D and H</a><a href="#applications">Applications</a>
+      </nav>
+      <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
+    </div>
+  </header>
+  <main id="content" class="shell">
+    <div class="intro">
+      <strong>How to read this site.</strong> Every derivation begins with an equation and explains how it becomes its other form. Expand the steps you need. Displayed equations may be scrolled horizontally on a small watch screen.
+      <p class="small"><strong>Conventions:</strong> SI units; \(\partial\mathcal V\) denotes a closed surface enclosing volume \(\mathcal V\); \(\partial\mathcal S\) denotes the boundary curve of an oriented surface \(\mathcal S\); \(d\mathbf a=\hat{\mathbf n}\,dA\). Surface/contour orientations obey the right-hand rule. Unless stated otherwise, surfaces and contours are fixed in space.</p>
+    </div>
+    <section class="chapter" id="toolkit" data-keywords="divergence stokes theorem flux curl circulation volume arbitrary surface conversion differential integral">
+      <span class="chapter-number">01 / MATHEMATICAL TOOLKIT</span>
+      <h2>Why differential and integral forms are equivalent</h2>
+      <p><strong>Differential form</strong> states a local relation at every point; <strong>integral form</strong> states the corresponding total flux or circulation over a finite region. Two theorems bridge the descriptions.</p>
+      <div class="theorem-grid">
+        <div class="math-panel"><h3>Divergence theorem</h3>\[\boxed{\oint_{\partial\mathcal V}\mathbf F\cdot d\mathbf a=\int_{\mathcal V}(\nabla\cdot\mathbf F)\,dV}\]<p>Converts <strong>flux through a closed surface</strong> into divergence throughout the enclosed volume.</p></div>
+        <div class="math-panel"><h3>Stokes' theorem</h3>\[\boxed{\oint_{\partial\mathcal S}\mathbf F\cdot d\boldsymbol\ell=\int_{\mathcal S}(\nabla\times\mathbf F)\cdot d\mathbf a}\]<p>Converts <strong>circulation around a loop</strong> into curl through its spanning surface.</p></div>
+      </div>
+      <details>
+        <summary>General proof · Divergence ↔ flux</summary>
+        <div class="steps">
+          <p>Suppose \(\nabla\cdot\mathbf F=s\). Integrate over an arbitrary fixed volume:</p>
+          \[\int_{\mathcal V}\nabla\cdot\mathbf F\,dV=\int_{\mathcal V}s\,dV.\]
+          <p>Apply the divergence theorem to the left:</p>
+          \[\boxed{\oint_{\partial\mathcal V}\mathbf F\cdot d\mathbf a=\int_{\mathcal V}s\,dV}.\]
+          <p><strong>Conversely,</strong> begin with the boxed statement for <em>every</em> suitable volume. Apply the theorem backward:</p>
+          \[\int_{\mathcal V}(\nabla\cdot\mathbf F-s)\,dV=0.\]
+          <p>Because this holds for arbitrarily small volumes around every point (assuming sufficiently regular fields),</p>
+          \[\boxed{\nabla\cdot\mathbf F=s}.\]
+          <p>One particular finite volume would not suffice to infer a pointwise equation: the equality must hold for every volume.</p>
+        </div>
+      </details>
+      <details>
+        <summary>General proof · Curl ↔ circulation</summary>
+        <div class="steps">
+          <p>Suppose \(\nabla\times\mathbf F=\mathbf g\). Integrate the normal component over an arbitrary oriented surface:</p>
+          \[\int_{\mathcal S}(\nabla\times\mathbf F)\cdot d\mathbf a=\int_{\mathcal S}\mathbf g\cdot d\mathbf a.\]
+          <p>By Stokes' theorem, the left becomes a contour integral:</p>
+          \[\boxed{\oint_{\partial\mathcal S}\mathbf F\cdot d\boldsymbol\ell=\int_{\mathcal S}\mathbf g\cdot d\mathbf a}.\]
+          <p><strong>Conversely,</strong> apply Stokes to the boxed formula for all suitably oriented surfaces:</p>
+          \[\int_{\mathcal S}(\nabla\times\mathbf F-\mathbf g)\cdot d\mathbf a=0.\]
+          <p>Taking arbitrarily small surface patches in any normal direction yields</p>
+          \[\boxed{\nabla\times\mathbf F=\mathbf g}.\]
+          <p>The loop direction and surface normal are linked by the right-hand rule.</p>
+        </div>
+      </details>
+    </section>
+    <section class="chapter" id="vacuum" data-keywords="vacuum maxwell rho charge current divergence gauss magnetic faraday ampere displacement integral differential">
+      <span class="chapter-number">02 / VACUUM</span>
+      <h2>Maxwell's equations in vacuum</h2>
+      <p>Here \(\rho\) and \(\mathbf J\) are the <strong>total charge and current densities</strong>. “In vacuum” describes the vacuum field equations; sources such as isolated charged particles or wires may still be present.</p>
+      <div class="equation"><h3>I. Gauss's law · Electric</h3><span class="form-label">Differential</span>\[\boxed{\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}}\]<span class="form-label">Integral</span>\[\boxed{\oint_{\partial\mathcal V}\mathbf E\cdot d\mathbf a=\frac{Q_{\mathrm{enc}}}{\varepsilon_0}}\]<p>Electric charge produces electric flux.</p></div>
+      <details><summary>Derive both directions · Electric Gauss</summary><div class="steps">
+        <h4>Differential → Integral</h4>
+        \[\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}
+        \ \Rightarrow\ \int_{\mathcal V}\nabla\cdot\mathbf E\,dV
+        =\frac{1}{\varepsilon_0}\int_{\mathcal V}\rho\,dV.\]
+        <p>Use the divergence theorem and \(Q_{\mathrm{enc}}=\int_{\mathcal V}\rho\,dV\):</p>
+        \[\oint_{\partial\mathcal V}\mathbf E\cdot d\mathbf a=\frac{Q_{\mathrm{enc}}}{\varepsilon_0}.\]
+        <h4>Integral → Differential</h4>
+        \[\oint_{\partial\mathcal V}\mathbf E\cdot d\mathbf a
+        =\frac{1}{\varepsilon_0}\int_{\mathcal V}\rho\,dV\]
+        \[\Rightarrow\ \int_{\mathcal V}\left(\nabla\cdot\mathbf E-\frac{\rho}{\varepsilon_0}\right)dV=0.\]
+        <p>For every volume \(\mathcal V\), the integrand must vanish, so \(\nabla\cdot\mathbf E=\rho/\varepsilon_0\).</p>
+      </div></details>
+      <div class="equation"><h3>II. Gauss's law · Magnetic</h3><span class="form-label">Differential</span>\[\boxed{\nabla\cdot\mathbf B=0}\]<span class="form-label">Integral</span>\[\boxed{\oint_{\partial\mathcal V}\mathbf B\cdot d\mathbf a=0}\]<p>No isolated magnetic charge appears in classical Maxwell theory: the net flux through any closed surface is zero.</p></div>
+      <details><summary>Derive both directions · Magnetic Gauss</summary><div class="steps">
+        <h4>Differential → Integral</h4>
+        \[\int_{\mathcal V}\nabla\cdot\mathbf B\,dV=\int_{\mathcal V}0\,dV=0\]
+        \[\Rightarrow\ \oint_{\partial\mathcal V}\mathbf B\cdot d\mathbf a=0.\]
+        <h4>Integral → Differential</h4>
+        \[\oint_{\partial\mathcal V}\mathbf B\cdot d\mathbf a=0
+        \Rightarrow\int_{\mathcal V}\nabla\cdot\mathbf B\,dV=0.\]
+        <p>For arbitrary volumes, \(\nabla\cdot\mathbf B=0\) pointwise. Field lines may exit and reenter a surface; the <em>net</em> flux cancels.</p>
+      </div></details>
+      <div class="equation"><h3>III. Faraday's law</h3><span class="form-label">Differential</span>\[\boxed{\nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t}}\]<span class="form-label">Integral, fixed loop</span>\[\boxed{\oint_{\partial\mathcal S}\mathbf E\cdot d\boldsymbol\ell=-\frac{d}{dt}\int_{\mathcal S}\mathbf B\cdot d\mathbf a}\]<p>A changing magnetic field creates circulation of the electric field.</p></div>
+      <details><summary>Derive both directions · Faraday</summary><div class="steps">
+        <h4>Differential → Integral</h4>
+        \[\int_{\mathcal S}(\nabla\times\mathbf E)\cdot d\mathbf a=-\int_{\mathcal S}\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf a.\]
+        <p>Use Stokes' theorem on the left. For a <strong>fixed</strong> surface, interchange the time derivative and surface integral on the right:</p>
+        \[\oint_{\partial\mathcal S}\mathbf E\cdot d\boldsymbol\ell=-\frac{d}{dt}\int_{\mathcal S}\mathbf B\cdot d\mathbf a.\]
+        <h4>Integral → Differential</h4>
+        \[\oint_{\partial\mathcal S}\mathbf E\cdot d\boldsymbol\ell+\frac{d}{dt}\int_{\mathcal S}\mathbf B\cdot d\mathbf a=0\]
+        \[\Rightarrow\ \int_{\mathcal S}\left(\nabla\times\mathbf E+\frac{\partial\mathbf B}{\partial t}\right)\cdot d\mathbf a=0.\]
+        <p>Arbitrary small oriented patches imply \(\nabla\times\mathbf E=-\partial\mathbf B/\partial t\).</p>
+        <p class="note">For a moving conducting loop, the magnetic-flux rule for electromotive force also includes the magnetic force on moving charges; do not apply this fixed-loop formula unchanged.</p>
+      </div></details>
+      <div class="equation"><h3>IV. Ampère–Maxwell law</h3><span class="form-label">Differential</span>\[\boxed{\nabla\times\mathbf B=\mu_0\mathbf J+\mu_0\varepsilon_0\frac{\partial\mathbf E}{\partial t}}\]<span class="form-label">Integral, fixed loop</span>\[\boxed{\oint_{\partial\mathcal S}\mathbf B\cdot d\boldsymbol\ell=\mu_0I_{\mathrm{enc}}+\mu_0\varepsilon_0\frac{d}{dt}\int_{\mathcal S}\mathbf E\cdot d\mathbf a}\]<p>Conduction and other currents, and a changing electric flux, produce magnetic circulation.</p></div>
+      <details><summary>Derive both directions · Ampère–Maxwell</summary><div class="steps">
+        <h4>Differential → Integral</h4>
+        \[\int_{\mathcal S}(\nabla\times\mathbf B)\cdot d\mathbf a
+        =\mu_0\int_{\mathcal S}\mathbf J\cdot d\mathbf a
+        +\mu_0\varepsilon_0\int_{\mathcal S}\frac{\partial\mathbf E}{\partial t}\cdot d\mathbf a.\]
+        <p>Apply Stokes and define \(I_{\mathrm{enc}}=\int_{\mathcal S}\mathbf J\cdot d\mathbf a\):</p>
+        \[\oint_{\partial\mathcal S}\mathbf B\cdot d\boldsymbol\ell
+        =\mu_0I_{\mathrm{enc}}+\mu_0\varepsilon_0\frac{d\Phi_E}{dt},\quad \Phi_E=\int_{\mathcal S}\mathbf E\cdot d\mathbf a.\]
+        <h4>Integral → Differential</h4>
+        <p>Write \(I_{\mathrm{enc}}\) as a surface integral; apply Stokes to the contour, then combine terms:</p>
+        \[\int_{\mathcal S}\left(\nabla\times\mathbf B-\mu_0\mathbf J-\mu_0\varepsilon_0\frac{\partial\mathbf E}{\partial t}\right)\cdot d\mathbf a=0.\]
+        <p>Because this holds for all small oriented patches,</p>
+        \[\nabla\times\mathbf B=\mu_0\mathbf J+\mu_0\varepsilon_0\frac{\partial\mathbf E}{\partial t}.\]
+      </div></details>
+      <details><summary>Why the displacement-current term is necessary</summary><div class="steps">
+        <p>Take the divergence of Ampère–Maxwell:</p>
+        \[0=\nabla\cdot(\nabla\times\mathbf B)=\mu_0\nabla\cdot\mathbf J+\mu_0\varepsilon_0\frac{\partial}{\partial t}(\nabla\cdot\mathbf E).\]
+        <p>By Gauss's law, \(\varepsilon_0\nabla\cdot\mathbf E=\rho\), so</p>
+        \[\boxed{\frac{\partial\rho}{\partial t}+\nabla\cdot\mathbf J=0}.\]
+        <p>This is local charge conservation. Omitting the displacement term would incorrectly force \(\nabla\cdot\mathbf J=0\) even in situations where charge accumulates, such as a charging capacitor.</p>
+      </div></details>
+    </section>
+
+    <section class="chapter" id="matter" data-keywords="materials matter macroscopic fields free charge current D H polarization magnetization maxwell derivation differential integral">
+      <span class="chapter-number">03 / MATERIALS</span>
+      <h2>Maxwell's equations in matter</h2>
+      <p>Macroscopic electromagnetism separates <strong>free</strong> sources from charges and currents bound within polarized/magnetized matter. The fields \(\mathbf E\) and \(\mathbf B\) remain physical; \(\mathbf D\) and \(\mathbf H\) package material response.</p>
+      <div class="equation"><h3>I. Electric Gauss, in matter</h3><span class="form-label">Differential</span>\[\boxed{\nabla\cdot\mathbf D=\rho_f}\]<span class="form-label">Integral</span>\[\boxed{\oint_{\partial\mathcal V}\mathbf D\cdot d\mathbf a=Q_{f,\mathrm{enc}}}\]</div>
+      <details><summary>Derive both directions · D and free charge</summary><div class="steps">
+        <h4>Differential → Integral</h4>
+        \[\int_{\mathcal V}\nabla\cdot\mathbf D\,dV=\int_{\mathcal V}\rho_f\,dV
+        \Rightarrow\boxed{\oint_{\partial\mathcal V}\mathbf D\cdot d\mathbf a=Q_{f,\mathrm{enc}}}.\]
+        <h4>Integral → Differential</h4>
+        \[\oint_{\partial\mathcal V}\mathbf D\cdot d\mathbf a=\int_{\mathcal V}\rho_f\,dV
+        \Rightarrow\int_{\mathcal V}(\nabla\cdot\mathbf D-\rho_f)\,dV=0.\]
+        <p>For arbitrary volumes, \(\boxed{\nabla\cdot\mathbf D=\rho_f}\). Here \(\rho_f\) excludes bound polarization charge.</p>
+      </div></details>
+      <div class="equation"><h3>II. Magnetic Gauss, in matter</h3><span class="form-label">Differential</span>\[\boxed{\nabla\cdot\mathbf B=0}\]<span class="form-label">Integral</span>\[\boxed{\oint_{\partial\mathcal V}\mathbf B\cdot d\mathbf a=0}\]<p>Unchanged from vacuum; the same two-way divergence-theorem derivation in Chapter 02 applies.</p></div>
+      <div class="equation"><h3>III. Faraday, in matter</h3><span class="form-label">Differential</span>\[\boxed{\nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t}}\]<span class="form-label">Integral, fixed loop</span>\[\boxed{\oint_{\partial\mathcal S}\mathbf E\cdot d\boldsymbol\ell=-\frac{d}{dt}\int_{\mathcal S}\mathbf B\cdot d\mathbf a}\]<p>Unchanged from vacuum; the same two-way Stokes-theorem derivation in Chapter 02 applies.</p></div>
+      <div class="equation"><h3>IV. Ampère–Maxwell, in matter</h3><span class="form-label">Differential</span>\[\boxed{\nabla\times\mathbf H=\mathbf J_f+\frac{\partial\mathbf D}{\partial t}}\]<span class="form-label">Integral, fixed loop</span>\[\boxed{\oint_{\partial\mathcal S}\mathbf H\cdot d\boldsymbol\ell=I_{f,\mathrm{enc}}+\frac{d}{dt}\int_{\mathcal S}\mathbf D\cdot d\mathbf a}\]</div>
+      <details><summary>Derive both directions · H, D, and free current</summary><div class="steps">
+        <h4>Differential → Integral</h4>
+        \[\int_{\mathcal S}(\nabla\times\mathbf H)\cdot d\mathbf a
+        =\int_{\mathcal S}\mathbf J_f\cdot d\mathbf a
+        +\int_{\mathcal S}\frac{\partial\mathbf D}{\partial t}\cdot d\mathbf a.\]
+        <p>Use Stokes on the left; for a fixed surface bring the time derivative outside; and define \(I_{f,\mathrm{enc}}=\int_{\mathcal S}\mathbf J_f\cdot d\mathbf a\):</p>
+        \[\boxed{\oint_{\partial\mathcal S}\mathbf H\cdot d\boldsymbol\ell=I_{f,\mathrm{enc}}+\frac{d}{dt}\int_{\mathcal S}\mathbf D\cdot d\mathbf a}.\]
+        <h4>Integral → Differential</h4>
+        <p>Apply Stokes backward and express both terms on the right as surface integrals:</p>
+        \[\int_{\mathcal S}\left(\nabla\times\mathbf H-\mathbf J_f-\frac{\partial\mathbf D}{\partial t}\right)\cdot d\mathbf a=0.\]
+        <p>For every arbitrarily small oriented patch, the integrand vanishes:</p>
+        \[\boxed{\nabla\times\mathbf H=\mathbf J_f+\frac{\partial\mathbf D}{\partial t}}.\]
+      </div></details>
+      <details><summary>Why the magnetic Gauss and Faraday equations do not change</summary><div class="steps">
+        <p>Changing the description from microscopic sources to free and bound sources introduces \(\mathbf D\) and \(\mathbf H\) through \(\mathbf P,\mathbf M\). It does <strong>not</strong> introduce magnetic monopoles or change Faraday's induction law. Thus \(\nabla\cdot\mathbf B=0\) and \(\nabla\times\mathbf E=-\partial_t\mathbf B\) keep the same form in ordinary macroscopic matter.</p>
+        <p>For these two equations the step-by-step forward and reverse conversions are exactly those already shown in the vacuum section; their validity is not restricted to empty space.</p>
+      </div></details>
+    </section>
+
+    <section class="chapter" id="sources" data-keywords="polarization magnetization bound charge bound current free total D H constitutive relations epsilon mu linear isotropic">
+      <span class="chapter-number">04 / MATERIAL RESPONSE</span>
+      <h2>Where \(\mathbf D\) and \(\mathbf H\) come from</h2>
+      <div class="math-panel">\[\boxed{\mathbf D=\varepsilon_0\mathbf E+\mathbf P},
+      \qquad\boxed{\mathbf H=\frac{\mathbf B}{\mu_0}-\mathbf M}.\]
+      <p>\(\mathbf P\): electric dipole moment per volume (polarization). \(\mathbf M\): magnetic dipole moment per volume (magnetization).</p></div>
+      <details open><summary>Derive the macroscopic electric Gauss equation</summary><div class="steps">
+        <p>Separate total charge: \(\rho=\rho_f+\rho_b\), with bound charge \(\rho_b=-\nabla\cdot\mathbf P\). Starting from microscopic Gauss's law:</p>
+        \[\varepsilon_0\nabla\cdot\mathbf E=\rho_f+\rho_b=\rho_f-\nabla\cdot\mathbf P.\]
+        \[\nabla\cdot(\varepsilon_0\mathbf E+\mathbf P)=\rho_f.\]
+        <p>Define \(\mathbf D=\varepsilon_0\mathbf E+\mathbf P\):</p>
+        \[\boxed{\nabla\cdot\mathbf D=\rho_f}.\]
+        <p>The associated integral equation follows from the divergence theorem, as shown above.</p>
+      </div></details>
+      <details open><summary>Derive the macroscopic Ampère–Maxwell equation</summary><div class="steps">
+        <p>Separate total current: \(\mathbf J=\mathbf J_f+\mathbf J_b\), with bound current</p>
+        \[\mathbf J_b=\nabla\times\mathbf M+\frac{\partial\mathbf P}{\partial t}.\]
+        <p>Insert into the microscopic/vacuum-form Ampère–Maxwell law:</p>
+        \[\frac{1}{\mu_0}\nabla\times\mathbf B
+        =\mathbf J_f+\nabla\times\mathbf M+\frac{\partial\mathbf P}{\partial t}+\varepsilon_0\frac{\partial\mathbf E}{\partial t}.\]
+        <p>Collect a curl on the left and a time derivative on the right:</p>
+        \[\nabla\times\left(\frac{\mathbf B}{\mu_0}-\mathbf M\right)
+        =\mathbf J_f+\frac{\partial}{\partial t}(\varepsilon_0\mathbf E+\mathbf P).\]
+        <p>By the definitions of \(\mathbf H\) and \(\mathbf D\):</p>
+        \[\boxed{\nabla\times\mathbf H=\mathbf J_f+\frac{\partial\mathbf D}{\partial t}}.\]
+      </div></details>
+      <div class="math-panel">
+        <h3>Constitutive relations require assumptions</h3>
+        <p>For a <em>linear, isotropic, homogeneous</em> medium with scalar constants \(\varepsilon,\mu\), one often uses</p>
+        \[\mathbf D=\varepsilon\mathbf E,\qquad \mathbf B=\mu\mathbf H.\]
+        <p>These relations are <strong>not universal</strong>. Anisotropic, dispersive, nonlinear, or inhomogeneous materials generally require more elaborate constitutive laws. Maxwell's equations themselves do not require \(\mathbf D\parallel\mathbf E\) or \(\mathbf B\parallel\mathbf H\).</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="applications" data-keywords="boundary conditions wave equation electromagnetic waves energy poynting normal tangential surface charge current">
+      <span class="chapter-number">05 / APPLICATIONS</span>
+      <h2>Immediate results of Maxwell's equations</h2>
+      <details><summary>Boundary conditions at an interface</summary><div class="steps">
+        <p>Let \(\hat{\mathbf n}\) point from medium 1 to medium 2. Shrink a Gaussian pillbox across the interface and use the integral Gauss laws. With free surface charge density \(\sigma_f\),</p>
+        \[\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f},\qquad
+        \boxed{\hat{\mathbf n}\cdot(\mathbf B_2-\mathbf B_1)=0}.\]
+        <p>Now shrink a rectangular Amperian/Faraday loop across the interface. With free surface current density \(\mathbf K_f\), and finite fields (no singular time-derivative flux),</p>
+        \[\boxed{\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=\mathbf0},\qquad
+        \boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}.\]
+        <p>The normal and tangential conditions follow from flux and circulation respectively. Without free surface charge or surface current, the corresponding jumps vanish, although \(\mathbf E\) and \(\mathbf B\) need not be continuous in every component.</p>
+      </div></details>
+      <details><summary>Derive the electromagnetic wave equation in vacuum</summary><div class="steps">
+        <p>In a source-free region, \(\rho=0\), \(\mathbf J=0\). Curl Faraday's law:</p>
+        \[\nabla\times(\nabla\times\mathbf E)
+        =-\frac{\partial}{\partial t}(\nabla\times\mathbf B).\]
+        <p>Use the vector identity and \(\nabla\cdot\mathbf E=0\):</p>
+        \[\nabla\times(\nabla\times\mathbf E)=\nabla(\nabla\cdot\mathbf E)-\nabla^2\mathbf E=-\nabla^2\mathbf E.\]
+        <p>Use \(\nabla\times\mathbf B=\mu_0\varepsilon_0\,\partial\mathbf E/\partial t\):</p>
+        \[-\nabla^2\mathbf E=-\mu_0\varepsilon_0\frac{\partial^2\mathbf E}{\partial t^2}.\]
+        \[\boxed{\nabla^2\mathbf E=\mu_0\varepsilon_0\frac{\partial^2\mathbf E}{\partial t^2}}.\]
+        <p>Likewise \(\nabla^2\mathbf B=\mu_0\varepsilon_0\,\partial_t^2\mathbf B\). Thus the vacuum wave speed is \(c=1/\sqrt{\mu_0\varepsilon_0}\).</p>
+        <p>Example: a wave varying along \(z\) may have polarization \(\mathbf E=E_x(z,t)\hat{\mathbf x}\); the derivative direction and field-component direction need not coincide.</p>
+      </div></details>
+      <details><summary>Electromagnetic energy · Poynting theorem</summary><div class="steps">
+        <p>In vacuum, combining Maxwell's curl equations with \(\nabla\cdot(\mathbf E\times\mathbf B)=\mathbf B\cdot(\nabla\times\mathbf E)-\mathbf E\cdot(\nabla\times\mathbf B)\) gives</p>
+        \[\boxed{\frac{\partial u}{\partial t}+\nabla\cdot\mathbf S=-\mathbf J\cdot\mathbf E},\]
+        \[u=\frac{\varepsilon_0E^2}{2}+\frac{B^2}{2\mu_0},
+        \qquad\mathbf S=\frac{1}{\mu_0}\mathbf E\times\mathbf B.\]
+        <p>\(u\) is electromagnetic energy density, \(\mathbf S\) is energy flux, and \(\mathbf J\cdot\mathbf E\) is power transferred from fields to charges per volume.</p>
+      </div></details>
+    </section>
+    <footer>
+      <p><strong>Field Notes</strong> · Electromagnetism · Version 1</p>
+      <p>Equations are typeset with MathJax; their first load requires internet access. Content is an expandable starting reference, not a complete electromagnetism textbook.</p>
+      <a href="#content">Back to top ↑</a>
+    </footer>
+  </main>
+</body>
+</html>
