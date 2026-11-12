@@ -41,7 +41,7 @@
         <button id="decrease" aria-label="Decrease text size">A−</button>
         <button id="increase" aria-label="Increase text size">A+</button>
       </div>
-      <nav class="nav" aria-label="On this page"><a href="#maxwell-dynamic">Maxwell</a><a href="#wave">Waves</a><a href="#plane-wave">Plane wave</a><a href="#energy">Energy</a><a href="#interface-waves">Interfaces</a></nav>
+      <nav class="nav" aria-label="On this page"><a href="#maxwell-dynamic">Maxwell</a><a href="#wave">Waves</a><a href="#helmholtz">Helmholtz</a><a href="#plane-wave">Plane wave</a><a href="#energy">Energy</a><a href="#interface-waves">Interfaces</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
@@ -54,10 +54,10 @@
 <div class="equation">
 <h3>Macroscopic Maxwell equations</h3>
 \[\begin{aligned}
-\nabla\cdot\mathbf D&=\rho_f,\\
-\nabla\cdot\mathbf B&=0,\\
-\nabla\times\mathbf E&=-\frac{\partial\mathbf B}{\partial t},\\
-\nabla\times\mathbf H&=\mathbf J_f+\frac{\partial\mathbf D}{\partial t}.
+\nabla\cdot\mathbf D&amp;=\rho_f,\\
+\nabla\cdot\mathbf B&amp;=0,\\
+\nabla\times\mathbf E&amp;=-\frac{\partial\mathbf B}{\partial t},\\
+\nabla\times\mathbf H&amp;=\mathbf J_f+\frac{\partial\mathbf D}{\partial t}.
 \end{aligned}\]
 <p><strong>Concept:</strong> time-dependent \(\mathbf B\) generates electric circulation; current and time-dependent \(\mathbf D\) generate magnetic circulation. The divergence equations constrain the sources and net flux.</p>
 </div>
@@ -98,9 +98,89 @@
 \[\boxed{\nabla^2\mathbf H=\mu\varepsilon\frac{\partial^2\mathbf H}{\partial t^2}}.\]
 <p>Because \(\mu\) is constant, \(\mathbf B\) obeys the corresponding wave equation. These simple forms generally fail when material properties vary spatially or are dispersive.</p>
 </div></details>
+
+<div class="math-panel"><h3>Explicit equations for electric and magnetic flux density</h3>
+<p>The derivations above give a wave equation for \(\mathbf E\) and \(\mathbf H\). Because \(\mathbf B=\mu\mathbf H\) and \(\mu\) is constant, the magnetic flux density obeys the same form:</p>
+\[\boxed{\nabla^2\mathbf E-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}=\mathbf0}\]
+\[\boxed{\nabla^2\mathbf B-\mu\varepsilon\frac{\partial^2\mathbf B}{\partial t^2}=\mathbf0}.\]
+<p>In vacuum substitute \(\mu_0,\varepsilon_0\) and use \(\boxed{c=1/\sqrt{\mu_0\varepsilon_0}}\). In a source-free homogeneous lossless medium \(\boxed{v=1/\sqrt{\mu\varepsilon}}\).</p>
+</div>
+<details><summary>Derive the wave equation directly for \(\mathbf B\)</summary><div class="steps">
+<p>From the homogeneous source-free equations, \(\nabla\times\mathbf B=\mu\varepsilon\,\partial_t\mathbf E\) and \(\nabla\times\mathbf E=-\partial_t\mathbf B\). Take the curl of Ampère–Maxwell:</p>
+\[\nabla\times(\nabla\times\mathbf B)=
+\mu\varepsilon\frac{\partial}{\partial t}(\nabla\times\mathbf E).\]
+<p>Insert Faraday's law and the curl–curl identity:</p>
+\[\nabla(\nabla\cdot\mathbf B)-\nabla^2\mathbf B
+=-\mu\varepsilon\,\frac{\partial^2\mathbf B}{\partial t^2}.\]
+<p>By magnetic Gauss's law \(\nabla\cdot\mathbf B=0\), so</p>
+\[\boxed{\nabla^2\mathbf B-\mu\varepsilon\,\partial_t^2\mathbf B=\mathbf0}.\]
+</div></details>
+<details><summary>Conducting materials: damped wave equations</summary><div class="steps">
+<p>For constant \(\sigma,\varepsilon,\mu\), Ohm's law \(\mathbf J_f=\sigma\mathbf E\), and \(\rho_f=0\), Ampère–Maxwell becomes</p>
+\[\nabla\times\mathbf B=\mu\sigma\mathbf E+\mu\varepsilon\,\partial_t\mathbf E.\]
+<p>Curl Faraday's law, substitute this expression, and use \(\nabla\cdot\mathbf E=0\). For the magnetic equation, instead curl the expression above and use Faraday's law and \(\nabla\cdot\mathbf B=0\):</p>
+\[\boxed{\nabla^2\mathbf E-\mu\varepsilon\,\partial_t^2\mathbf E-\mu\sigma\,\partial_t\mathbf E=\mathbf0},\]
+\[\boxed{\nabla^2\mathbf B-\mu\varepsilon\,\partial_t^2\mathbf B-\mu\sigma\,\partial_t\mathbf B=\mathbf0}.\]
+<p>The extra first-time-derivative term represents dissipative electromagnetic attenuation in an Ohmic conductor. These simple constant-coefficient forms do not apply universally to dispersive, inhomogeneous or anisotropic matter.</p>
+</div></details>
+</section>
+
+<section class="chapter" id="helmholtz" data-keywords="Helmholtz electric magnetic E B phasor frequency time harmonic complex wavenumber propagation oscillation">
+<span class="chapter-number">03 / HELMHOLTZ EQUATIONS</span>
+<h2>Derive the Helmholtz equations for \(\mathbf E\) and \(\mathbf B\)</h2>
+<p>The wave equations describe fields changing in <strong>space and time</strong>. For a fixed angular frequency \(\omega\), write the known time dependence separately; the remaining spatial fields satisfy a <strong>Helmholtz equation</strong>.</p>
+<div class="equation"><h3>Define the phasors</h3>
+\[\boxed{\mathbf E(\mathbf r,t)=\operatorname{Re}
+\{\widetilde{\mathbf E}(\mathbf r)e^{-i\omega t}\}}\]
+\[\boxed{\mathbf B(\mathbf r,t)=\operatorname{Re}
+\{\widetilde{\mathbf B}(\mathbf r)e^{-i\omega t}\}}\]
+<p>The tildes are complex spatial amplitudes, not different physical fields. With the chosen \(e^{-i\omega t}\) convention, \(\partial_t\to-i\omega\) and \(\partial_t^2\to-\omega^2\).</p></div>
+<details open><summary>Electric-field Helmholtz equation: all steps</summary><div class="steps">
+<p>Start from the homogeneous source-free wave equation</p>
+\[\nabla^2\mathbf E-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}=\mathbf0.\]
+<p>Substitute \(\widetilde{\mathbf E}e^{-i\omega t}\) and evaluate the time derivatives:</p>
+\[\nabla^2\widetilde{\mathbf E}\,e^{-i\omega t}
++\mu\varepsilon\omega^2\widetilde{\mathbf E}\,e^{-i\omega t}=\mathbf0.\]
+<p>Divide by the nonzero harmonic factor:</p>
+\[\nabla^2\widetilde{\mathbf E}+\omega^2\mu\varepsilon\,\widetilde{\mathbf E}=\mathbf0.\]
+<p>Define \(k^2=\omega^2\mu\varepsilon\), giving</p>
+\[\boxed{(\nabla^2+k^2)\widetilde{\mathbf E}=\mathbf0}.\]
+</div></details>
+<details open><summary>Magnetic-field Helmholtz equation: all steps</summary><div class="steps">
+<p>Start from \(\nabla^2\mathbf B-\mu\varepsilon\,\partial_t^2\mathbf B=\mathbf0\). Substitute \(\mathbf B\propto\widetilde{\mathbf B}e^{-i\omega t}\):</p>
+\[\nabla^2\widetilde{\mathbf B}\,e^{-i\omega t}
++\omega^2\mu\varepsilon\,\widetilde{\mathbf B}\,e^{-i\omega t}=\mathbf0.\]
+<p>Remove the time factor:</p>
+\[\boxed{(\nabla^2+k^2)\widetilde{\mathbf B}=\mathbf0}.\]
+<p>Both fields share \(k=\omega\sqrt{\mu\varepsilon}=\omega/v\) in this uniform lossless medium. In vacuum, \(k_0=\omega/c\). The Helmholtz equations must be used with Maxwell's divergence and curl constraints; arbitrary independent vector solutions are not necessarily electromagnetic waves.</p>
+</div></details>
+<details open><summary>Solve the 1D Helmholtz equation</summary><div class="steps">
+<p>If the wave propagates along \(z\) and the electric field points along \(x\), use \(\widetilde{\mathbf E}(z)=\widetilde E_x(z)\hat{\mathbf x}\). Then</p>
+\[\frac{d^2\widetilde E_x}{dz^2}+k^2\widetilde E_x=0.\]
+<p>The characteristic equation is \(r^2+k^2=0\), so \(r=\pm ik\) and</p>
+\[\boxed{\widetilde E_x(z)=Ae^{ikz}+Be^{-ikz}}.\]
+<p>For forward propagation, take the real part of \(E_0e^{i(kz-\omega t)}\), obtaining</p>
+\[\boxed{\mathbf E(z,t)=E_0\cos(kz-\omega t)\hat{\mathbf x}}.\]
+<p>Faraday's law implies \(\widetilde{\mathbf B}=(\mathbf k\times\widetilde{\mathbf E})/\omega\) for a plane wave. Hence when \(\mathbf k\parallel\hat{\mathbf z}\) and \(\mathbf E\parallel\hat{\mathbf x}\), the magnetic field points along \(+\hat{\mathbf y}\). The field component's direction and the derivative's coordinate are not the same thing.</p>
+</div></details>
+<details><summary>Conducting medium: complex Helmholtz wavenumber</summary><div class="steps">
+<p>In the Ohmic model above, the first-time derivative becomes \(-i\omega\widetilde{\mathbf E}\) or \(-i\omega\widetilde{\mathbf B}\), and the two Helmholtz equations become</p>
+\[\boxed{(\nabla^2+k_c^2)\widetilde{\mathbf E}=\mathbf0},\qquad
+\boxed{(\nabla^2+k_c^2)\widetilde{\mathbf B}=\mathbf0},\]
+\[\boxed{k_c^2=\omega^2\mu\varepsilon+i\omega\mu\sigma}.\]
+<p>For forward waves with spatial dependence \(e^{ik_cz}\), choose the root with \(\operatorname{Im}k_c&gt;0\) in a passive material, producing exponential attenuation. Material loss therefore modifies the Helmholtz wavenumber.</p>
+</div></details>
+<details><summary>Helmholtz versus electrostatic Laplace and Poisson</summary><div class="steps">
+<p>Electrostatic scalar potential satisfies</p>
+\[\nabla^2V=0\quad(\rho=0),\qquad \nabla^2V=-\frac{\rho}{\varepsilon_0}\quad(\text{vacuum Poisson}).\]
+<p>Time-harmonic source-free vector fields satisfy instead</p>
+\[(\nabla^2+k^2)\widetilde{\mathbf E}=\mathbf0,\qquad
+(\nabla^2+k^2)\widetilde{\mathbf B}=\mathbf0.\]
+<p>The nonzero \(k^2\) term encodes spatial oscillations at angular frequency \(\omega\). The static-potential equations and wave equations are physically different boundary-value problems.</p>
+</div></details>
 </section>
 <section class="chapter" id="plane-wave" data-keywords="transverse plane wave E B H cross products right hand rule omega k impedance direction">
-<span class="chapter-number">03 / PLANE WAVES</span>
+<span class="chapter-number">04 / PLANE WAVES</span>
 <h2>Wave direction versus field direction</h2>
 <div class="equation">
 <h3>Plane wave traveling in \(+\hat{\mathbf z}\)</h3>
@@ -123,7 +203,7 @@
 </div></details>
 </section>
 <section class="chapter" id="energy" data-keywords="poynting theorem conservation energy density current work flux electric magnetic">
-<span class="chapter-number">04 / ENERGY TRANSPORT</span>
+<span class="chapter-number">05 / ENERGY STORAGE AND TRANSPORT</span>
 <h2>Derive Poynting's theorem</h2>
 <p>In a linear, isotropic, nondispersive medium with time-independent \(\varepsilon\) and \(\mu\), electromagnetic energy density and flux have particularly simple forms.</p>
 <details open><summary>From Maxwell's equations to energy conservation</summary><div class="steps">
@@ -142,11 +222,57 @@
 \[\boxed{\frac{\partial u}{\partial t}+\nabla\cdot\mathbf S=-\mathbf J_f\cdot\mathbf E},\]
 \[\boxed{u=\frac12\varepsilon E^2+\frac12\mu H^2},\qquad
 \boxed{\mathbf S=\mathbf E\times\mathbf H}.\]
-<p><strong>Meaning:</strong> a region loses field energy by transporting it outward (\(\nabla\cdot\mathbf S>0\)) or by doing work on free charges (\(\mathbf J_f\cdot\mathbf E>0\)). For dispersive or lossy matter the simple expression for \(u\) need not apply.</p>
+<p><strong>Meaning:</strong> a region loses field energy by transporting it outward (\(\nabla\cdot\mathbf S&gt;0\)) or by doing work on free charges (\(\mathbf J_f\cdot\mathbf E&gt;0\)). For dispersive or lossy matter the simple expression for \(u\) need not apply.</p>
+</div></details>
+
+<div class="equation"><h3>Energy stored per unit volume</h3>
+\[\boxed{u_{\mathrm{vac}}=\frac{\varepsilon_0E^2}{2}+\frac{B^2}{2\mu_0}}\]
+<p>The electric and magnetic contributions are \(u_E=\varepsilon_0E^2/2\) and \(u_B=B^2/(2\mu_0)\). Units: \(\mathrm{J/m^3}\). These energy densities exist even for static fields.</p>
+<p>In a uniform, linear, lossless nondispersive material,</p>
+\[\boxed{u=\frac12\mathbf E\cdot\mathbf D+\frac12\mathbf B\cdot\mathbf H
+=\frac{\varepsilon E^2}{2}+\frac{B^2}{2\mu}}.\]
+<p>In dispersive, nonlinear, hysteretic or dissipative media, this simple formula is not generally sufficient to describe all stored material and electromagnetic energy.</p></div>
+<div class="equation"><h3>Energy transferred per area per time</h3>
+\[\boxed{\mathbf S=\mathbf E\times\mathbf H},\qquad
+\boxed{\mathbf S_{\mathrm{vac}}=\frac1{\mu_0}\mathbf E\times\mathbf B}.\]
+<p>The Poynting vector has units \(\mathrm{W/m^2}\), not \(\mathrm{J/m^3}\). Its direction gives the energy-flow direction in an ordinary traveling plane wave. A positive divergence means net outward flow from a small volume.</p></div>
+<details open><summary>Convert Poynting's theorem to an integral law</summary><div class="steps">
+<p>Starting from the differential theorem derived above,</p>
+\[\frac{\partial u}{\partial t}+\nabla\cdot\mathbf S=-\mathbf J_f\cdot\mathbf E,\]
+<p>integrate over a fixed volume \(\mathcal V\), exchange the time derivative and volume integral, and apply the divergence theorem:</p>
+\[\int_{\mathcal V}\frac{\partial u}{\partial t}\,dV
++\int_{\mathcal V}\nabla\cdot\mathbf S\,dV
+=-\int_{\mathcal V}\mathbf J_f\cdot\mathbf E\,dV,\]
+\[\boxed{\frac{d}{dt}\int_{\mathcal V}u\,dV
+=-\oint_{\partial\mathcal V}\mathbf S\cdot d\mathbf a
+-\int_{\mathcal V}\mathbf J_f\cdot\mathbf E\,dV}.\]
+<p>Field energy inside decreases if electromagnetic power flows outward or if fields do positive work on charges. For Ohmic conduction, \(\mathbf J_f\cdot\mathbf E=\sigma E^2\) is the local rate of Joule heating per volume.</p>
+</div></details>
+<details open><summary>Worked example: energy density and intensity of a plane wave</summary><div class="steps">
+<p>For an ideal lossless plane wave in a homogeneous isotropic medium, let</p>
+\[\mathbf E=E_0\cos(kz-\omega t)\hat{\mathbf x},\qquad
+\mathbf H=\frac{E_0}{\eta}\cos(kz-\omega t)\hat{\mathbf y},\]
+<p>with impedance \(\eta=\sqrt{\mu/\varepsilon}\) and speed \(v=1/\sqrt{\mu\varepsilon}\). Since \(B=\mu H=E/v\), the energy contributions are equal:</p>
+\[u_E=\frac{\varepsilon E^2}{2},\qquad
+u_B=\frac{B^2}{2\mu}=\frac{\varepsilon E^2}{2}.\]
+<p>Add them:</p>
+\[\boxed{u=\varepsilon E_0^2\cos^2(kz-\omega t)}.\]
+<p>Compute the energy-flux vector:</p>
+\[\boxed{\mathbf S=\frac{E_0^2}{\eta}\cos^2(kz-\omega t)\hat{\mathbf z}}.\]
+<p>Average over a period using \(\langle\cos^2\rangle=1/2\):</p>
+\[\boxed{\langle u\rangle=\frac12\varepsilon E_0^2},\qquad
+\boxed{\langle\mathbf S\rangle=\frac{E_0^2}{2\eta}\hat{\mathbf z}}.\]
+<p>Since \(1/\eta=\varepsilon v\), the magnitude obeys \(\boxed{\langle S\rangle=v\langle u\rangle}\). This connects <em>energy per unit volume</em> with the <em>rate of its transport</em>.</p>
+</div></details>
+<details><summary>Harmonic phasors: time-averaged Poynting vector</summary><div class="steps">
+<p>For fields represented by complex phasors under the \(e^{-i\omega t}\) convention, the time average is</p>
+\[\boxed{\langle\mathbf S\rangle=\frac12\operatorname{Re}
+\left(\widetilde{\mathbf E}\times\widetilde{\mathbf H}^{\,*}\right)}.\]
+<p>The star denotes complex conjugation. This formula is useful when field phasors come from solutions to Helmholtz equations.</p>
 </div></details>
 </section>
 <section class="chapter" id="interface-waves" data-keywords="normal incidence fresnel reflection transmission impedance interface boundary conditions">
-<span class="chapter-number">05 / WAVES AT AN INTERFACE</span>
+<span class="chapter-number">06 / WAVES AT AN INTERFACE</span>
 <h2>Reflection and transmission at normal incidence</h2>
 <p>Consider a plane wave traveling from a lossless isotropic medium 1 into medium 2 across the plane \(z=0\), with no free surface charge or current. Their wave impedances are \(\eta_1,\eta_2\). At normal incidence, tangential \(\mathbf E\) and \(\mathbf H\) are continuous.</p>
 <details open><summary>Derive electric-field reflection and transmission coefficients</summary><div class="steps">
