@@ -41,3 +41,9 @@ footer a{display:inline-block;margin-top:6px}
 @media(max-width:420px){.shell{width:calc(100% - 18px)}.hero{padding:17px 0 13px}.chapter{padding:20px 0 26px}h2{font-size:1.37em}.math-panel,.equation{padding:11px}.intro{padding:11px}.steps{padding:4px 10px 14px}.nav{font-size:.9em}.controls input{width:80px}.subtitle{font-size:.93em}}
 @media(max-width:270px){.shell{width:calc(100% - 12px)}:root{--size:15px}.nav a{padding:6px 8px}button{padding:9px 8px}summary{padding:12px 9px}.chapter-number{font-size:.68em}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Concise, watch-readable interpretations beneath each equation. */
+.meaning{margin-top:13px;padding:11px 13px;background:#0d1a2a;border-left:3px solid var(--accent);border-radius:0 9px 9px 0}
+.meaning h4{margin:0 0 5px;font-size:.82em;letter-spacing:.055em;text-transform:uppercase;color:var(--accent)}
+.meaning p{font-size:.9em;line-height:1.55;margin:5px 0 9px;color:#d2deec}
+.meaning p:last-child{margin-bottom:0}
+@media(max-width:420px){.meaning{padding:9px 10px;margin-top:10px}.meaning p{font-size:.9em}}
