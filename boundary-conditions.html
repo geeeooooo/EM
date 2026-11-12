@@ -49,7 +49,7 @@
     
 <div class="intro">
   <strong>What a boundary condition tells us.</strong> It determines which field components can change discontinuously across the interface of two media, and what causes those changes. These rules come directly from the <em>integral forms</em> of Maxwell's equations.
-  <p class="small">Geometry: the interface is \(z=0\). Medium 1 occupies \(z<0\); medium 2 occupies \(z>0\). The normal \(\hat{\mathbf n}=\hat{\mathbf z}\) points <strong>from 1 toward 2</strong>. The limiting values of each field are \(\mathbf F_1\) and \(\mathbf F_2\). Free surface charge and current densities are \(\sigma_f\) and \(\mathbf K_f\).</p>
+  <p class="small">Geometry: the interface is \(z=0\). Medium 1 occupies \(z&lt;0\); medium 2 occupies \(z&gt;0\). The normal \(\hat{\mathbf n}=\hat{\mathbf z}\) points <strong>from 1 toward 2</strong>. The limiting values of each field are \(\mathbf F_1\) and \(\mathbf F_2\). Free surface charge and current densities are \(\sigma_f\) and \(\mathbf K_f\).</p>
 </div>
 <section class="chapter" id="overview" data-keywords="overview four boundary conditions normal tangential discontinuity surface sources">
  <span class="chapter-number">01 / FOUR INTERFACE CONDITIONS</span>
@@ -199,7 +199,7 @@
  <details class="example"><summary><span><strong>Problem 1 · Cartesian</strong><span class="example-subtitle">Two parallel conducting walls</span></span></summary><div class="steps">
   <h4>Problem</h4>
   <p>Two large parallel conducting walls lie at \(x=0\) and \(x=d\). The first is grounded; the second is held at \(V_0\). Between them there is no free charge, and edge effects are neglected. Find \(V(x)\) and \(\mathbf E\).</p>
-  \[\boxed{V(0)=0,\qquad V(d)=V_0,\qquad 0<x<d.}\]
+  \[\boxed{V(0)=0,\qquad V(d)=V_0,\qquad 0&lt;x&lt;d.}\]
   <h4>1. Reduce Laplace's equation</h4>
   <p>Translational symmetry in \(y\) and \(z\) implies \(V=V(x)\).</p>
   \[\nabla^2V=\frac{\partial^2 V}{\partial x^2}+\frac{\partial^2 V}{\partial y^2}+\frac{\partial^2 V}{\partial z^2}=0
@@ -213,7 +213,7 @@
   <div class="equation"><h3>Final answer</h3>
   \[\boxed{V(x)=\frac{V_0x}{d},\qquad \mathbf E=-\frac{V_0}{d}\hat{\mathbf x}.}\]
   </div>
-  <p><strong>Physical check:</strong> for \(V_0>0\), the field points from the higher-potential wall at \(x=d\) toward the grounded wall, and its magnitude is constant.</p>
+  <p><strong>Physical check:</strong> for \(V_0&gt;0\), the field points from the higher-potential wall at \(x=d\) toward the grounded wall, and its magnitude is constant.</p>
  </div></details>
 
  <details class="example"><summary><span><strong>Problem 2 · Cartesian</strong><span class="example-subtitle">Three parallel conducting sheets</span></span></summary><div class="steps">
@@ -222,21 +222,21 @@
   \[\boxed{V(0)=0,\qquad V(h)=V_0,\qquad V(2h)=0.}\]
   <h4>1. Reduce Laplace's equation in each region</h4>
   <p>By plane symmetry, \(V=V(z)\). In each gap, \(d^2V_i/dz^2=0\), so \(V_i=A_i z+B_i\). A conductor at \(z=h\) separates the two intervals: each has its own constants.</p>
-  <h4>2. Lower gap: \(0<z<h\)</h4>
+  <h4>2. Lower gap: \(0&lt;z&lt;h\)</h4>
   \[V_1(z)=A_1z+B_1,\quad V_1(0)=0\Rightarrow B_1=0,\]
   \[V_1(h)=V_0\Rightarrow A_1=\frac{V_0}{h},\quad V_1(z)=\frac{V_0z}{h}.\]
   \[\mathbf E_1=-\frac{dV_1}{dz}\hat{\mathbf z}=-\frac{V_0}{h}\hat{\mathbf z}.\]
-  <h4>3. Upper gap: \(h<z<2h\)</h4>
+  <h4>3. Upper gap: \(h&lt;z&lt;2h\)</h4>
   \[V_2(z)=A_2z+B_2,\quad A_2h+B_2=V_0,\quad 2A_2h+B_2=0.\]
   <p>Subtract the two equations: \(A_2=-V_0/h\). Then \(B_2=2V_0\).</p>
   \[V_2(z)=V_0\left(2-\frac zh\right),\qquad \mathbf E_2=+\frac{V_0}{h}\hat{\mathbf z}.\]
   <div class="equation"><h3>Final answer</h3>
-  \[V(z)=\begin{cases}\dfrac{V_0z}{h},&0\le z\le h,\\[4pt]
-  V_0\left(2-\dfrac zh\right),&h\le z\le 2h,\end{cases}\]
-  \[\mathbf E(z)=\begin{cases}-\dfrac{V_0}{h}\hat{\mathbf z},&0<z<h,\\[4pt]
-  +\dfrac{V_0}{h}\hat{\mathbf z},&h<z<2h.\end{cases}\]
+  \[V(z)=\begin{cases}\dfrac{V_0z}{h},&amp;0\le z\le h,\\[4pt]
+  V_0\left(2-\dfrac zh\right),&amp;h\le z\le 2h,\end{cases}\]
+  \[\mathbf E(z)=\begin{cases}-\dfrac{V_0}{h}\hat{\mathbf z},&amp;0&lt;z&lt;h,\\[4pt]
+  +\dfrac{V_0}{h}\hat{\mathbf z},&amp;h&lt;z&lt;2h.\end{cases}\]
   </div>
-  <p><strong>Physical check:</strong> for \(V_0>0\), the electric field points away from the middle conductor into both gaps. Its normal component may jump across a charged conducting sheet.</p>
+  <p><strong>Physical check:</strong> for \(V_0&gt;0\), the electric field points away from the middle conductor into both gaps. Its normal component may jump across a charged conducting sheet.</p>
  </div></details>
 
  <details class="example"><summary><span><strong>Problem 3 · Rotated Cartesian</strong><span class="example-subtitle">Two inclined parallel conducting plates</span></span></summary><div class="steps">
@@ -265,7 +265,7 @@
 
  <details class="example"><summary><span><strong>Problem 4 · Cylindrical</strong><span class="example-subtitle">Two concentric conducting cylinders</span></span></summary><div class="steps">
   <h4>Problem</h4>
-  <p>Two long coaxial conducting cylinders have radii \(0<a<b\). The inner cylinder is held at \(V_0\); the outer is grounded. The annular region \(a<r<b\) is charge-free; neglect end effects. Find \(V(r)\) and \(\mathbf E(r)\).</p>
+  <p>Two long coaxial conducting cylinders have radii \(0&lt;a&lt;b\). The inner cylinder is held at \(V_0\); the outer is grounded. The annular region \(a&lt;r&lt;b\) is charge-free; neglect end effects. Find \(V(r)\) and \(\mathbf E(r)\).</p>
   \[\boxed{V(a)=V_0,\qquad V(b)=0.}\]
   <h4>1. Reduce the cylindrical Laplacian</h4>
   <p>Cylindrical symmetry implies \(V=V(r)\):</p>
@@ -285,7 +285,7 @@
   \[\boxed{V(r)=V_0\frac{\ln(b/r)}{\ln(b/a)}}\]
   \[\boxed{\mathbf E(r)=\frac{V_0}{r\ln(b/a)}\hat{\mathbf r}.}\]
   </div>
-  <p><strong>Physical check:</strong> if \(V_0>0\), the field points radially outward and falls as \(1/r\), unlike the \(1/r^2\) field between concentric spheres.</p>
+  <p><strong>Physical check:</strong> if \(V_0&gt;0\), the field points radially outward and falls as \(1/r\), unlike the \(1/r^2\) field between concentric spheres.</p>
  </div></details>
 
  <details class="example"><summary><span><strong>Problem 5 · Cylindrical</strong><span class="example-subtitle">Conducting radial walls forming a wedge</span></span></summary><div class="steps">
@@ -312,37 +312,37 @@
 
  <details class="example"><summary><span><strong>Problem 6 · Cylindrical</strong><span class="example-subtitle">Three concentric cylindrical electrodes</span></span></summary><div class="steps">
   <h4>Problem</h4>
-  <p>Three long coaxial conducting cylinders have radii \(0<a<b<c\). The inner and outer cylinders are grounded; the middle cylinder is held at \(V_0\). Both annular gaps are charge-free, with end effects neglected. Find \(V(r)\) and \(\mathbf E(r)\) in each gap.</p>
+  <p>Three long coaxial conducting cylinders have radii \(0&lt;a&lt;b&lt;c\). The inner and outer cylinders are grounded; the middle cylinder is held at \(V_0\). Both annular gaps are charge-free, with end effects neglected. Find \(V(r)\) and \(\mathbf E(r)\) in each gap.</p>
   \[\boxed{V(a)=0,\qquad V(b)=V_0,\qquad V(c)=0.}\]
   <h4>1. Reduce and solve in each radial interval</h4>
   \[\frac1r\frac{d}{dr}\left(r\frac{dV_i}{dr}\right)=0\Rightarrow V_i(r)=A_i\ln r+B_i.\]
   <p>The middle conductor separates two regions; determine their constants independently.</p>
-  <h4>2. Inner gap: \(a<r<b\)</h4>
+  <h4>2. Inner gap: \(a&lt;r&lt;b\)</h4>
   \[V_1=A_1\ln(r/a)+B_1,\qquad V_1(a)=0\Rightarrow B_1=0.\]
   \[V_1(b)=V_0\Rightarrow A_1=\frac{V_0}{\ln(b/a)}.\]
   \[V_1(r)=V_0\frac{\ln(r/a)}{\ln(b/a)},\qquad
   \mathbf E_1=-\frac{V_0}{r\ln(b/a)}\hat{\mathbf r}.\]
-  <h4>3. Outer gap: \(b<r<c\)</h4>
+  <h4>3. Outer gap: \(b&lt;r&lt;c\)</h4>
   \[V_2=A_2\ln(r/c)+B_2,\qquad V_2(c)=0\Rightarrow B_2=0.\]
   \[V_2(b)=V_0\Rightarrow A_2=\frac{V_0}{\ln(b/c)}=-\frac{V_0}{\ln(c/b)}.\]
   \[V_2(r)=V_0\frac{\ln(c/r)}{\ln(c/b)},\qquad
   \mathbf E_2=+\frac{V_0}{r\ln(c/b)}\hat{\mathbf r}.\]
   <div class="equation"><h3>Final answer</h3>
   \[V(r)=\begin{cases}
-  \dfrac{V_0\ln(r/a)}{\ln(b/a)},&a<r<b,\\[5pt]
-  \dfrac{V_0\ln(c/r)}{\ln(c/b)},&b<r<c,
+  \dfrac{V_0\ln(r/a)}{\ln(b/a)},&amp;a&lt;r&lt;b,\\[5pt]
+  \dfrac{V_0\ln(c/r)}{\ln(c/b)},&amp;b&lt;r&lt;c,
   \end{cases}\]
   \[\mathbf E(r)=\begin{cases}
-  -\dfrac{V_0}{r\ln(b/a)}\hat{\mathbf r},&a<r<b,\\[5pt]
-  +\dfrac{V_0}{r\ln(c/b)}\hat{\mathbf r},&b<r<c.
+  -\dfrac{V_0}{r\ln(b/a)}\hat{\mathbf r},&amp;a&lt;r&lt;b,\\[5pt]
+  +\dfrac{V_0}{r\ln(c/b)}\hat{\mathbf r},&amp;b&lt;r&lt;c.
   \end{cases}\]
   </div>
-  <p><strong>Physical check:</strong> for \(V_0>0\), the field points away from the middle conductor, inward in the inner gap and outward in the outer gap.</p>
+  <p><strong>Physical check:</strong> for \(V_0&gt;0\), the field points away from the middle conductor, inward in the inner gap and outward in the outer gap.</p>
  </div></details>
 
  <details class="example"><summary><span><strong>Problem 7 · Spherical</strong><span class="example-subtitle">Two concentric conducting spheres</span></span></summary><div class="steps">
   <h4>Problem</h4>
-  <p>Two concentric conducting shells have radii \(0<a<b\). The inner shell is at \(V_0\); the outer shell is grounded. The gap \(a<r<b\) contains no free charge. Assume spherical symmetry. Derive \(V(r)\) and \(\mathbf E(r)\), and compare their radial behavior with concentric cylinders.</p>
+  <p>Two concentric conducting shells have radii \(0&lt;a&lt;b\). The inner shell is at \(V_0\); the outer shell is grounded. The gap \(a&lt;r&lt;b\) contains no free charge. Assume spherical symmetry. Derive \(V(r)\) and \(\mathbf E(r)\), and compare their radial behavior with concentric cylinders.</p>
   \[\boxed{V(a)=V_0,\qquad V(b)=0.}\]
   <h4>1. Reduce spherical Laplace's equation</h4>
   \[\nabla^2V=\frac1{r^2}\frac{d}{dr}\left(r^2\frac{dV}{dr}\right)=0.\]
@@ -368,7 +368,7 @@
 
  <details class="example"><summary><span><strong>Problem 8 · Spherical</strong><span class="example-subtitle">Conducting cone above a grounded plane</span></span></summary><div class="steps">
   <h4>Problem</h4>
-  <p>An ideal conducting cone has its apex at the origin, its axis along \(+\hat{\mathbf z}\), and its surface at polar angle \(\theta=\theta_0\), where \(0<\theta_0<\pi/2\). The cone is held at \(V_0\); an infinite grounded plane occupies \(\theta=\pi/2\). The wedge-like region between them is charge-free. Assume \(V=V(\theta)\). Find \(V(\theta)\), \(\mathbf E(r,\theta)\), and its direction for \(V_0>0\).</p>
+  <p>An ideal conducting cone has its apex at the origin, its axis along \(+\hat{\mathbf z}\), and its surface at polar angle \(\theta=\theta_0\), where \(0&lt;\theta_0&lt;\pi/2\). The cone is held at \(V_0\); an infinite grounded plane occupies \(\theta=\pi/2\). The wedge-like region between them is charge-free. Assume \(V=V(\theta)\). Find \(V(\theta)\), \(\mathbf E(r,\theta)\), and its direction for \(V_0&gt;0\).</p>
   \[\boxed{V(\theta_0)=V_0,\qquad V(\pi/2)=0.}\]
   <h4>1. Reduce spherical Laplace's equation</h4>
   <p>With \(V=V(\theta)\), the spherical Laplacian reduces to</p>
@@ -378,7 +378,7 @@
   <h4>2. Integrate the angular equation</h4>
   \[\sin\theta\frac{dV}{d\theta}=A\Rightarrow
   \frac{dV}{d\theta}=A\csc\theta.\]
-  <p>Use the identity \(\int \csc\theta\,d\theta=\ln\tan(\theta/2)\) for \(0<\theta<\pi\):</p>
+  <p>Use the identity \(\int \csc\theta\,d\theta=\ln\tan(\theta/2)\) for \(0&lt;\theta&lt;\pi\):</p>
   \[V(\theta)=A\ln\tan\left(\frac\theta2\right)+B.\]
   <h4>3. Apply both boundary conditions</h4>
   \[V(\pi/2)=A\ln\tan(\pi/4)+B=B=0.\]
@@ -391,7 +391,7 @@
   \[\boxed{V(\theta)=V_0\frac{\ln\tan(\theta/2)}{\ln\tan(\theta_0/2)}}\]
   \[\boxed{\mathbf E(r,\theta)=-\frac{V_0}{r\sin\theta\,\ln\tan(\theta_0/2)}\hat{\boldsymbol\theta}.}\]
   </div>
-  <p><strong>Physical check:</strong> for \(0<\theta_0<\pi/2\), \(\ln\tan(\theta_0/2)<0\); therefore when \(V_0>0\), the electric field points in \(+\hat{\boldsymbol\theta}\), from the cone toward the grounded plane. The idealization produces a \(1/r\) singularity near the sharp apex.</p>
+  <p><strong>Physical check:</strong> for \(0&lt;\theta_0&lt;\pi/2\), \(\ln\tan(\theta_0/2)&lt;0\); therefore when \(V_0&gt;0\), the electric field points in \(+\hat{\boldsymbol\theta}\), from the cone toward the grounded plane. The idealization produces a \(1/r\) singularity near the sharp apex.</p>
  </div></details>
 
  <details><summary>Quick reference · coordinate forms and checks (worksheet p. 9)</summary><div class="steps">
@@ -411,7 +411,7 @@
   <div class="math-panel"><h3>Spherical · polar</h3>
   \[\frac1{\sin\theta}\frac d{d\theta}\left(\sin\theta\frac{dV}{d\theta}\right)=0
   \Rightarrow V=A\ln\tan(\theta/2)+B.\]</div>
-  <p>The reference length \(r_*>0\) makes the logarithm argument dimensionless.</p>
+  <p>The reference length \(r_*&gt;0\) makes the logarithm argument dimensionless.</p>
   <h4>Gradient scale factors</h4>
   \[\nabla V_{\rm cyl}=\hat{\mathbf r}\partial_rV+
   \frac{\hat{\boldsymbol\phi}}{r}\partial_\phi V+\hat{\mathbf z}\partial_z V.\]
