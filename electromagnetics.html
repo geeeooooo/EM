@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Electromagnetics study website with wave equation, plane waves, Poynting theorem, and Fresnel coefficients derivations.">
+  <title>Electromagnetics · Field Notes</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']],
+        packages: {'[+]': ['ams']}
+      },
+      svg: { fontCache: 'local' },
+      options: {skipHtmlTags: ['script','noscript','style','textarea','pre','code']}
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="hero">
+    <div class="shell">
+      <div class="eyebrow">FIELD NOTES / MS PHYSICS</div>
+      <h1>Electromagnetics</h1>
+      <p class="subtitle">Time-varying fields, electromagnetic waves, energy, and interfaces.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a href="./index.html">Maxwell</a>
+  <a href="./boundary-conditions.html">Boundary conditions</a>
+  <a href="./electrostatics.html">Electrostatics</a>
+  <a aria-current="page" href="./electromagnetics.html">Electromagnetics</a>
+</nav>
+      <div class="controls" aria-label="Reading controls">
+        <label class="sr-only" for="search">Search sections of this page</label>
+        <input id="search" type="search" placeholder="Find in this page…" autocomplete="off">
+        <button id="decrease" aria-label="Decrease text size">A−</button>
+        <button id="increase" aria-label="Increase text size">A+</button>
+      </div>
+      <nav class="nav" aria-label="On this page"><a href="#maxwell-dynamic">Maxwell</a><a href="#wave">Waves</a><a href="#plane-wave">Plane wave</a><a href="#energy">Energy</a><a href="#interface-waves">Interfaces</a></nav>
+      <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
+    </div>
+  </header>
+  <main id="content" class="shell">
+    
+<div class="intro"><strong>Electromagnetics</strong> extends electrostatics to time-dependent electric and magnetic fields. Here the changing fields couple through Faraday's law and Ampère–Maxwell's law, permitting electromagnetic-wave propagation. The starting equations are the same Maxwell equations explored on the <a href="./index.html#vacuum">main page</a>.</div>
+<section class="chapter" id="maxwell-dynamic" data-keywords="maxwell time varying vacuum matter sources continuity current charge">
+<span class="chapter-number">01 / TIME-DEPENDENT EQUATIONS</span>
+<h2>Coupled electric and magnetic fields</h2>
+<div class="equation">
+<h3>Macroscopic Maxwell equations</h3>
+\[\begin{aligned}
+\nabla\cdot\mathbf D&=\rho_f,\\
+\nabla\cdot\mathbf B&=0,\\
+\nabla\times\mathbf E&=-\frac{\partial\mathbf B}{\partial t},\\
+\nabla\times\mathbf H&=\mathbf J_f+\frac{\partial\mathbf D}{\partial t}.
+\end{aligned}\]
+<p><strong>Concept:</strong> time-dependent \(\mathbf B\) generates electric circulation; current and time-dependent \(\mathbf D\) generate magnetic circulation. The divergence equations constrain the sources and net flux.</p>
+</div>
+<details><summary>Derive free-charge continuity from Maxwell's equations</summary><div class="steps">
+<p>Take the divergence of the Ampère–Maxwell equation:</p>
+\[\nabla\cdot(\nabla\times\mathbf H)
+=\nabla\cdot\mathbf J_f+\frac{\partial}{\partial t}(\nabla\cdot\mathbf D).\]
+<p>Since the divergence of a curl is zero and \(\nabla\cdot\mathbf D=\rho_f\),</p>
+\[\boxed{\frac{\partial\rho_f}{\partial t}+\nabla\cdot\mathbf J_f=0}.\]
+<p><strong>Meaning:</strong> free charge is locally conserved. A decrease in charge inside a small volume corresponds to free current leaving it.</p>
+</div></details>
+</section>
+<section class="chapter" id="wave" data-keywords="wave equation homogeneous linear isotropic source free curl identity speed refractive index">
+<span class="chapter-number">02 / WAVE EQUATIONS</span>
+<h2>Derive the electromagnetic wave equation</h2>
+<p>Assume a source-free region, \(\rho_f=0\), \(\mathbf J_f=0\), and a homogeneous, isotropic, linear, nondispersive medium with time-independent scalar \(\varepsilon,\mu\). Hence \(\mathbf D=\varepsilon\mathbf E\) and \(\mathbf B=\mu\mathbf H\).</p>
+<details open><summary>Electric-field wave equation · every major step</summary><div class="steps">
+<p>Start from Faraday's law and take a curl:</p>
+\[\nabla\times\mathbf E=-\mu\frac{\partial\mathbf H}{\partial t},\]
+\[\nabla\times(\nabla\times\mathbf E)
+=-\mu\frac{\partial}{\partial t}(\nabla\times\mathbf H).\]
+<p>Use source-free Ampère–Maxwell: \(\nabla\times\mathbf H=\varepsilon\,\partial_t\mathbf E\):</p>
+\[\nabla\times(\nabla\times\mathbf E)=-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}.\]
+<p>Now apply the vector identity:</p>
+\[\nabla\times(\nabla\times\mathbf E)=\nabla(\nabla\cdot\mathbf E)-\nabla^2\mathbf E.\]
+<p>Since \(\nabla\cdot\mathbf D=0\) and \(\varepsilon\) is constant, \(\nabla\cdot\mathbf E=0\), so</p>
+\[-\nabla^2\mathbf E=-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}.\]
+\[\boxed{\nabla^2\mathbf E=\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}}.\]
+<p>This is a wave equation with propagation speed</p>
+\[\boxed{v=\frac{1}{\sqrt{\mu\varepsilon}}}.\]
+<p>In vacuum, \(v=c=1/\sqrt{\mu_0\varepsilon_0}\).</p>
+</div></details>
+<details><summary>Magnetic-field wave equation</summary><div class="steps">
+<p>Start from \(\nabla\times\mathbf H=\varepsilon\,\partial_t\mathbf E\) and curl both sides:</p>
+\[\nabla\times(\nabla\times\mathbf H)=\varepsilon\frac{\partial}{\partial t}(\nabla\times\mathbf E).\]
+<p>Substitute Faraday's law \(\nabla\times\mathbf E=-\mu\,\partial_t\mathbf H\), and use \(\nabla\cdot\mathbf H=0\) (since \(\mathbf B=\mu\mathbf H\) and constant \(\mu\)):</p>
+\[-\nabla^2\mathbf H=-\mu\varepsilon\,\partial_t^2\mathbf H.\]
+\[\boxed{\nabla^2\mathbf H=\mu\varepsilon\frac{\partial^2\mathbf H}{\partial t^2}}.\]
+<p>Because \(\mu\) is constant, \(\mathbf B\) obeys the corresponding wave equation. These simple forms generally fail when material properties vary spatially or are dispersive.</p>
+</div></details>
+</section>
+<section class="chapter" id="plane-wave" data-keywords="transverse plane wave E B H cross products right hand rule omega k impedance direction">
+<span class="chapter-number">03 / PLANE WAVES</span>
+<h2>Wave direction versus field direction</h2>
+<div class="equation">
+<h3>Plane wave traveling in \(+\hat{\mathbf z}\)</h3>
+\[\mathbf E(z,t)=E_0\cos(kz-\omega t)\,\hat{\mathbf x}\]
+\[\mathbf B(z,t)=\frac{E_0}{v}\cos(kz-\omega t)\,\hat{\mathbf y}\]
+<p>The <strong>field</strong> points along \(x\), while the <strong>wave propagates</strong> along \(z\). Differentiating \(E_x\) with respect to \(z\) is therefore completely consistent.</p>
+</div>
+<details open><summary>Derive B, wave speed and wave impedance</summary><div class="steps">
+<p>Represent a monochromatic wave using a complex amplitude, taking the real part at the end:</p>
+\[\mathbf E=\operatorname{Re}\{\mathbf E_0e^{i(\mathbf k\cdot\mathbf r-\omega t)}\}.\]
+<p>For this wave, \(\nabla\times\mathbf E\leftrightarrow i\mathbf k\times\mathbf E_0\) and \(\partial_t\mathbf B\leftrightarrow-i\omega\mathbf B_0\). Faraday's law gives</p>
+\[i\mathbf k\times\mathbf E_0=i\omega\mathbf B_0,\]
+\[\boxed{\mathbf B_0=\frac{1}{\omega}\mathbf k\times\mathbf E_0}.\]
+<p>For propagation along \(+\hat{\mathbf z}\), \(\mathbf k=k\hat{\mathbf z}\), and polarization \(\mathbf E_0=E_0\hat{\mathbf x}\):</p>
+\[\mathbf B_0=\frac{kE_0}{\omega}(\hat{\mathbf z}\times\hat{\mathbf x})=\frac{E_0}{v}\hat{\mathbf y}.\]
+<p>Here \(v=\omega/k\). Because \(\mathbf B=\mu\mathbf H\),</p>
+\[\boxed{\mathbf H=\frac{1}{\eta}\hat{\mathbf z}\times\mathbf E},\qquad
+\boxed{\eta=\sqrt{\frac{\mu}{\varepsilon}}}.\]
+<p>\(\eta\) is the wave impedance. The fields \(\mathbf E\), \(\mathbf B\), and propagation direction form a right-handed orthogonal triad in this isotropic medium.</p>
+</div></details>
+</section>
+<section class="chapter" id="energy" data-keywords="poynting theorem conservation energy density current work flux electric magnetic">
+<span class="chapter-number">04 / ENERGY TRANSPORT</span>
+<h2>Derive Poynting's theorem</h2>
+<p>In a linear, isotropic, nondispersive medium with time-independent \(\varepsilon\) and \(\mu\), electromagnetic energy density and flux have particularly simple forms.</p>
+<details open><summary>From Maxwell's equations to energy conservation</summary><div class="steps">
+<p>Start with the vector identity</p>
+\[\nabla\cdot(\mathbf E\times\mathbf H)
+=\mathbf H\cdot(\nabla\times\mathbf E)-\mathbf E\cdot(\nabla\times\mathbf H).\]
+<p>Insert Faraday's and Ampère–Maxwell's laws:</p>
+\[\nabla\cdot(\mathbf E\times\mathbf H)
+=-\mathbf H\cdot\frac{\partial\mathbf B}{\partial t}
+-\mathbf E\cdot\mathbf J_f
+-\mathbf E\cdot\frac{\partial\mathbf D}{\partial t}.\]
+<p>With \(\mathbf B=\mu\mathbf H\), \(\mathbf D=\varepsilon\mathbf E\), and constant \(\varepsilon,\mu\),</p>
+\[\mathbf H\cdot\partial_t\mathbf B=\frac{\partial}{\partial t}\left(\frac{\mu H^2}{2}\right),\qquad
+\mathbf E\cdot\partial_t\mathbf D=\frac{\partial}{\partial t}\left(\frac{\varepsilon E^2}{2}\right).\]
+<p>Move energy-derivative terms to the left:</p>
+\[\boxed{\frac{\partial u}{\partial t}+\nabla\cdot\mathbf S=-\mathbf J_f\cdot\mathbf E},\]
+\[\boxed{u=\frac12\varepsilon E^2+\frac12\mu H^2},\qquad
+\boxed{\mathbf S=\mathbf E\times\mathbf H}.\]
+<p><strong>Meaning:</strong> a region loses field energy by transporting it outward (\(\nabla\cdot\mathbf S>0\)) or by doing work on free charges (\(\mathbf J_f\cdot\mathbf E>0\)). For dispersive or lossy matter the simple expression for \(u\) need not apply.</p>
+</div></details>
+</section>
+<section class="chapter" id="interface-waves" data-keywords="normal incidence fresnel reflection transmission impedance interface boundary conditions">
+<span class="chapter-number">05 / WAVES AT AN INTERFACE</span>
+<h2>Reflection and transmission at normal incidence</h2>
+<p>Consider a plane wave traveling from a lossless isotropic medium 1 into medium 2 across the plane \(z=0\), with no free surface charge or current. Their wave impedances are \(\eta_1,\eta_2\). At normal incidence, tangential \(\mathbf E\) and \(\mathbf H\) are continuous.</p>
+<details open><summary>Derive electric-field reflection and transmission coefficients</summary><div class="steps">
+<p>Let \(E_i\), \(E_r\), \(E_t\) be complex phasor amplitudes of the incident, reflected and transmitted electric fields, all along \(\hat{\mathbf x}\). Then \(\mathbf H\) for a \(+\hat{\mathbf z}\)-traveling wave is \(+\hat{\mathbf y}E/\eta\), while the reflected wave travels in \(-\hat{\mathbf z}\) and therefore has \(\mathbf H_r=-\hat{\mathbf y}E_r/\eta_1\).</p>
+<p>The two interface boundary conditions are</p>
+\[E_i+E_r=E_t,\qquad\frac{E_i-E_r}{\eta_1}=\frac{E_t}{\eta_2}.\]
+<p>Define \(r=E_r/E_i\) and \(t=E_t/E_i\):</p>
+\[1+r=t,\qquad\frac{1-r}{\eta_1}=\frac{1+r}{\eta_2}.\]
+<p>Multiply through and solve:</p>
+\[\eta_2-\eta_2r=\eta_1+\eta_1r,\]
+\[\boxed{r=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}},\qquad
+\boxed{t=\frac{2\eta_2}{\eta_1+\eta_2}}.\]
+<p>For real positive impedances and lossless materials, time-averaged power reflection and transmission are</p>
+\[\boxed{R=|r|^2},\qquad \boxed{T=\frac{\eta_1}{\eta_2}|t|^2},\qquad R+T=1.\]
+<p><strong>Meaning:</strong> impedance mismatch generates reflection. The sign of \(r\) indicates whether the reflected electric field reverses its phase. Equal impedances give \(r=0\), even if the wave speeds differ.</p>
+</div></details>
+<p>For the geometry and full pillbox/loop derivations of these interface rules, visit <a href="./boundary-conditions.html">Boundary Conditions</a>.</p>
+</section>
+    <p id="empty" class="intro" hidden>No matching topic. Clear the search to show all sections.</p>
+    <footer>
+      <p><strong>Electromagnetism · Field Notes</strong> — MS Physics reference</p>
+      <p>These derivations use SI units, and assume sufficiently regular fields except where surface densities are stated. Scroll sideways for long equations.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a href="./index.html">Maxwell</a>
+  <a href="./boundary-conditions.html">Boundary conditions</a>
+  <a href="./electrostatics.html">Electrostatics</a>
+  <a aria-current="page" href="./electromagnetics.html">Electromagnetics</a>
+</nav>
+      <a href="#content">Back to top ↑</a>
+    </footer>
+  </main>
+</body>
+</html>

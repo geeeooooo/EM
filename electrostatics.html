@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Electrostatics reviewer with explicit electric potential, Poisson, Laplace and boundary-value problem derivations.">
+  <title>Electrostatics · Field Notes</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']],
+        packages: {'[+]': ['ams']}
+      },
+      svg: { fontCache: 'local' },
+      options: {skipHtmlTags: ['script','noscript','style','textarea','pre','code']}
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="hero">
+    <div class="shell">
+      <div class="eyebrow">FIELD NOTES / MS PHYSICS</div>
+      <h1>Electrostatics</h1>
+      <p class="subtitle">Potential, Gauss's law, Laplace and Poisson boundary-value problems.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a href="./index.html">Maxwell</a>
+  <a href="./boundary-conditions.html">Boundary conditions</a>
+  <a aria-current="page" href="./electrostatics.html">Electrostatics</a>
+  <a href="./electromagnetics.html">Electromagnetics</a>
+</nav>
+      <div class="controls" aria-label="Reading controls">
+        <label class="sr-only" for="search">Search sections of this page</label>
+        <input id="search" type="search" placeholder="Find in this page…" autocomplete="off">
+        <button id="decrease" aria-label="Decrease text size">A−</button>
+        <button id="increase" aria-label="Increase text size">A+</button>
+      </div>
+      <nav class="nav" aria-label="On this page"><a href="#foundations">Potential</a><a href="#poisson">Poisson</a><a href="#plates">Laplace example</a><a href="#charge">Poisson example</a><a href="#interfaces">Interfaces</a></nav>
+      <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
+    </div>
+  </header>
+  <main id="content" class="shell">
+    
+<div class="intro"><strong>Electrostatics</strong> describes electric fields produced by time-independent charge distributions. Here \(\partial/\partial t=0\), \(\nabla\times\mathbf E=0\), and the electric field can be represented using a scalar potential \(V\). This page treats both vacuum and dielectrics.</div>
+<section class="chapter" id="foundations" data-keywords="gauss coulomb charge source conservative potential gradient work">
+<span class="chapter-number">01 / FIELD AND POTENTIAL</span>
+<h2>From Gauss's law to electric potential</h2>
+<div class="equation">
+<h3>Governing equations</h3>
+\[\boxed{\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}},\qquad
+\boxed{\nabla\times\mathbf E=\mathbf0}\]
+\[\boxed{\mathbf E=-\nabla V}\]
+<p>The divergence measures local electric sources and sinks. Zero curl means static electric fields are conservative, so their circulation around a closed path is zero.</p>
+</div>
+<details open><summary>Derive electric potential from zero curl</summary><div class="steps">
+<p>Begin with \(\nabla\times\mathbf E=0\). Apply Stokes' theorem to any fixed loop in a simply connected electrostatic region:</p>
+\[\oint_C\mathbf E\cdot d\boldsymbol\ell=\int_S(\nabla\times\mathbf E)\cdot d\mathbf a=0.\]
+<p>Consequently the line integral between points \(A\) and \(B\) is path-independent. Define</p>
+\[V(B)-V(A)=-\int_A^B\mathbf E\cdot d\boldsymbol\ell.\]
+<p>For an infinitesimal displacement \(d\mathbf r\), \(dV=-\mathbf E\cdot d\mathbf r\). But by the total differential,</p>
+\[dV=\frac{\partial V}{\partial x}\,dx+\frac{\partial V}{\partial y}\,dy+\frac{\partial V}{\partial z}\,dz=\nabla V\cdot d\mathbf r.\]
+<p>Since this must hold for any displacement,</p>
+\[\boxed{\mathbf E=-\nabla V}.\]
+<p><strong>Meaning:</strong> \(\mathbf E\) points toward decreasing potential; adding a constant to \(V\) changes no physical field (gauge freedom).</p>
+</div></details>
+<details><summary>Gauss's law · a uniformly charged sphere</summary><div class="steps">
+<p>Suppose a sphere of radius \(R\) has uniform volume charge density \(\rho\). Symmetry makes \(\mathbf E=E(r)\hat{\mathbf r}\). Choose a spherical Gaussian surface of radius \(r\).</p>
+\[\oint\mathbf E\cdot d\mathbf a=E(r)\,4\pi r^2=\frac{Q_{\mathrm{enc}}(r)}{\varepsilon_0}.\]
+<p>For \(r<R\), \(Q_{\mathrm{enc}}=\rho(4\pi r^3/3)\); for \(r\ge R\), \(Q_{\mathrm{enc}}=\rho(4\pi R^3/3)=Q\):</p>
+\[\boxed{E(r)=\begin{cases}\dfrac{\rho r}{3\varepsilon_0},&r<R,\\[4pt]
+\dfrac{Q}{4\pi\varepsilon_0r^2},&r\ge R.\end{cases}}\]
+<p>This method uses symmetry; Gauss's law always holds, but not every geometry allows it to determine \(E\) so easily.</p>
+</div></details>
+</section>
+<section class="chapter" id="poisson" data-keywords="poisson laplace vacuum dielectric permittivity divergence differential equation boundary">
+<span class="chapter-number">02 / BOUNDARY-VALUE EQUATIONS</span>
+<h2>Derive Poisson's and Laplace's equations</h2>
+<details open><summary>Vacuum · from Gauss's law to Poisson</summary><div class="steps">
+<p>Start with Gauss's law and the electrostatic potential:</p>
+\[\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0},\qquad\mathbf E=-\nabla V.\]
+<p>Substitute and use \(\nabla\cdot\nabla V=\nabla^2V\):</p>
+\[-\nabla\cdot(\nabla V)=\frac{\rho}{\varepsilon_0}\]
+\[\boxed{\nabla^2V=-\frac{\rho}{\varepsilon_0}}\quad\text{(Poisson)}.\]
+<p>In a region with no volume charge, \(\rho=0\):</p>
+\[\boxed{\nabla^2V=0}\quad\text{(Laplace)}.\]
+<p><strong>Important:</strong> a charge-free region can still have a nonzero \(\mathbf E\) and nonconstant \(V\), because boundary charges or sources outside that region can produce fields inside.</p>
+</div></details>
+<details><summary>Material version · why variable permittivity matters</summary><div class="steps">
+<p>In an isotropic linear dielectric, \(\mathbf D=\varepsilon(\mathbf r)\mathbf E\), and \(\nabla\cdot\mathbf D=\rho_f\). With \(\mathbf E=-\nabla V\),</p>
+\[-\nabla\cdot[\varepsilon(\mathbf r)\nabla V]=\rho_f.\]
+\[\boxed{\nabla\cdot[\varepsilon(\mathbf r)\nabla V]=-\rho_f}.\]
+<p>Expand with the product rule:</p>
+\[\varepsilon\nabla^2V+(\nabla\varepsilon)\cdot(\nabla V)=-\rho_f.\]
+<p>Only when \(\varepsilon\) is spatially constant in the region may we write \(\nabla^2V=-\rho_f/\varepsilon\). Interfaces additionally require the boundary conditions on \(V\) and \(\mathbf D\).</p>
+</div></details>
+</section>
+<section class="chapter" id="plates" data-keywords="parallel plates separation variables laplace 1d potential voltage field capacitance example">
+<span class="chapter-number">03 / SOLVED LAPLACE PROBLEM</span>
+<h2>Two parallel plates</h2>
+<p>Two infinite conducting plates are at \(x=0\) and \(x=a\), with \(V(0)=0\), \(V(a)=V_0\). The dielectric between them is homogeneous and contains no free volume charge. Edge effects are neglected.</p>
+<details open><summary>Step-by-step solution and surface charge</summary><div class="steps">
+<p>By translational symmetry the potential depends only on \(x\), and Laplace's equation becomes</p>
+\[\frac{d^2V}{dx^2}=0.\]
+<p>Integrate once: \(dV/dx=C_1\). Integrate again: \(V(x)=C_1x+C_2\).</p>
+<p>Apply \(V(0)=0\Rightarrow C_2=0\) and \(V(a)=V_0\Rightarrow C_1=V_0/a\):</p>
+\[\boxed{V(x)=\frac{V_0x}{a}}.\]
+<p>Differentiate to obtain the electric field:</p>
+\[\boxed{\mathbf E=-\nabla V=-\frac{V_0}{a}\hat{\mathbf x}}.\]
+<p>For a linear dielectric \(\mathbf D=\varepsilon\mathbf E\), the free charge density on a conductor face is \(\sigma_f=\mathbf D_{\mathrm{outside}}\cdot\hat{\mathbf n}_{\mathrm{out}}\). At \(x=0\) the conductor normal into the gap is \(+\hat{\mathbf x}\); at \(x=a\) it is \(-\hat{\mathbf x}\):</p>
+\[\boxed{\sigma_{x=0}=-\frac{\varepsilon V_0}{a}},\qquad
+\boxed{\sigma_{x=a}=+\frac{\varepsilon V_0}{a}}.\]
+<p><strong>Check:</strong> when the right plate is at higher potential, the electric field points leftward, from the positive plate to the negative plate.</p>
+</div></details>
+</section>
+<section class="chapter" id="charge" data-keywords="uniform rho poisson dirichlet second derivative source">
+<span class="chapter-number">04 / SOLVED POISSON PROBLEM</span>
+<h2>Uniform volume charge between plates</h2>
+<p>Keep \(V(0)=0\), \(V(a)=V_0\), but now add a uniform free volume charge density \(\rho_f\) in a homogeneous dielectric with permittivity \(\varepsilon\).</p>
+<details open><summary>Solve the potential and electric field explicitly</summary><div class="steps">
+\[\frac{d^2V}{dx^2}=-\frac{\rho_f}{\varepsilon}.\]
+<p>Integrate twice:</p>
+\[\frac{dV}{dx}=-\frac{\rho_fx}{\varepsilon}+C_1,\]
+\[V(x)=-\frac{\rho_fx^2}{2\varepsilon}+C_1x+C_2.\]
+<p>The first boundary condition gives \(C_2=0\). The second gives</p>
+\[V_0=-\frac{\rho_fa^2}{2\varepsilon}+C_1a\quad\Rightarrow\quad
+C_1=\frac{V_0}{a}+\frac{\rho_fa}{2\varepsilon}.\]
+<p>Therefore</p>
+\[\boxed{V(x)=\frac{V_0x}{a}+\frac{\rho_f}{2\varepsilon}(ax-x^2)}.\]
+\[\boxed{\mathbf E(x)=\left[-\frac{V_0}{a}+\frac{\rho_f}{\varepsilon}\left(x-\frac{a}{2}\right)\right]\hat{\mathbf x}}.\]
+<p><strong>Check:</strong> taking \(\rho_f\to0\) recovers the Laplace problem.</p>
+</div></details>
+</section>
+<section class="chapter" id="interfaces" data-keywords="conductor normal tangential dielectric boundary surface charge potential uniqueness">
+<span class="chapter-number">05 / BOUNDARY CONDITIONS AND UNIQUENESS</span>
+<h2>How boundary data determine the solution</h2>
+<div class="equation">
+<h3>Electrostatic interface</h3>
+\[\boxed{V_2=V_1},\qquad
+\boxed{\varepsilon_2\partial_nV_2-\varepsilon_1\partial_nV_1=-\sigma_f}\]
+<p>Assumes an ordinary interface (no ideal dipole layer) and linear, isotropic dielectrics. Tangential \(\mathbf E\) is continuous; free surface charge controls the jump in normal \(\mathbf D\). See the <a href="./boundary-conditions.html#electrostatic">full pillbox/loop derivation</a>.</p>
+</div>
+<details><summary>Why the Dirichlet solution is unique</summary><div class="steps">
+<p>Let \(V_1,V_2\) be two solutions of Laplace's equation on the same connected bounded region, with the same specified potential on the entire boundary. Their difference \(W=V_1-V_2\) satisfies</p>
+\[\nabla^2W=0,\qquad W|_{\partial\mathcal V}=0.\]
+<p>Use the identity</p>
+\[\nabla\cdot(W\nabla W)=|\nabla W|^2+W\nabla^2W.\]
+<p>Integrate over the region and apply the divergence theorem:</p>
+\[\oint_{\partial\mathcal V}W\nabla W\cdot d\mathbf a
+=\int_{\mathcal V}|\nabla W|^2\,dV+\int_{\mathcal V}W\nabla^2W\,dV.\]
+<p>The surface term is zero because \(W=0\) at the boundary, and the last volume term is zero by Laplace's equation:</p>
+\[0=\int_{\mathcal V}|\nabla W|^2\,dV.\]
+<p>The nonnegative integrand must vanish, so \(\nabla W=0\). Thus \(W\) is constant, and because it vanishes on the boundary, \(W=0\) everywhere.</p>
+<p><strong>Meaning:</strong> matching both the differential equation and complete boundary data determines the electrostatic potential uniquely.</p>
+</div></details>
+</section>
+    <p id="empty" class="intro" hidden>No matching topic. Clear the search to show all sections.</p>
+    <footer>
+      <p><strong>Electromagnetism · Field Notes</strong> — MS Physics reference</p>
+      <p>These derivations use SI units, and assume sufficiently regular fields except where surface densities are stated. Scroll sideways for long equations.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a href="./index.html">Maxwell</a>
+  <a href="./boundary-conditions.html">Boundary conditions</a>
+  <a aria-current="page" href="./electrostatics.html">Electrostatics</a>
+  <a href="./electromagnetics.html">Electromagnetics</a>
+</nav>
+      <a href="#content">Back to top ↑</a>
+    </footer>
+  </main>
+</body>
+</html>

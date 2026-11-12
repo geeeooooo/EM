@@ -29,6 +29,12 @@
       <div class="eyebrow">FIELD NOTES / MS PHYSICS</div>
       <h1>Electromagnetism</h1>
       <p class="subtitle">Maxwell's equations, understood and derived.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a aria-current="page" href="./index.html">Maxwell</a>
+  <a href="./boundary-conditions.html">Boundary conditions</a>
+  <a href="./electrostatics.html">Electrostatics</a>
+  <a href="./electromagnetics.html">Electromagnetics</a>
+</nav>
       <div class="controls" aria-label="Reading controls">
         <label class="sr-only" for="search">Search sections</label>
         <input id="search" type="search" placeholder="Search topics…" autocomplete="off">
@@ -226,15 +232,10 @@
     <section class="chapter" id="applications" data-keywords="boundary conditions wave equation electromagnetic waves energy poynting normal tangential surface charge current">
       <span class="chapter-number">05 / APPLICATIONS</span>
       <h2>Immediate results of Maxwell's equations</h2>
-      <details><summary>Boundary conditions at an interface</summary><div class="steps">
-        <p>Let \(\hat{\mathbf n}\) point from medium 1 to medium 2. Shrink a Gaussian pillbox across the interface and use the integral Gauss laws. With free surface charge density \(\sigma_f\),</p>
-        \[\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f},\qquad
-        \boxed{\hat{\mathbf n}\cdot(\mathbf B_2-\mathbf B_1)=0}.\]
-        <p>Now shrink a rectangular Amperian/Faraday loop across the interface. With free surface current density \(\mathbf K_f\), and finite fields (no singular time-derivative flux),</p>
-        \[\boxed{\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=\mathbf0},\qquad
-        \boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}.\]
-        <p>The normal and tangential conditions follow from flux and circulation respectively. Without free surface charge or surface current, the corresponding jumps vanish, although \(\mathbf E\) and \(\mathbf B\) need not be continuous in every component.</p>
-      </div></details>
+      <div class="math-panel">
+        <h3>Boundary conditions at an interface</h3>
+        <p>Use a Gaussian pillbox for normal components and a thin rectangular loop for tangential components. The full electrostatic, magnetic and electromagnetic derivations are available on the dedicated <a href="./boundary-conditions.html">Boundary Conditions page</a>.</p>
+      </div>
       <details><summary>Derive the electromagnetic wave equation in vacuum</summary><div class="steps">
         <p>In a source-free region, \(\rho=0\), \(\mathbf J=0\). Curl Faraday's law:</p>
         \[\nabla\times(\nabla\times\mathbf E)

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Boundary conditions for electrostatics and electromagnetics, with Gaussian pillbox and Amperian loop derivations.">
+  <title>Boundary Conditions · Field Notes</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']],
+        packages: {'[+]': ['ams']}
+      },
+      svg: { fontCache: 'local' },
+      options: {skipHtmlTags: ['script','noscript','style','textarea','pre','code']}
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="hero">
+    <div class="shell">
+      <div class="eyebrow">FIELD NOTES / MS PHYSICS</div>
+      <h1>Boundary Conditions</h1>
+      <p class="subtitle">Electrostatic, magnetostatic, and time-dependent electromagnetic interfaces.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a href="./index.html">Maxwell</a>
+  <a aria-current="page" href="./boundary-conditions.html">Boundary conditions</a>
+  <a href="./electrostatics.html">Electrostatics</a>
+  <a href="./electromagnetics.html">Electromagnetics</a>
+</nav>
+      <div class="controls" aria-label="Reading controls">
+        <label class="sr-only" for="search">Search sections of this page</label>
+        <input id="search" type="search" placeholder="Find in this page…" autocomplete="off">
+        <button id="decrease" aria-label="Decrease text size">A−</button>
+        <button id="increase" aria-label="Increase text size">A+</button>
+      </div>
+      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a></nav>
+      <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
+    </div>
+  </header>
+  <main id="content" class="shell">
+    
+<div class="intro">
+  <strong>What a boundary condition tells us.</strong> It determines which field components can change discontinuously across the interface of two media, and what causes those changes. These rules come directly from the <em>integral forms</em> of Maxwell's equations.
+  <p class="small">Geometry: the interface is \(z=0\). Medium 1 occupies \(z<0\); medium 2 occupies \(z>0\). The normal \(\hat{\mathbf n}=\hat{\mathbf z}\) points <strong>from 1 toward 2</strong>. The limiting values of each field are \(\mathbf F_1\) and \(\mathbf F_2\). Free surface charge and current densities are \(\sigma_f\) and \(\mathbf K_f\).</p>
+</div>
+<section class="chapter" id="overview" data-keywords="overview four boundary conditions normal tangential discontinuity surface sources">
+ <span class="chapter-number">01 / FOUR INTERFACE CONDITIONS</span>
+ <h2>At a glance</h2>
+ <div class="equation">
+ <h3>Normal components · Gaussian pillbox</h3>
+ \[\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f}\]
+ \[\boxed{\hat{\mathbf n}\cdot(\mathbf B_2-\mathbf B_1)=0}\]
+ <p>Normal <strong>\(\mathbf D\)</strong> may jump because of free surface charge; normal <strong>\(\mathbf B\)</strong> is continuous because there are no magnetic monopoles in classical theory.</p>
+ </div>
+ <div class="equation">
+ <h3>Tangential components · Thin rectangular loop</h3>
+ \[\boxed{\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=\mathbf 0}\]
+ \[\boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}\]
+ <p>Tangential <strong>\(\mathbf E\)</strong> is continuous for ordinary finite electromagnetic fields; a free surface-current sheet can create a jump in tangential <strong>\(\mathbf H\)</strong>.</p>
+ </div>
+ <p class="small">These are macroscopic SI boundary conditions for stationary interfaces with regular finite fields (aside from the stated surface charges/currents). They do not presume the media to be linear or isotropic.</p>
+</section>
+<section class="chapter" id="pillbox" data-keywords="gaussian pillbox divergence theorem normal charge D B">
+ <span class="chapter-number">02 / GAUSSIAN PILLBOX</span>
+ <h2>Derive the normal conditions</h2>
+ <div class="math-panel"><h3>Construct the pillbox</h3>
+ <p>Choose a cylinder of cross-sectional area \(A\), with thickness \(h\), crossing \(z=0\). Its <strong>top face</strong> is in medium 2 and has outward normal \(+\hat{\mathbf n}\). Its <strong>bottom face</strong> is in medium 1 and has outward normal \(-\hat{\mathbf n}\).</p>
+ <p>When \(h\to 0\), the lateral area is proportional to \(h\); its flux tends to zero for bounded fields. The top and bottom fluxes remain finite.</p>
+ </div>
+ <details open><summary>Electric condition · full derivation from Gauss's law</summary><div class="steps">
+  <p>Begin with the integral macroscopic Gauss law:</p>
+  \[\oint_{\partial\mathcal V}\mathbf D\cdot d\mathbf a=Q_{f,\mathrm{enc}}.\]
+  <p>Split the closed-surface integral into top, bottom and side contributions:</p>
+  \[\mathbf D_2\cdot\hat{\mathbf n}\,A-\mathbf D_1\cdot\hat{\mathbf n}\,A+\Phi_{\mathrm{side}}=Q_{f,\mathrm{enc}}.\]
+  <p>As \(h\to0\): \(\Phi_{\mathrm{side}}\to0\), the regular volume free charge contributes \(O(h)\), but a sheet of free charge contributes \(\sigma_f A\).</p>
+  \[(D_{2n}-D_{1n})A=\sigma_f A.\]
+  <p>Divide by \(A\):</p>
+  \[\boxed{D_{2n}-D_{1n}=\sigma_f}.\]
+  <p><strong>Meaning:</strong> free surface charge fixes the jump in the component of \(\mathbf D\) normal to the interface. If \(\sigma_f=0\), \(D_{2n}=D_{1n}\), even if the individual electric-field components differ.</p>
+ </div></details>
+ <details open><summary>Magnetic condition · full derivation from magnetic Gauss law</summary><div class="steps">
+  \[\oint_{\partial\mathcal V}\mathbf B\cdot d\mathbf a=0.\]
+  \[\mathbf B_2\cdot\hat{\mathbf n}\,A-\mathbf B_1\cdot\hat{\mathbf n}\,A+\Phi_{\mathrm{side}}=0.\]
+  <p>For \(h\to0\), \(\Phi_{\mathrm{side}}\to0\), hence</p>
+  \[(B_{2n}-B_{1n})A=0\qquad\Rightarrow\qquad\boxed{B_{2n}=B_{1n}}.\]
+  <p><strong>Meaning:</strong> a material interface cannot terminate the normal magnetic flux. This is about \(\mathbf B\); it does not require continuity of \(H_n\).</p>
+ </div></details>
+</section>
+<section class="chapter" id="loop" data-keywords="stokes rectangular loop faraday ampere tangential E H K free current">
+ <span class="chapter-number">03 / AMPERIAN AND FARADAY LOOPS</span>
+ <h2>Derive the tangential conditions</h2>
+ <div class="math-panel">
+ <h3>Construct the loop</h3>
+ <p>Take a rectangular loop with length \(\ell\) parallel to any tangential unit vector \(\hat{\mathbf t}\) and height \(h\) across the interface. Orient its upper edge in \(+\hat{\mathbf t}\), its lower edge in \(-\hat{\mathbf t}\), and its area normal as \(\hat{\mathbf n}\times\hat{\mathbf t}\).</p>
+ <p>As \(h\to0\), short-side circulations vanish. For bounded fields and finite time derivatives, flux through the shrinking rectangle also vanishes. A free <em>surface</em> current, however, gives a finite current crossing the rectangle.</p>
+ </div>
+ <details open><summary>Faraday's law → continuity of tangential E</summary><div class="steps">
+  <p>Start from Faraday's law on a fixed loop:</p>
+  \[\oint_{\partial\mathcal S}\mathbf E\cdot d\boldsymbol\ell=-\frac{d}{dt}\int_{\mathcal S}\mathbf B\cdot d\mathbf a.\]
+  <p>The upper and lower segments produce</p>
+  \[\oint_{\partial\mathcal S}\mathbf E\cdot d\boldsymbol\ell=(\mathbf E_2-\mathbf E_1)\cdot\hat{\mathbf t}\,\ell+O(h).\]
+  <p>The magnetic flux is proportional to \(\ell h\), so its time derivative tends to zero as \(h\to0\) under the stated regularity assumptions.</p>
+  \[(\mathbf E_2-\mathbf E_1)\cdot\hat{\mathbf t}\,\ell=0.\]
+  <p>Since \(\ell\ne0\) and \(\hat{\mathbf t}\) can be <em>any</em> tangent direction,</p>
+  \[\boxed{\mathbf E_{2t}=\mathbf E_{1t}}
+  \quad\Longleftrightarrow\quad
+  \boxed{\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=\mathbf0}.\]
+  <p><strong>Meaning:</strong> the electric field cannot have an ordinary tangential jump; a time-varying \(\mathbf B\) still produces a circulating field over <em>finite</em> loops.</p>
+ </div></details>
+ <details open><summary>Ampère–Maxwell law → tangential H jump</summary><div class="steps">
+  <p>Begin with</p>
+  \[\oint_{\partial\mathcal S}\mathbf H\cdot d\boldsymbol\ell=I_{f,\mathrm{enc}}+\frac{d}{dt}\int_{\mathcal S}\mathbf D\cdot d\mathbf a.\]
+  <p>The thin-loop circulation is</p>
+  \[\oint_{\partial\mathcal S}\mathbf H\cdot d\boldsymbol\ell=(\mathbf H_2-\mathbf H_1)\cdot\hat{\mathbf t}\,\ell+O(h).\]
+  <p>The regular displacement-flux term vanishes as \(h\to0\); a free surface current remains:</p>
+  \[I_{f,\mathrm{enc}}\ \longrightarrow\ \mathbf K_f\cdot(\hat{\mathbf n}\times\hat{\mathbf t})\,\ell.\]
+  <p>Therefore</p>
+  \[(\mathbf H_2-\mathbf H_1)\cdot\hat{\mathbf t}=\mathbf K_f\cdot(\hat{\mathbf n}\times\hat{\mathbf t}).\]
+  <p>This must hold for every tangent direction. Equivalently,</p>
+  \[\boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}.\]
+  <p><strong>Meaning:</strong> a sheet of free current makes the tangential magnetic field intensity discontinuous. The orientation of the cross product matters; reversing \(\hat{\mathbf n}\) reverses the jump convention.</p>
+ </div></details>
+</section>
+<section class="chapter" id="electrostatic" data-keywords="electrostatic conductor dielectric potential V laplace poisson surface charge">
+ <span class="chapter-number">04 / ELECTROSTATIC INTERFACES</span>
+ <h2>Apply the boundary conditions to electrostatics</h2>
+ <p>In electrostatics, \(\partial\mathbf B/\partial t=0\), so \(\nabla\times\mathbf E=0\) and \(\mathbf E=-\nabla V\).</p>
+ <div class="equation"><h3>Potential at a regular dielectric interface</h3>
+  \[\boxed{V_2=V_1},\qquad\boxed{D_{2n}-D_{1n}=\sigma_f}.\]
+  <p>Potential is continuous for an ordinary interface with finite field and no idealized dipole sheet. This is distinct from its <em>normal derivative</em>, which generally changes.</p>
+ </div>
+ <details><summary>Derive the normal-derivative boundary condition</summary><div class="steps">
+  <p>Suppose both media are linear, isotropic dielectrics with local permittivities \(\varepsilon_1,\varepsilon_2\). Then \(\mathbf D_i=\varepsilon_i\mathbf E_i\) and \(\mathbf E_i=-\nabla V_i\).</p>
+  \[D_{2n}-D_{1n}=\sigma_f\]
+  \[-\varepsilon_2\frac{\partial V_2}{\partial n}+\varepsilon_1\frac{\partial V_1}{\partial n}=\sigma_f.\]
+  \[\boxed{\varepsilon_2\frac{\partial V_2}{\partial n}-\varepsilon_1\frac{\partial V_1}{\partial n}=-\sigma_f}.\]
+  <p>For \(\sigma_f=0\), the weighted normal derivatives match, although \(\partial_n V_2\) and \(\partial_n V_1\) need not be equal.</p>
+ </div></details>
+ <details><summary>Conductor in electrostatic equilibrium</summary><div class="steps">
+  <p>Within an ideal conductor at electrostatic equilibrium, \(\mathbf E_{\mathrm{inside}}=0\). Faraday's loop condition gives \(\mathbf E_{\mathrm{outside},t}=0\), so the field just outside is normal to the surface.</p>
+  <p>The pillbox condition becomes \(D_{\mathrm{outside},n}=\sigma_f\) when \(\hat{\mathbf n}\) points from conductor to exterior. For an isotropic surrounding dielectric,</p>
+  \[\boxed{\mathbf E_{\mathrm{outside}}=\frac{\sigma_f}{\varepsilon}\hat{\mathbf n}}.\]
+  <p>The conductor surface is equipotential. Charges may still reside on the surface, creating a <em>normal</em> electric field outside.</p>
+ </div></details>
+ <details><summary>Worked example · dielectric interface with no free surface charge</summary><div class="steps">
+  <p>Let the interface be \(z=0\), with \(\varepsilon_2=2\varepsilon_1\), \(\sigma_f=0\), and immediately below the interface</p>
+  \[\mathbf E_1=(10\hat{\mathbf x}+30\hat{\mathbf z})\ \mathrm{V/m}.\]
+  <p>Tangential continuity gives \(E_{2x}=E_{1x}=10\ \mathrm{V/m}\).</p>
+  <p>Normal \(\mathbf D\) continuity gives \(\varepsilon_2E_{2z}=\varepsilon_1E_{1z}\):</p>
+  \[E_{2z}=\frac{\varepsilon_1}{2\varepsilon_1}(30)=15\ \mathrm{V/m}.\]
+  \[\boxed{\mathbf E_2=(10\hat{\mathbf x}+15\hat{\mathbf z})\ \mathrm{V/m}}.\]
+  <p><strong>Concept:</strong> the tangential electric field is unchanged while its normal component is reduced in the medium of higher permittivity.</p>
+ </div></details>
+</section>
+<section class="chapter" id="dynamic" data-keywords="electromagnetic wave impedance reflection magnetic surface current moving interface time dependent">
+ <span class="chapter-number">05 / DYNAMIC FIELDS AND MAGNETIC INTERFACES</span>
+ <h2>Boundary conditions in electromagnetics</h2>
+ <p>The same four macroscopic conditions apply to time-varying electromagnetic fields under the ordinary regularity assumptions, because the shrinking pillbox and loop make finite volume and displacement-flux terms vanish.</p>
+ <div class="math-panel"><h3>Be careful about which fields are continuous</h3>
+ <p>With no free surface charge or current, \(D_n\), \(B_n\), \(E_t\), and \(H_t\) are continuous. It does <em>not</em> follow that all components of \(\mathbf E\), \(\mathbf D\), \(\mathbf B\), or \(\mathbf H\) are continuous. For linear isotropic materials, \(D_n=\varepsilon E_n\) and \(B_n=\mu H_n\) explain why normal \(E\) and normal \(H\) can change.</p></div>
+ <details><summary>Special case · magnetostatic material boundary</summary><div class="steps">
+  <p>For static fields, \(\partial_t\mathbf D=0\), so</p>
+  \[\nabla\times\mathbf H=\mathbf J_f.\]
+  <p>The thin-loop derivation is otherwise unchanged, giving</p>
+  \[\boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}.\]
+  <p>The magnetic Gauss pillbox still gives \(B_{2n}=B_{1n}\). For isotropic linear media with no sheet current,</p>
+  \[\boxed{\frac{B_{2t}}{\mu_2}=\frac{B_{1t}}{\mu_1}},\qquad\boxed{B_{2n}=B_{1n}}.\]
+  <p>This shows why magnetic flux density \(\mathbf B\) is <strong>not generally continuous in all components</strong> at an interface.</p>
+ </div></details>
+ <details><summary>Normal-incidence plane waves · reflected and transmitted fields</summary><div class="steps">
+  <p>For two lossless, linear, isotropic media, no free surface current, and normal incidence, let \(\eta_i=\sqrt{\mu_i/\varepsilon_i}\) be the wave impedance. Electric fields are polarized in \(\hat{\mathbf x}\), with incident and transmitted waves traveling in \(+\hat{\mathbf z}\) and the reflected wave in \(-\hat{\mathbf z}\).</p>
+  <p>Continuity of tangential \(\mathbf E\) and \(\mathbf H\) gives</p>
+  \[E_i+E_r=E_t,\qquad\frac{E_i-E_r}{\eta_1}=\frac{E_t}{\eta_2}.\]
+  <p>Set \(r=E_r/E_i\), \(t=E_t/E_i\), substitute \(t=1+r\), and solve:</p>
+  \[\frac{1-r}{\eta_1}=\frac{1+r}{\eta_2},\]
+  \[\eta_2-\eta_2r=\eta_1+\eta_1r,\]
+  \[\boxed{r=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}},\qquad\boxed{t=\frac{2\eta_2}{\eta_1+\eta_2}}.\]
+  <p>The reflection arises because the tangential fields must satisfy both continuity conditions simultaneously when impedances differ. See <a href="./electromagnetics.html#interface-waves">Electromagnetics</a> for the energy-flux relation.</p>
+ </div></details>
+</section>
+    <p id="empty" class="intro" hidden>No matching topic. Clear the search to show all sections.</p>
+    <footer>
+      <p><strong>Electromagnetism · Field Notes</strong> — MS Physics reference</p>
+      <p>These derivations use SI units, and assume sufficiently regular fields except where surface densities are stated. Scroll sideways for long equations.</p>
+      <nav class="site-nav" aria-label="Website pages">
+  <a href="./index.html">Maxwell</a>
+  <a aria-current="page" href="./boundary-conditions.html">Boundary conditions</a>
+  <a href="./electrostatics.html">Electrostatics</a>
+  <a href="./electromagnetics.html">Electromagnetics</a>
+</nav>
+      <a href="#content">Back to top ↑</a>
+    </footer>
+  </main>
+</body>
+</html>
