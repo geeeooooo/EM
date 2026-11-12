@@ -41,7 +41,7 @@
         <button id="decrease" aria-label="Decrease text size">A−</button>
         <button id="increase" aria-label="Increase text size">A+</button>
       </div>
-      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a><a href="#worksheet-examples">Examples (8)</a></nav>
+      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a><a href="#snell">Snell</a><a href="#worksheet-examples">Examples (8)</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
@@ -187,6 +187,41 @@
  </div></details>
 </section>
     
+
+<section class="chapter" id="snell" data-keywords="Snell law refraction reflection wave boundary phase matching refractive index Maxwell electric magnetic interface">
+<span class="chapter-number">06 / WAVE REFRACTION</span>
+<h2>Maxwell boundary conditions versus Snell's law</h2>
+<p><strong>They are related but are not the same.</strong> The four Maxwell interface conditions govern <em>field components</em>. They also apply to static fields. Snell's law governs the <em>direction of refracted waves</em>, and follows from applying field continuity and phase matching to a monochromatic wave at an ordinary uniform interface.</p>
+<div class="equation"><h3>Maxwell's interface conditions</h3>
+\[\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f},\quad
+\boxed{\hat{\mathbf n}\cdot(\mathbf B_2-\mathbf B_1)=0}\]
+\[\boxed{\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=\mathbf0},\quad
+\boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}\]
+<p>For zero free sheet charge and sheet current, \(D_n\), \(B_n\), \(E_t\), \(H_t\) are continuous. This does not imply all components of \(\mathbf E\) or \(\mathbf B\) are continuous when \(\varepsilon\) and \(\mu\) change.</p></div>
+<details open><summary>Derive Snell's law from phase matching at the interface</summary><div class="steps">
+<p>Consider a stationary uniform planar interface at \(z=0\). Suppose incident, reflected and transmitted plane waves have the same angular frequency \(\omega\). For a wave,</p>
+\[\mathbf E(\mathbf r,t)=\operatorname{Re}\{\widetilde{\mathbf E}_0e^{i(\mathbf k\cdot\mathbf r-\omega t)}\}.\]
+<p>For no free surface current, tangential \(\mathbf E\) and \(\mathbf H\) must be continuous at every point along the interface and at all times. The phases along the interface must therefore match:</p>
+\[\boxed{\mathbf k_{i,\parallel}=\mathbf k_{r,\parallel}
+=\mathbf k_{t,\parallel}}.\]
+<p>With angles \(\theta_i,\theta_r,\theta_t\) measured from the normal, tangential wavevector magnitude equals \(k\sin\theta\). Hence</p>
+\[k_1\sin\theta_i=k_1\sin\theta_r=k_2\sin\theta_t.\]
+<p>For homogeneous isotropic lossless positive-index media, \(k_j=n_j\omega/c\) where \(n_j=\sqrt{\varepsilon_j\mu_j/(\varepsilon_0\mu_0)}\). Cancel \(\omega/c\):</p>
+\[\boxed{\theta_r=\theta_i},\qquad
+\boxed{n_1\sin\theta_i=n_2\sin\theta_t}.\]
+<p><strong>Physical meaning:</strong> Maxwell's conditions constrain the electric and magnetic fields; translational symmetry and phase matching determine reflection and refraction directions. The conditions together with wave impedances also determine reflected and transmitted amplitudes.</p>
+</div></details>
+<details><summary>Worked example: vacuum into a nonmagnetic dielectric</summary><div class="steps">
+<p>Suppose \(\varepsilon_{r,2}=4\), \(\mu_{r,2}=1\). Vacuum has \(n_1=1\), while the dielectric has \(n_2=\sqrt4=2\). Then</p>
+\[\sin\theta_t=\frac12\sin\theta_i,\qquad
+\boxed{\theta_t=\arcsin\left(\frac{\sin\theta_i}{2}\right)}.\]
+<p>The transmitted wave bends toward the normal. However, it would be incorrect to infer that \(\mathbf E_1=\mathbf E_2\) as full vectors: only the tangential electric components are generally continuous.</p>
+</div></details>
+<details><summary>Critical angle and limitations</summary><div class="steps">
+<p>For \(n_1&gt;n_2\), the critical angle is \(\theta_c=\arcsin(n_2/n_1)\). Above it, the transmitted wave is evanescent rather than propagating; a lossless interface exhibits total internal reflection.</p>
+<p>Complex refractive indices, anisotropy, patterned interfaces and moving boundaries can require a more general treatment than the scalar Snell equation. See <a href="./electromagnetics.html#interface-waves">normal-incidence field reflection/transmission</a>.</p>
+</div></details>
+</section>
 <section class="chapter" id="worksheet-examples" data-keywords="worked examples worksheet laplace electrostatic boundary values cartesian cylindrical spherical eight problems potential electric field">
  <span class="chapter-number">06 / WORKED EXAMPLES</span>
  <h2>Electrostatic boundary-value problems</h2>
