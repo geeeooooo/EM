@@ -41,7 +41,7 @@
         <button id="decrease" aria-label="Decrease text size">A−</button>
         <button id="increase" aria-label="Increase text size">A+</button>
       </div>
-      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a></nav>
+      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a><a href="#worksheet-examples">Examples (8)</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
@@ -186,6 +186,243 @@
   <p>The reflection arises because the tangential fields must satisfy both continuity conditions simultaneously when impedances differ. See <a href="./electromagnetics.html#interface-waves">Electromagnetics</a> for the energy-flux relation.</p>
  </div></details>
 </section>
+    
+<section class="chapter" id="worksheet-examples" data-keywords="worked examples worksheet laplace electrostatic boundary values cartesian cylindrical spherical eight problems potential electric field">
+ <span class="chapter-number">06 / WORKED EXAMPLES</span>
+ <h2>Electrostatic boundary-value problems</h2>
+ <p>These <strong>eight examples</strong> follow the accompanying MS Physics <em>Boundary Conditions Worksheet With Solutions</em>, Problems 1–8, in their original sequence. They concern <strong>Laplace boundary-value problems</strong>: conductor potentials at specified boundaries determine the electric field in a charge-free region. This is related to, but distinct from, the pillbox and loop <em>jump conditions</em> derived above.</p>
+ <div class="math-panel">
+  <h3>Method for every problem</h3>
+  <p><strong>1.</strong> Specify the charge-free region and prescribed potentials. <strong>2.</strong> Choose the appropriate coordinates and justify symmetry. <strong>3.</strong> Reduce \(\nabla^2V=0\) to an ordinary differential equation. <strong>4.</strong> Integrate and impose all boundary conditions. <strong>5.</strong> Calculate \(\mathbf E=-\nabla V\) with the correct coordinate scale factors. <strong>6.</strong> Check the limiting potentials, field direction, and any geometric idealizations.</p>
+ </div>
+
+ <details class="example"><summary><span><strong>Problem 1 · Cartesian</strong><span class="example-subtitle">Two parallel conducting walls</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Two large parallel conducting walls lie at \(x=0\) and \(x=d\). The first is grounded; the second is held at \(V_0\). Between them there is no free charge, and edge effects are neglected. Find \(V(x)\) and \(\mathbf E\).</p>
+  \[\boxed{V(0)=0,\qquad V(d)=V_0,\qquad 0<x<d.}\]
+  <h4>1. Reduce Laplace's equation</h4>
+  <p>Translational symmetry in \(y\) and \(z\) implies \(V=V(x)\).</p>
+  \[\nabla^2V=\frac{\partial^2 V}{\partial x^2}+\frac{\partial^2 V}{\partial y^2}+\frac{\partial^2 V}{\partial z^2}=0
+  \quad\Longrightarrow\quad\frac{d^2V}{dx^2}=0.\]
+  <h4>2. Integrate</h4>
+  \[\frac{dV}{dx}=A,\qquad V(x)=Ax+B.\]
+  <h4>3. Apply the two boundary conditions</h4>
+  \[V(0)=0\Rightarrow B=0,\qquad V(d)=V_0\Rightarrow Ad=V_0\Rightarrow A=\frac{V_0}{d}.\]
+  <h4>4. Differentiate to find the field</h4>
+  \[\mathbf E=-\nabla V=-\frac{dV}{dx}\hat{\mathbf x}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[\boxed{V(x)=\frac{V_0x}{d},\qquad \mathbf E=-\frac{V_0}{d}\hat{\mathbf x}.}\]
+  </div>
+  <p><strong>Physical check:</strong> for \(V_0>0\), the field points from the higher-potential wall at \(x=d\) toward the grounded wall, and its magnitude is constant.</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 2 · Cartesian</strong><span class="example-subtitle">Three parallel conducting sheets</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Three infinite conducting sheets are at \(z=0\), \(z=h\), and \(z=2h\). The lower and upper sheets are grounded; the middle sheet is held at \(V_0\). Both gaps are charge-free and edge effects are neglected. Find the potential and electric field separately in each gap.</p>
+  \[\boxed{V(0)=0,\qquad V(h)=V_0,\qquad V(2h)=0.}\]
+  <h4>1. Reduce Laplace's equation in each region</h4>
+  <p>By plane symmetry, \(V=V(z)\). In each gap, \(d^2V_i/dz^2=0\), so \(V_i=A_i z+B_i\). A conductor at \(z=h\) separates the two intervals: each has its own constants.</p>
+  <h4>2. Lower gap: \(0<z<h\)</h4>
+  \[V_1(z)=A_1z+B_1,\quad V_1(0)=0\Rightarrow B_1=0,\]
+  \[V_1(h)=V_0\Rightarrow A_1=\frac{V_0}{h},\quad V_1(z)=\frac{V_0z}{h}.\]
+  \[\mathbf E_1=-\frac{dV_1}{dz}\hat{\mathbf z}=-\frac{V_0}{h}\hat{\mathbf z}.\]
+  <h4>3. Upper gap: \(h<z<2h\)</h4>
+  \[V_2(z)=A_2z+B_2,\quad A_2h+B_2=V_0,\quad 2A_2h+B_2=0.\]
+  <p>Subtract the two equations: \(A_2=-V_0/h\). Then \(B_2=2V_0\).</p>
+  \[V_2(z)=V_0\left(2-\frac zh\right),\qquad \mathbf E_2=+\frac{V_0}{h}\hat{\mathbf z}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[V(z)=\begin{cases}\dfrac{V_0z}{h},&0\le z\le h,\\[4pt]
+  V_0\left(2-\dfrac zh\right),&h\le z\le 2h,\end{cases}\]
+  \[\mathbf E(z)=\begin{cases}-\dfrac{V_0}{h}\hat{\mathbf z},&0<z<h,\\[4pt]
+  +\dfrac{V_0}{h}\hat{\mathbf z},&h<z<2h.\end{cases}\]
+  </div>
+  <p><strong>Physical check:</strong> for \(V_0>0\), the electric field points away from the middle conductor into both gaps. Its normal component may jump across a charged conducting sheet.</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 3 · Rotated Cartesian</strong><span class="example-subtitle">Two inclined parallel conducting plates</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Two infinite parallel conducting plates lie on \(x\cos\alpha+y\sin\alpha=0\) and \(x\cos\alpha+y\sin\alpha=d\). The first is grounded; the other is at \(V_0\). The gap is charge-free. Use the normal coordinate \(u=x\cos\alpha+y\sin\alpha\) to find \(V(x,y)\) and \(\mathbf E\).</p>
+  <h4>1. Express derivatives in the normal coordinate</h4>
+  <p>Symmetry implies \(V=V(u)\). The chain rule gives</p>
+  \[\frac{\partial V}{\partial x}=\frac{dV}{du}\cos\alpha,\qquad
+  \frac{\partial V}{\partial y}=\frac{dV}{du}\sin\alpha.\]
+  \[\frac{\partial^2V}{\partial x^2}=\frac{d^2V}{du^2}\cos^2\alpha,\qquad
+  \frac{\partial^2V}{\partial y^2}=\frac{d^2V}{du^2}\sin^2\alpha.\]
+  <h4>2. Reduce and integrate Laplace's equation</h4>
+  \[\nabla^2V=\left(\cos^2\alpha+\sin^2\alpha\right)\frac{d^2V}{du^2}
+  =\frac{d^2V}{du^2}=0.\]
+  \[V(u)=Au+B.\]
+  <h4>3. Apply \(V(0)=0\), \(V(d)=V_0\)</h4>
+  \[B=0,\quad A=\frac{V_0}{d},\quad V(x,y)=\frac{V_0}{d}(x\cos\alpha+y\sin\alpha).\]
+  <h4>4. Evaluate the gradient</h4>
+  \[\nabla V=\frac{V_0}{d}\left(\cos\alpha\,\hat{\mathbf x}+\sin\alpha\,\hat{\mathbf y}\right).\]
+  <div class="equation"><h3>Final answer</h3>
+  \[\boxed{V(x,y)=\frac{V_0}{d}(x\cos\alpha+y\sin\alpha)}\]
+  \[\boxed{\mathbf E=-\frac{V_0}{d}\left(\cos\alpha\,\hat{\mathbf x}+\sin\alpha\,\hat{\mathbf y}\right).}\]
+  </div>
+  <p><strong>Physical check:</strong> the field is perpendicular to both plates; \(|\mathbf E|=|V_0|/d\). Rotating the plates changes field direction, not magnitude.</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 4 · Cylindrical</strong><span class="example-subtitle">Two concentric conducting cylinders</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Two long coaxial conducting cylinders have radii \(0<a<b\). The inner cylinder is held at \(V_0\); the outer is grounded. The annular region \(a<r<b\) is charge-free; neglect end effects. Find \(V(r)\) and \(\mathbf E(r)\).</p>
+  \[\boxed{V(a)=V_0,\qquad V(b)=0.}\]
+  <h4>1. Reduce the cylindrical Laplacian</h4>
+  <p>Cylindrical symmetry implies \(V=V(r)\):</p>
+  \[\nabla^2V=\frac1r\frac{d}{dr}\left(r\frac{dV}{dr}\right)=0.\]
+  <h4>2. Integrate the radial equation</h4>
+  \[\frac{d}{dr}\left(r\frac{dV}{dr}\right)=0
+  \Rightarrow r\frac{dV}{dr}=A\Rightarrow \frac{dV}{dr}=\frac Ar.\]
+  <p>Integrating again with a dimensionless logarithm,</p>
+  \[V(r)=A\ln\left(\frac ra\right)+B.\]
+  <h4>3. Enforce both potentials</h4>
+  \[V(a)=V_0\Rightarrow B=V_0,\qquad
+  V(b)=0\Rightarrow A\ln(b/a)+V_0=0.\]
+  \[A=-\frac{V_0}{\ln(b/a)}.\]
+  <h4>4. Find the radial electric field</h4>
+  \[\mathbf E=-\frac{dV}{dr}\hat{\mathbf r}=-\frac Ar\hat{\mathbf r}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[\boxed{V(r)=V_0\frac{\ln(b/r)}{\ln(b/a)}}\]
+  \[\boxed{\mathbf E(r)=\frac{V_0}{r\ln(b/a)}\hat{\mathbf r}.}\]
+  </div>
+  <p><strong>Physical check:</strong> if \(V_0>0\), the field points radially outward and falls as \(1/r\), unlike the \(1/r^2\) field between concentric spheres.</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 5 · Cylindrical</strong><span class="example-subtitle">Conducting radial walls forming a wedge</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Two infinite conducting half-planes meet along the \(z\)-axis at \(\phi_1=\pi/6\) (grounded) and \(\phi_2=2\pi/3\) (at \(V_0\)). The interior is charge-free. Under the idealized assumption \(V=V(\phi)\), find \(V(\phi)\) and \(\mathbf E(r,\phi)\).</p>
+  \[\boxed{V(\pi/6)=0,\qquad V(2\pi/3)=V_0.}\]
+  <h4>1. Reduce cylindrical Laplace's equation</h4>
+  \[\nabla^2V=\frac1r\frac{\partial}{\partial r}\left(r\frac{\partial V}{\partial r}\right)+\frac1{r^2}\frac{\partial^2V}{\partial\phi^2}+\frac{\partial^2V}{\partial z^2}=0.\]
+  <p>Since \(V=V(\phi)\), only the angular term survives:</p>
+  \[\frac1{r^2}\frac{d^2V}{d\phi^2}=0\Rightarrow\frac{d^2V}{d\phi^2}=0.\]
+  <h4>2. Integrate and impose boundaries</h4>
+  \[V(\phi)=A\phi+B,\qquad V(\pi/6)=0\Rightarrow B=-A\frac\pi6.\]
+  \[V(2\pi/3)=A\left(\frac{2\pi}3-\frac\pi6\right)=A\frac\pi2=V_0.\]
+  \[A=\frac{2V_0}{\pi}.\]
+  <h4>3. Use the cylindrical gradient</h4>
+  \[\nabla V=\hat{\mathbf r}\,\partial_rV+\frac{\hat{\boldsymbol\phi}}{r}\,\partial_\phi V+\hat{\mathbf z}\,\partial_zV.\]
+  \[\mathbf E=-\frac1r\frac{dV}{d\phi}\hat{\boldsymbol\phi}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[\boxed{V(\phi)=\frac{2V_0}{\pi}\left(\phi-\frac\pi6\right)}\]
+  \[\boxed{\mathbf E(r,\phi)=-\frac{2V_0}{\pi r}\hat{\boldsymbol\phi}.}\]
+  </div>
+  <p><strong>Physical check:</strong> an angular increment \(d\phi\) corresponds to an arc length \(r\,d\phi\), explaining the factor \(1/r\) in the field even though the potential depends only on \(\phi\). The idealized field diverges near the sharp meeting edge \(r=0\).</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 6 · Cylindrical</strong><span class="example-subtitle">Three concentric cylindrical electrodes</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Three long coaxial conducting cylinders have radii \(0<a<b<c\). The inner and outer cylinders are grounded; the middle cylinder is held at \(V_0\). Both annular gaps are charge-free, with end effects neglected. Find \(V(r)\) and \(\mathbf E(r)\) in each gap.</p>
+  \[\boxed{V(a)=0,\qquad V(b)=V_0,\qquad V(c)=0.}\]
+  <h4>1. Reduce and solve in each radial interval</h4>
+  \[\frac1r\frac{d}{dr}\left(r\frac{dV_i}{dr}\right)=0\Rightarrow V_i(r)=A_i\ln r+B_i.\]
+  <p>The middle conductor separates two regions; determine their constants independently.</p>
+  <h4>2. Inner gap: \(a<r<b\)</h4>
+  \[V_1=A_1\ln(r/a)+B_1,\qquad V_1(a)=0\Rightarrow B_1=0.\]
+  \[V_1(b)=V_0\Rightarrow A_1=\frac{V_0}{\ln(b/a)}.\]
+  \[V_1(r)=V_0\frac{\ln(r/a)}{\ln(b/a)},\qquad
+  \mathbf E_1=-\frac{V_0}{r\ln(b/a)}\hat{\mathbf r}.\]
+  <h4>3. Outer gap: \(b<r<c\)</h4>
+  \[V_2=A_2\ln(r/c)+B_2,\qquad V_2(c)=0\Rightarrow B_2=0.\]
+  \[V_2(b)=V_0\Rightarrow A_2=\frac{V_0}{\ln(b/c)}=-\frac{V_0}{\ln(c/b)}.\]
+  \[V_2(r)=V_0\frac{\ln(c/r)}{\ln(c/b)},\qquad
+  \mathbf E_2=+\frac{V_0}{r\ln(c/b)}\hat{\mathbf r}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[V(r)=\begin{cases}
+  \dfrac{V_0\ln(r/a)}{\ln(b/a)},&a<r<b,\\[5pt]
+  \dfrac{V_0\ln(c/r)}{\ln(c/b)},&b<r<c,
+  \end{cases}\]
+  \[\mathbf E(r)=\begin{cases}
+  -\dfrac{V_0}{r\ln(b/a)}\hat{\mathbf r},&a<r<b,\\[5pt]
+  +\dfrac{V_0}{r\ln(c/b)}\hat{\mathbf r},&b<r<c.
+  \end{cases}\]
+  </div>
+  <p><strong>Physical check:</strong> for \(V_0>0\), the field points away from the middle conductor, inward in the inner gap and outward in the outer gap.</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 7 · Spherical</strong><span class="example-subtitle">Two concentric conducting spheres</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>Two concentric conducting shells have radii \(0<a<b\). The inner shell is at \(V_0\); the outer shell is grounded. The gap \(a<r<b\) contains no free charge. Assume spherical symmetry. Derive \(V(r)\) and \(\mathbf E(r)\), and compare their radial behavior with concentric cylinders.</p>
+  \[\boxed{V(a)=V_0,\qquad V(b)=0.}\]
+  <h4>1. Reduce spherical Laplace's equation</h4>
+  \[\nabla^2V=\frac1{r^2}\frac{d}{dr}\left(r^2\frac{dV}{dr}\right)=0.\]
+  <h4>2. Integrate twice</h4>
+  \[\frac{d}{dr}\left(r^2\frac{dV}{dr}\right)=0\Rightarrow
+  r^2\frac{dV}{dr}=A\Rightarrow\frac{dV}{dr}=\frac{A}{r^2}.\]
+  \[V(r)=-\frac Ar+B=\frac Cr+D.\]
+  <h4>3. Apply the two potentials</h4>
+  \[\frac Ca+D=V_0,\qquad\frac Cb+D=0.\]
+  <p>Subtracting,</p>
+  \[C\left(\frac1a-\frac1b\right)=V_0\Rightarrow
+  C=\frac{V_0}{1/a-1/b}=\frac{V_0ab}{b-a}.\]
+  \[D=-\frac Cb,\qquad V(r)=C\left(\frac1r-\frac1b\right).\]
+  <h4>4. Calculate the radial field</h4>
+  \[\mathbf E=-\frac{dV}{dr}\hat{\mathbf r}
+  =\frac{C}{r^2}\hat{\mathbf r}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[\boxed{V(r)=V_0\frac{1/r-1/b}{1/a-1/b}}\]
+  \[\boxed{\mathbf E(r)=\frac{V_0ab}{(b-a)r^2}\hat{\mathbf r}.}\]
+  </div>
+  <p><strong>Physical check:</strong> the spherical field decays as \(1/r^2\), whereas the field between infinitely long concentric cylinders decays as \(1/r\). The difference follows from the radial scale factors in the respective Laplacians.</p>
+ </div></details>
+
+ <details class="example"><summary><span><strong>Problem 8 · Spherical</strong><span class="example-subtitle">Conducting cone above a grounded plane</span></span></summary><div class="steps">
+  <h4>Problem</h4>
+  <p>An ideal conducting cone has its apex at the origin, its axis along \(+\hat{\mathbf z}\), and its surface at polar angle \(\theta=\theta_0\), where \(0<\theta_0<\pi/2\). The cone is held at \(V_0\); an infinite grounded plane occupies \(\theta=\pi/2\). The wedge-like region between them is charge-free. Assume \(V=V(\theta)\). Find \(V(\theta)\), \(\mathbf E(r,\theta)\), and its direction for \(V_0>0\).</p>
+  \[\boxed{V(\theta_0)=V_0,\qquad V(\pi/2)=0.}\]
+  <h4>1. Reduce spherical Laplace's equation</h4>
+  <p>With \(V=V(\theta)\), the spherical Laplacian reduces to</p>
+  \[\nabla^2V=\frac1{r^2\sin\theta}\frac{d}{d\theta}\left(\sin\theta\frac{dV}{d\theta}\right)=0.\]
+  <p>Multiply by \(r^2\sin\theta\) in the interior region:</p>
+  \[\frac{d}{d\theta}\left(\sin\theta\frac{dV}{d\theta}\right)=0.\]
+  <h4>2. Integrate the angular equation</h4>
+  \[\sin\theta\frac{dV}{d\theta}=A\Rightarrow
+  \frac{dV}{d\theta}=A\csc\theta.\]
+  <p>Use the identity \(\int \csc\theta\,d\theta=\ln\tan(\theta/2)\) for \(0<\theta<\pi\):</p>
+  \[V(\theta)=A\ln\tan\left(\frac\theta2\right)+B.\]
+  <h4>3. Apply both boundary conditions</h4>
+  \[V(\pi/2)=A\ln\tan(\pi/4)+B=B=0.\]
+  \[V(\theta_0)=A\ln\tan(\theta_0/2)=V_0\Rightarrow
+  A=\frac{V_0}{\ln\tan(\theta_0/2)}.\]
+  <h4>4. Differentiate using the spherical gradient</h4>
+  \[\mathbf E=-\nabla V=-\frac1r\frac{dV}{d\theta}\hat{\boldsymbol\theta}
+  =-\frac{A}{r\sin\theta}\hat{\boldsymbol\theta}.\]
+  <div class="equation"><h3>Final answer</h3>
+  \[\boxed{V(\theta)=V_0\frac{\ln\tan(\theta/2)}{\ln\tan(\theta_0/2)}}\]
+  \[\boxed{\mathbf E(r,\theta)=-\frac{V_0}{r\sin\theta\,\ln\tan(\theta_0/2)}\hat{\boldsymbol\theta}.}\]
+  </div>
+  <p><strong>Physical check:</strong> for \(0<\theta_0<\pi/2\), \(\ln\tan(\theta_0/2)<0\); therefore when \(V_0>0\), the electric field points in \(+\hat{\boldsymbol\theta}\), from the cone toward the grounded plane. The idealization produces a \(1/r\) singularity near the sharp apex.</p>
+ </div></details>
+
+ <details><summary>Quick reference · coordinate forms and checks (worksheet p. 9)</summary><div class="steps">
+  <p>For a charge-free region,</p>
+  \[\boxed{\nabla^2V=0},\qquad\boxed{\mathbf E=-\nabla V}.\]
+  <p>Use the following symmetry-reduced equations and general solutions <em>before</em> applying boundary potentials:</p>
+  <div class="math-panel"><h3>Cartesian</h3>
+  \[\frac{d^2V}{dx^2}=0\quad\Rightarrow\quad V=Ax+B.\]</div>
+  <div class="math-panel"><h3>Cylindrical · radial</h3>
+  \[\frac1r\frac d{dr}\left(r\frac{dV}{dr}\right)=0
+  \Rightarrow V=A\ln(r/r_*)+B.\]</div>
+  <div class="math-panel"><h3>Cylindrical · azimuthal</h3>
+  \[\frac{d^2V}{d\phi^2}=0\Rightarrow V=A\phi+B.\]</div>
+  <div class="math-panel"><h3>Spherical · radial</h3>
+  \[\frac1{r^2}\frac d{dr}\left(r^2\frac{dV}{dr}\right)=0
+  \Rightarrow V=\frac Ar+B.\]</div>
+  <div class="math-panel"><h3>Spherical · polar</h3>
+  \[\frac1{\sin\theta}\frac d{d\theta}\left(\sin\theta\frac{dV}{d\theta}\right)=0
+  \Rightarrow V=A\ln\tan(\theta/2)+B.\]</div>
+  <p>The reference length \(r_*>0\) makes the logarithm argument dimensionless.</p>
+  <h4>Gradient scale factors</h4>
+  \[\nabla V_{\rm cyl}=\hat{\mathbf r}\partial_rV+
+  \frac{\hat{\boldsymbol\phi}}{r}\partial_\phi V+\hat{\mathbf z}\partial_z V.\]
+  \[\nabla V_{\rm sph}=\hat{\mathbf r}\partial_rV+
+  \frac{\hat{\boldsymbol\theta}}r\partial_\theta V+
+  \frac{\hat{\boldsymbol\phi}}{r\sin\theta}\partial_\phi V.\]
+  <p><strong>Exam check:</strong> state the domain and potentials; justify symmetry; solve the correct ODE; impose every boundary value; differentiate with the metric factors; verify potential limits and field direction. Finite electrodes and sharp edges may require more general solutions.</p>
+ </div></details>
+ <p class="small">Source: user-provided <em>Boundary Conditions Worksheet With Solutions</em>, pp. 1–9. The problems, variable definitions, analytical results, and physical checks follow that worksheet, formatted for watch and desktop reading.</p>
+</section>
+
     <p id="empty" class="intro" hidden>No matching topic. Clear the search to show all sections.</p>
     <footer>
       <p><strong>Electromagnetism · Field Notes</strong> — MS Physics reference</p>
