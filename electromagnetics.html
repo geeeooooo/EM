@@ -216,7 +216,7 @@
 <p>\(\eta\) is the wave impedance. The fields \(\mathbf E\), \(\mathbf B\), and propagation direction form a right-handed orthogonal triad in this isotropic medium.</p>
 </div></details>
 </section>
-<section class="chapter" id="energy" data-keywords="poynting theorem conservation energy density current work flux electric magnetic">
+<section class="chapter" id="energy" data-keywords="poynting theorem conservation energy density intensity wave average peak electric magnetic sinusoidal flux stored energy power">
 <span class="chapter-number">05 / ENERGY STORAGE AND TRANSPORT</span>
 <h2>Derive Poynting's theorem</h2><p class="units-note"><strong>Energy and power units:</strong> \(u\) in \(\mathrm{J/m^3}\), \(\mathbf S=\mathbf E\times\mathbf H\) in \(\mathrm{W/m^2}\), \(\mathbf J_f\cdot\mathbf E\) in \(\mathrm{W/m^3}\), and the total energy \(\int_{\mathcal V}u\,dV\) in joules \(\mathrm{J}\).</p>
 <p>In a linear, isotropic, nondispersive medium with time-independent \(\varepsilon\) and \(\mu\), electromagnetic energy density and flux have particularly simple forms.</p>
@@ -246,6 +246,69 @@
 \[\boxed{u=\frac12\mathbf E\cdot\mathbf D+\frac12\mathbf B\cdot\mathbf H
 =\frac{\varepsilon E^2}{2}+\frac{B^2}{2\mu}}.\]
 <p>In dispersive, nonlinear, hysteretic or dissipative media, this simple formula is not generally sufficient to describe all stored material and electromagnetic energy.</p></div>
+
+<div class="math-panel" id="wave-energy-density">
+<h3>Energy density of a traveling electromagnetic wave</h3>
+<p>For a <strong>plane wave in vacuum</strong>, Maxwell's equations imply the instantaneous field-magnitude relation \(E=cB\), where \(c=1/\sqrt{\mu_0\varepsilon_0}\). Consequently, the electric and magnetic contributions are equal <em>at every point and time</em>:</p>
+\[\boxed{u_E=u_B},\qquad \boxed{u=\varepsilon_0E^2=\frac{B^2}{\mu_0}}.\]
+<p><strong>Scope:</strong> the equality follows for an ideal traveling plane wave, not arbitrary superpositions, standing waves or static field configurations. In particular, \(E\) and \(B\) here are <em>instantaneous</em> magnitudes, not peak amplitudes.</p>
+</div>
+<details><summary>Derivation: why the electric and magnetic energies are equal</summary><div class="steps">
+<p>Begin with the two vacuum contributions to the energy density:</p>
+\[u_E=\frac12\varepsilon_0 E^2,\qquad u_B=\frac{B^2}{2\mu_0}.\]
+<p>For a traveling plane wave, Faraday's law gives \(B=E/c\), while the wave speed obeys \(c^2=1/(\mu_0\varepsilon_0)\).</p>
+<p>Substitute \(B=E/c\) in the magnetic contribution and simplify:</p>
+\[\begin{aligned}
+u_B&amp;=\frac{E^2}{2\mu_0c^2}\\
+&amp;=\frac{E^2}{2\mu_0}\bigl(\mu_0\varepsilon_0\bigr)\\
+&amp;=\frac12\varepsilon_0E^2=u_E.
+\end{aligned}\]
+<p>Adding both contributions therefore gives</p>
+\[\boxed{u=u_E+u_B=\varepsilon_0E^2=\frac{B^2}{\mu_0}}.\]
+<p><strong>Interpretation:</strong> half of the instantaneous total energy density is electric and half magnetic. This conclusion does not mean the fields point in the same direction: the two fields are perpendicular.</p>
+</div></details>
+<details><summary>Derivation: sinusoidal wave, peak energy and time average</summary><div class="steps">
+<p>Take a wave moving along \(+\hat{\mathbf z}\), with the electric field along \(\hat{\mathbf x}\) and magnetic field along \(\hat{\mathbf y}\):</p>
+\[\mathbf E(z,t)=E_0\cos(kz-\omega t)\,\hat{\mathbf x},\]
+\[\mathbf B(z,t)=B_0\cos(kz-\omega t)\,\hat{\mathbf y},\qquad B_0=\frac{E_0}{c}.\]
+<p>\(E_0\) (in \(\mathrm{V/m}\)) and \(B_0\) (in tesla, \(\mathrm{T}\)) are <strong>peak amplitudes</strong>. The fields oscillate in phase, whereas their energy densities are proportional to the square of the fields.</p>
+<p>Insert the instantaneous fields into \(u=\varepsilon_0 E^2\):</p>
+\[\boxed{u(z,t)=\varepsilon_0E_0^2\cos^2(kz-\omega t)}.\]
+<p>At a field maximum, \(\cos^2=1\), so</p>
+\[\boxed{u_{\max}=\varepsilon_0E_0^2=\frac{B_0^2}{\mu_0}}.\]
+<p>For a time average over one complete period \(T=2\pi/\omega\), hold position \(z\) fixed:</p>
+\[\left\langle\cos^2(kz-\omega t)\right\rangle=\frac1T\int_0^T\cos^2(kz-\omega t)\,dt=\frac12.\]
+<p>It follows that</p>
+\[\boxed{\langle u\rangle=\frac12\varepsilon_0E_0^2=\frac{B_0^2}{2\mu_0}}.\]
+<p>Each field supplies half the mean total energy density:</p>
+\[\boxed{\langle u_E\rangle=\langle u_B\rangle=\frac14\varepsilon_0E_0^2}.\]
+<p><strong>Exam distinction:</strong> if a question supplies the <em>peak</em> electric field \(E_0\), use the factor \(1/2\) for <em>average</em> energy density. If it supplies an instantaneous field \(E(z,t)\), calculate \(u=\varepsilon_0 E(z,t)^2\) with no extra averaging factor.</p>
+</div></details>
+<details><summary>Derivation: energy density → Poynting flux → intensity</summary><div class="steps">
+<p>In vacuum the Poynting vector is the energy transported per unit time per unit area:</p>
+\[\boxed{\mathbf S=\frac1{\mu_0}\mathbf E\times\mathbf B}.\]
+<p>For a plane wave, \(\mathbf E\perp\mathbf B\). Its propagation direction is \(\hat{\mathbf z}=\hat{\mathbf x}\times\hat{\mathbf y}\); thus the instantaneous flux magnitude is</p>
+\[S=\frac{EB}{\mu_0}=\frac{E^2}{\mu_0c}.\]
+<p>Use \(1/(\mu_0c)=\varepsilon_0c\), and then \(u=\varepsilon_0E^2\):</p>
+\[\boxed{S=\varepsilon_0cE^2=cu}.\]
+<p>The <strong>intensity</strong> \(I\) is the time average of the energy flux magnitude for this forward traveling wave:</p>
+\[\boxed{I=\langle S\rangle=c\langle u\rangle=\frac12\varepsilon_0cE_0^2}.\]
+<p>Equivalently, \(I=c B_0^2/(2\mu_0)\). Note that \(u\) has units \(\mathrm{J/m^3}\), while \(S\) and \(I\) have units \(\mathrm{W/m^2}\).</p>
+</div></details>
+<details><summary>Material medium: when do these results generalize?</summary><div class="steps">
+<p>In a <strong>linear, isotropic, nondispersive, lossless</strong> medium with constant \(\varepsilon,\mu\),</p>
+\[\boxed{u=\frac12\mathbf E\cdot\mathbf D+\frac12\mathbf B\cdot\mathbf H=\frac12\varepsilon E^2+\frac{B^2}{2\mu}}.\]
+<p>For a single traveling plane wave \(E=vB\), where \(v=1/\sqrt{\mu\varepsilon}\). Therefore \(u_E=u_B\), \(u=\varepsilon E^2\), and \(S=vu\). For sinusoidal peak amplitude \(E_0\), \(\langle u\rangle=\varepsilon E_0^2/2\) and \(I=v\langle u\rangle=E_0^2/(2\eta)\), with \(\eta=\sqrt{\mu/\varepsilon}\).</p>
+<p>Do <strong>not</strong> automatically substitute a frequency-dependent permittivity into this simple stored-energy formula for dispersive or absorbing materials. The medium's energy storage and dissipation then require a more complete treatment.</p>
+</div></details>
+<div class="math-panel">
+<h3>Exam formula recap · vacuum plane wave</h3>
+<p><strong>Instantaneous:</strong> \(u_E=\varepsilon_0 E^2/2\), \(u_B=B^2/(2\mu_0)\); for a traveling plane wave \(u=\varepsilon_0 E^2=B^2/\mu_0\).</p>
+<p><strong>Peak and average:</strong> \(u_{\max}=\varepsilon_0 E_0^2\), \(\langle u\rangle=\varepsilon_0 E_0^2/2\).</p>
+<p><strong>Transport:</strong> \(\mathbf S=(\mathbf E\times\mathbf B)/\mu_0\), \(S=cu\), \(I=\langle S\rangle=c\langle u\rangle=\varepsilon_0cE_0^2/2\).</p>
+<p><strong>Units:</strong> \(E:\mathrm{V/m}\), \(B:\mathrm{T}\), \(u:\mathrm{J/m^3}\), \(S,I:\mathrm{W/m^2}\).</p>
+</div>
+
 <div class="equation"><h3>Energy transferred per area per time</h3>
 \[\boxed{\mathbf S=\mathbf E\times\mathbf H},\qquad
 \boxed{\mathbf S_{\mathrm{vac}}=\frac1{\mu_0}\mathbf E\times\mathbf B}.\]
