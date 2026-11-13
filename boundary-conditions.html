@@ -265,7 +265,8 @@
   <h4>Problem</h4>
   <p>Two large parallel conducting walls lie at \(x=0\) and \(x=d\). The first is grounded; the second is held at \(V_0\). Between them there is no free charge, and edge effects are neglected. Find \(V(x)\) and \(\mathbf E\).</p>
   \[\boxed{V(0)=0,\qquad V(d)=V_0,\qquad 0&lt;x&lt;d.}\]
-  <h4>1. Reduce Laplace's equation</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: 1D Laplace equation</h3><p><strong>Statement.</strong> With no volume charge and planar symmetry, \(\nabla^2V=0\) becomes \(V''(x)=0\). Thus potential is linear, and its negative gradient is a uniform field.</p><p><strong>Assumptions.</strong> Fixed wall voltages, large plates and negligible edge effects. Both integration constants come from the two boundary conditions.</p></div>
+<h4>1. Reduce Laplace's equation</h4>
   <p>Translational symmetry in \(y\) and \(z\) implies \(V=V(x)\).</p>
   \[\nabla^2V=\frac{\partial^2 V}{\partial x^2}+\frac{\partial^2 V}{\partial y^2}+\frac{\partial^2 V}{\partial z^2}=0
   \quad\Longrightarrow\quad\frac{d^2V}{dx^2}=0.\]
@@ -285,7 +286,8 @@
   <h4>Problem</h4>
   <p>Three infinite conducting sheets are at \(z=0\), \(z=h\), and \(z=2h\). The lower and upper sheets are grounded; the middle sheet is held at \(V_0\). Both gaps are charge-free and edge effects are neglected. Find the potential and electric field separately in each gap.</p>
   \[\boxed{V(0)=0,\qquad V(h)=V_0,\qquad V(2h)=0.}\]
-  <h4>1. Reduce Laplace's equation in each region</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: solve each separated region</h3><p><strong>Statement.</strong> Every charge-free gap satisfies a separate 1D Laplace equation, so \(V(z)\) is piecewise linear. Conducting sheets fix potential at their positions.</p><p><strong>Physical meaning.</strong> The middle high-voltage sheet creates oppositely directed fields in the two gaps. A field jump across a conducting sheet is compatible with surface charge.</p></div>
+<h4>1. Reduce Laplace's equation in each region</h4>
   <p>By plane symmetry, \(V=V(z)\). In each gap, \(d^2V_i/dz^2=0\), so \(V_i=A_i z+B_i\). A conductor at \(z=h\) separates the two intervals: each has its own constants.</p>
   <h4>2. Lower gap: \(0&lt;z&lt;h\)</h4>
   \[V_1(z)=A_1z+B_1,\quad V_1(0)=0\Rightarrow B_1=0,\]
@@ -307,7 +309,8 @@
  <details class="example"><summary><span><strong>Problem 3 · Rotated Cartesian</strong><span class="example-subtitle">Two inclined parallel conducting plates</span></span></summary><div class="steps">
   <h4>Problem</h4>
   <p>Two infinite parallel conducting plates lie on \(x\cos\alpha+y\sin\alpha=0\) and \(x\cos\alpha+y\sin\alpha=d\). The first is grounded; the other is at \(V_0\). The gap is charge-free. Use the normal coordinate \(u=x\cos\alpha+y\sin\alpha\) to find \(V(x,y)\) and \(\mathbf E\).</p>
-  <h4>1. Express derivatives in the normal coordinate</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: rotate into the normal direction</h3><p><strong>Statement.</strong> If the conductor surfaces depend only on \(u=x\cos\alpha+y\sin\alpha\), then symmetry permits \(V=V(u)\), reducing Laplace's equation to \(d^2V/du^2=0\).</p><p><strong>Physical meaning.</strong> The field is normal to the parallel conducting surfaces and does not depend separately on the original Cartesian coordinates.</p></div>
+<h4>1. Express derivatives in the normal coordinate</h4>
   <p>Symmetry implies \(V=V(u)\). The chain rule gives</p>
   \[\frac{\partial V}{\partial x}=\frac{dV}{du}\cos\alpha,\qquad
   \frac{\partial V}{\partial y}=\frac{dV}{du}\sin\alpha.\]
@@ -332,7 +335,8 @@
   <h4>Problem</h4>
   <p>Two long coaxial conducting cylinders have radii \(0&lt;a&lt;b\). The inner cylinder is held at \(V_0\); the outer is grounded. The annular region \(a&lt;r&lt;b\) is charge-free; neglect end effects. Find \(V(r)\) and \(\mathbf E(r)\).</p>
   \[\boxed{V(a)=V_0,\qquad V(b)=0.}\]
-  <h4>1. Reduce the cylindrical Laplacian</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: cylindrical radial Laplace equation</h3><p><strong>Statement.</strong> With cylindrical symmetry and no volume charge between long coaxial cylinders, \((1/r)d[\,rV'(r)\,]/dr=0\), so the potential is logarithmic in radius.</p><p><strong>Physical meaning.</strong> The radial field scales as \(1/r\), since the same electric flux spreads over larger cylindrical surfaces.</p></div>
+<h4>1. Reduce the cylindrical Laplacian</h4>
   <p>Cylindrical symmetry implies \(V=V(r)\):</p>
   \[\nabla^2V=\frac1r\frac{d}{dr}\left(r\frac{dV}{dr}\right)=0.\]
   <h4>2. Integrate the radial equation</h4>
@@ -357,7 +361,8 @@
   <h4>Problem</h4>
   <p>Two infinite conducting half-planes meet along the \(z\)-axis at \(\phi_1=\pi/6\) (grounded) and \(\phi_2=2\pi/3\) (at \(V_0\)). The interior is charge-free. Under the idealized assumption \(V=V(\phi)\), find \(V(\phi)\) and \(\mathbf E(r,\phi)\).</p>
   \[\boxed{V(\pi/6)=0,\qquad V(2\pi/3)=V_0.}\]
-  <h4>1. Reduce cylindrical Laplace's equation</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: angular Laplace equation</h3><p><strong>Statement.</strong> If the potential between radial conducting walls depends only on the cylindrical azimuthal angle \(\phi\), the charge-free Laplace equation reduces to \(V''(\phi)=0\).</p><p><strong>Physical meaning.</strong> The potential is linear in angle, but the physical field contains the coordinate factor \(1/r\); angular derivatives are not lengths.</p></div>
+<h4>1. Reduce cylindrical Laplace's equation</h4>
   \[\nabla^2V=\frac1r\frac{\partial}{\partial r}\left(r\frac{\partial V}{\partial r}\right)+\frac1{r^2}\frac{\partial^2V}{\partial\phi^2}+\frac{\partial^2V}{\partial z^2}=0.\]
   <p>Since \(V=V(\phi)\), only the angular term survives:</p>
   \[\frac1{r^2}\frac{d^2V}{d\phi^2}=0\Rightarrow\frac{d^2V}{d\phi^2}=0.\]
@@ -379,7 +384,8 @@
   <h4>Problem</h4>
   <p>Three long coaxial conducting cylinders have radii \(0&lt;a&lt;b&lt;c\). The inner and outer cylinders are grounded; the middle cylinder is held at \(V_0\). Both annular gaps are charge-free, with end effects neglected. Find \(V(r)\) and \(\mathbf E(r)\) in each gap.</p>
   \[\boxed{V(a)=0,\qquad V(b)=V_0,\qquad V(c)=0.}\]
-  <h4>1. Reduce and solve in each radial interval</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: separate cylindrical gaps</h3><p><strong>Statement.</strong> Each region between adjacent concentric electrodes has its own logarithmic solution and boundary constants. A conductor fixes the potential at its radius.</p><p><strong>Physical meaning.</strong> The electric field can reverse direction across the middle electrode because that conductor is separately charged on its two faces.</p></div>
+<h4>1. Reduce and solve in each radial interval</h4>
   \[\frac1r\frac{d}{dr}\left(r\frac{dV_i}{dr}\right)=0\Rightarrow V_i(r)=A_i\ln r+B_i.\]
   <p>The middle conductor separates two regions; determine their constants independently.</p>
   <h4>2. Inner gap: \(a&lt;r&lt;b\)</h4>
@@ -409,7 +415,8 @@
   <h4>Problem</h4>
   <p>Two concentric conducting shells have radii \(0&lt;a&lt;b\). The inner shell is at \(V_0\); the outer shell is grounded. The gap \(a&lt;r&lt;b\) contains no free charge. Assume spherical symmetry. Derive \(V(r)\) and \(\mathbf E(r)\), and compare their radial behavior with concentric cylinders.</p>
   \[\boxed{V(a)=V_0,\qquad V(b)=0.}\]
-  <h4>1. Reduce spherical Laplace's equation</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: spherical radial Laplace equation</h3><p><strong>Statement.</strong> In a spherically symmetric charge-free region, \((1/r^2)d[\,r^2V'(r)\,]/dr=0\). The solution is a constant plus a term proportional to \(1/r\).</p><p><strong>Physical meaning.</strong> The radial field scales as \(1/r^2\), consistent with flux spreading over a sphere of area \(4\pi r^2\).</p></div>
+<h4>1. Reduce spherical Laplace's equation</h4>
   \[\nabla^2V=\frac1{r^2}\frac{d}{dr}\left(r^2\frac{dV}{dr}\right)=0.\]
   <h4>2. Integrate twice</h4>
   \[\frac{d}{dr}\left(r^2\frac{dV}{dr}\right)=0\Rightarrow
@@ -435,7 +442,8 @@
   <h4>Problem</h4>
   <p>An ideal conducting cone has its apex at the origin, its axis along \(+\hat{\mathbf z}\), and its surface at polar angle \(\theta=\theta_0\), where \(0&lt;\theta_0&lt;\pi/2\). The cone is held at \(V_0\); an infinite grounded plane occupies \(\theta=\pi/2\). The wedge-like region between them is charge-free. Assume \(V=V(\theta)\). Find \(V(\theta)\), \(\mathbf E(r,\theta)\), and its direction for \(V_0&gt;0\).</p>
   \[\boxed{V(\theta_0)=V_0,\qquad V(\pi/2)=0.}\]
-  <h4>1. Reduce spherical Laplace's equation</h4>
+  <div class="theorem-intro" role="note"><h3>Principle before derivation: polar-angle Laplace equation</h3><p><strong>Statement.</strong> When a spherical electrostatic boundary problem depends only on polar angle \(\theta\), the angular Laplacian becomes \((1/\sin\theta)d[\sin\theta\,V'(\theta)]/d\theta=0\).</p><p><strong>Physical meaning.</strong> The potential can depend on angle even with no free volume charge; the resulting electric field must include the spherical gradient factor \(1/r\). Avoid singular boundary directions outside the stated angular domain.</p></div>
+<h4>1. Reduce spherical Laplace's equation</h4>
   <p>With \(V=V(\theta)\), the spherical Laplacian reduces to</p>
   \[\nabla^2V=\frac1{r^2\sin\theta}\frac{d}{d\theta}\left(\sin\theta\frac{dV}{d\theta}\right)=0.\]
   <p>Multiply by \(r^2\sin\theta\) in the interior region:</p>
