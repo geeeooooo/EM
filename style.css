@@ -170,3 +170,19 @@ footer .site-nav { margin: 12px 0; }
 @media (max-width:420px) {
  .units-note { padding-left: 8px; font-size: .89em !important; }
 }
+
+
+/* Exam practice – matches the existing pure-black/white Field Notes theme. */
+.exam-question{padding:14px 16px;border:1px solid var(--border);border-radius:6px;margin:16px 0}
+.exam-question>.eyebrow{margin:0 0 8px}
+.exam-question ol{padding-left:1.42em;margin:12px 0}
+.exam-question li{margin:8px 0}
+.exam-question li:last-child{margin-bottom:0}
+.worked-solution>summary{font-weight:750}
+.practice-controls{display:flex;gap:8px;flex-wrap:wrap;margin:7px 0 10px}
+.practice-problem .units-note{font-size:.89em}
+.practice-problem .steps h4{margin-top:19px}
+.practice-problem .steps .equation{margin:14px 0}
+.concept-check .steps{font-size:.95em}
+@media(max-width:420px){.exam-question{padding:10px}.practice-controls{gap:5px}.practice-controls button{padding:7px 9px;font-size:.87em}}
+@media(max-width:270px){.practice-controls{flex-direction:column}.practice-controls button{width:100%;text-align:left}.exam-question ol{padding-left:1.1em}}

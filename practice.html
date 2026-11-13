@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Eight MS Physics electromagnetism comprehensive examination problems, complete worked solutions and conceptual checks.">
+<title>EM Comprehensive Practice · Field Notes</title>
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],packages:{'[+]':['ams']}},svg:{fontCache:'local'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script defer src="./app.js"></script>
+<script defer src="./practice.js"></script>
+</head>
+<body>
+<a href="#content" class="skip">Skip to problems</a>
+<header class="hero"><div class="shell">
+<div class="eyebrow">FIELD NOTES / MS PHYSICS</div>
+<h1>EM Comprehensive Practice</h1>
+<p class="subtitle">Eight graduate-level problems with complete worked solutions.</p>
+<nav class="site-nav" aria-label="Website pages">
+<a href="./index.html">Maxwell</a><a href="./boundary-conditions.html">Boundary conditions</a><a href="./electrostatics.html">Electrostatics</a><a href="./electromagnetics.html">Electromagnetics</a><a aria-current="page" href="./practice.html">EM Practice</a>
+</nav>
+<div class="controls" aria-label="Reading controls">
+<label class="sr-only" for="search">Search practice problems</label>
+<input id="search" type="search" placeholder="Search problems…" autocomplete="off">
+<button id="decrease" type="button" aria-label="Decrease text size">A−</button>
+<button id="increase" type="button" aria-label="Increase text size">A+</button>
+</div>
+<nav class="nav" aria-label="Problem numbers">
+<a href="#top-problems">Contents</a><a href="#problem-1">1</a><a href="#problem-2">2</a><a href="#problem-3">3</a><a href="#problem-4">4</a><a href="#problem-5">5</a><a href="#problem-6">6</a><a href="#problem-7">7</a><a href="#problem-8">8</a><a href="#conceptual-checks">Checks</a>
+</nav>
+<div class="practice-controls"><button type="button" id="show-answers">Show all solutions</button><button type="button" id="hide-answers">Hide all solutions</button></div>
+<p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
+</div></header>
+<main class="shell" id="content">
+<section class="intro" id="top-problems">
+<h2>Exam worksheet · 8 problems</h2>
+<p>Adapted from your uploaded <em>EM Comprehensive Worksheet: Questions and Solutions</em> (18 pages). The problem statements are visible; expand each solution only after attempting the question.</p>
+<p><strong>Suggested timing:</strong> 25–35 minutes per problem. <strong>Marking:</strong> 10 points each, 80 total. Start with the governing law, explain the assumptions and coordinate direction, derive equations, and substitute numerical values last.</p>
+<p><strong>Sessions:</strong> A (1–2): Maxwell equations and conservation; B (3–4): material boundaries; C (5): magnetization; D (6–8): waves, reflection, and skin depth.</p>
+<p>For eight additional electrostatic Laplace boundary-value problems, visit <a href="./boundary-conditions.html#worksheet-examples">Boundary Conditions → Worked Examples</a>.</p>
+</section>
+<details class="si-guide" id="si-units">
+<summary>SI constants and units for this worksheet</summary><div class="steps">
+\[\mu_0\approx1.256637\times10^{-6}\ \mathrm{H/m},\quad
+\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m}\]
+\[c\approx3.00\times10^8\ \mathrm{m/s},\quad
+\eta_0\approx377\ \Omega.\]
+<p>Electric field \(\mathbf E\) in \(\mathrm{V/m}\); electric displacement \(\mathbf D\) in \(\mathrm{C/m^2}\); magnetic flux density \(\mathbf B\) in \(\mathrm T\); magnetic intensity \(\mathbf H\) in \(\mathrm{A/m}\); energy density \(u\) in \(\mathrm{J/m^3}\); power flux \(\mathbf S\) in \(\mathrm{W/m^2}\).</p>
+<p>Relative material constants, refractive indices, and reflection/transmission coefficients are dimensionless. Where a field or current direction is given, preserve the specified unit normal and right-hand rule.</p>
+</div></details>
+
+<section class="chapter practice-problem" id="problem-1" data-keywords="charging capacitor displacement current electric flux amperian loop cylindrical symmetry">
+<span class="chapter-number">SESSION A / PROBLEM 1 / 30 min / 10 POINTS</span>
+<h2>Maxwell–Ampère law: charging capacitor</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>A parallel-plate capacitor has two circular plates of radius \(a\) separated by a small gap \(d\ll a\). A constant conduction current \(I\) charges the capacitor. Neglect fringing fields and assume a uniform axial electric field \(\mathbf E=E(t)\hat{\mathbf z}\). Initially the capacitor is uncharged.</p>
+<ol type="a"><li>Find \(E(t)\) in terms of \(I,a,\varepsilon_0,t\).</li><li>Using a circular Amperian loop of radius \(r\), derive \(B_\phi(r)\) for \(r&lt;a\) and \(r&gt;a\) in the gap.</li><li>Explain why displacement current is essential, using two surfaces with the same boundary curve.</li><li>Give two assumptions behind the approximation.</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Electric field between the plates</h4>
+<p>The plate area is \(A=\pi a^2\,[\mathrm{m^2}]\). Constant current \(I\,[\mathrm A]\) deposits charge \(Q(t)=It\,[\mathrm C]\). Gauss's law gives \(E=Q/(\varepsilon_0 A)\):</p>
+\[\boxed{\mathbf E(t)=\frac{It}{\varepsilon_0\pi a^2}\hat{\mathbf z}},\qquad
+\frac{dE}{dt}=\frac{I}{\varepsilon_0\pi a^2}.\]
+<h4>(b) Magnetic field in the capacitor gap</h4>
+<p>There is no <em>conduction</em> current through a surface across the vacuum gap. Maxwell–Ampère's integral law instead reads</p>
+\[\oint_{\mathcal C}\mathbf B\cdot d\boldsymbol\ell
+=\mu_0I_{\rm cond,encl}+
+\mu_0\varepsilon_0\frac{d\Phi_E}{dt}.\]
+<p>Cylindrical symmetry makes \(\mathbf B=B_\phi(r)\hat{\boldsymbol\phi}\) and gives \(\oint\mathbf B\cdot d\boldsymbol\ell=2\pi rB_\phi(r)\).</p>
+<p><strong>For \(0\le r&lt;a\):</strong> only the circular area \(\pi r^2\) contributes to electric flux:</p>
+\[\Phi_E=E\pi r^2,\qquad
+2\pi rB_\phi=\mu_0\varepsilon_0\pi r^2\frac{dE}{dt}
+=\mu_0I\frac{r^2}{a^2}.\]
+<p><strong>For \(r&gt;a\):</strong> in the approximation of negligible fringing, the field occupies only the plate area \(\pi a^2\):</p>
+\[\Phi_E=E\pi a^2,\qquad
+2\pi rB_\phi=\mu_0\varepsilon_0\pi a^2\frac{dE}{dt}=\mu_0I.\]
+<div class="equation"><h3>Final result</h3>
+\[\boxed{B_\phi(r)=\begin{cases}
+\dfrac{\mu_0Ir}{2\pi a^2},&amp;0\le r&lt;a,\\[6pt]
+\dfrac{\mu_0I}{2\pi r},&amp;r&gt;a.
+\end{cases}}\]
+<p>Field direction: \(+\hat{\boldsymbol\phi}\), given an effective current along \(+\hat{\mathbf z}\) and the right-hand rule.</p></div>
+<h4>(c) Surface independence and displacement current</h4>
+<p>A surface crossing the wire encloses conduction current \(I\). Another surface with the <em>same circular boundary</em>, bulged into the gap, encloses zero conduction current. Ordinary Ampère's law would give contradictory circulations. Maxwell's displacement current \(I_d=\varepsilon_0d\Phi_E/dt\) gives \(I_d=I\) for the full plate area, so both surfaces agree.</p>
+<h4>(d) Approximations</h4>
+<p>Use \(d\ll a\), negligible edge/fringing fields, quasistatic/slow charging (negligible radiation), and approximate axial symmetry. Near the plate edges, these expressions are not exact.</p>
+<p class="units-note"><strong>SI check:</strong> \(E\,[\mathrm{V/m}]\), \(B_\phi\,[\mathrm T]\), \(I\,[\mathrm A]\), \(a,d,r\,[\mathrm m]\), \(\varepsilon_0\,[\mathrm{F/m}]\), \(\mu_0\,[\mathrm{H/m}]\). For example, \([\mu_0Ir/a^2]=\mathrm{T}\).</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-2" data-keywords="charge conservation continuity poynting theorem joule heating relaxation">
+<span class="chapter-number">SESSION A / PROBLEM 2 / 30 min / 10 POINTS</span>
+<h2>Continuity equation and Poynting theorem</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>In a stationary, linear, isotropic, nondispersive medium, \(\mathbf D=\varepsilon\mathbf E\), \(\mathbf B=\mu\mathbf H\), and free current density is \(\mathbf J_f\). Begin with Maxwell's equations in differential form.</p>
+<ol type="a"><li>Derive \(\partial_t\rho_f+\nabla\cdot\mathbf J_f=0\).</li><li>Derive \(\partial_tu+\nabla\cdot\mathbf S=-\mathbf J_f\cdot\mathbf E\), identifying \(u,\mathbf S\).</li><li>For \(\mathbf J_f=\sigma\mathbf E\), \(\mathbf E(t)=E_0e^{-t/\tau}\hat{\mathbf x}\), and \(\mathbf B=\mathbf0\), determine \(\tau\) and verify the energy equation.</li><li>Interpret the sign of \(\mathbf J_f\cdot\mathbf E\).</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Charge-continuity equation</h4>
+<p>Apply divergence to \(\nabla\times\mathbf H=\mathbf J_f+\partial_t\mathbf D\). The divergence of any curl vanishes:</p>
+\[0=\nabla\cdot(\nabla\times\mathbf H)
+=\nabla\cdot\mathbf J_f+\frac{\partial}{\partial t}(\nabla\cdot\mathbf D).\]
+<p>Gauss's law \(\nabla\cdot\mathbf D=\rho_f\) then gives</p>
+\[\boxed{\frac{\partial\rho_f}{\partial t}+\nabla\cdot\mathbf J_f=0}.\]
+<p>Positive outward current divergence means free charge density decreases locally.</p>
+<h4>(b) Poynting's theorem</h4>
+<p>Use the identity</p>
+\[\nabla\cdot(\mathbf E\times\mathbf H)
+=\mathbf H\cdot(\nabla\times\mathbf E)
+-\mathbf E\cdot(\nabla\times\mathbf H).\]
+<p>Insert Faraday's law and Ampère–Maxwell:</p>
+\[\nabla\cdot(\mathbf E\times\mathbf H)
+=-\mathbf H\cdot\frac{\partial\mathbf B}{\partial t}
+-\mathbf E\cdot\mathbf J_f
+-\mathbf E\cdot\frac{\partial\mathbf D}{\partial t}.\]
+<p>For constant scalar \(\varepsilon\) and \(\mu\),</p>
+\[\mathbf E\cdot\partial_t\mathbf D
+=\partial_t\!\left(\tfrac12\mathbf E\cdot\mathbf D\right),\quad
+\mathbf H\cdot\partial_t\mathbf B
+=\partial_t\!\left(\tfrac12\mathbf B\cdot\mathbf H\right).\]
+<p>Define energy density \(u\) and energy flux \(\mathbf S\):</p>
+\[\boxed{u=\tfrac12(\mathbf E\cdot\mathbf D+\mathbf B\cdot\mathbf H)},\qquad
+\boxed{\mathbf S=\mathbf E\times\mathbf H}.\]
+<p>Rearrange:</p>
+\[\boxed{\frac{\partial u}{\partial t}+\nabla\cdot\mathbf S
+=-\mathbf J_f\cdot\mathbf E}.\]
+<h4>(c) Field relaxation in an Ohmic medium</h4>
+<p>For \(\mathbf B=\mathbf0\), \(\mathbf H=\mathbf0\), spatially uniform \(\mathbf E(t)\), and \(\mathbf J_f=\sigma\mathbf E\), Ampère–Maxwell becomes</p>
+\[0=\sigma\mathbf E+\varepsilon\frac{d\mathbf E}{dt}
+\quad\Rightarrow\quad
+\frac{d\mathbf E}{dt}=-\frac{\sigma}{\varepsilon}\mathbf E.\]
+<p>Compare with \(dE/dt=-E/\tau\):</p>
+\[\boxed{\tau=\frac{\varepsilon}{\sigma}}.\]
+<p>The field energy is \(u=\frac12\varepsilon E^2\). Differentiate:</p>
+\[\frac{du}{dt}=\varepsilon E\frac{dE}{dt}
+=-\sigma E^2.\]
+<p>Since \(\mathbf H=\mathbf0\), \(\mathbf S=\mathbf0\), and \(\mathbf J_f\cdot\mathbf E=\sigma E^2\), one obtains</p>
+\[\boxed{\frac{du}{dt}+\nabla\cdot\mathbf S=-\sigma E^2
+=-\mathbf J_f\cdot\mathbf E}.\]
+<h4>(d) Physical meaning</h4>
+<p>For a passive Ohmic material, \(\sigma\ge0\), so \(\mathbf J_f\cdot\mathbf E=\sigma E^2\ge0\): the field loses energy, transferred to the material as Joule heat.</p>
+<p class="units-note"><strong>SI check:</strong> \(\rho_f\,[\mathrm{C/m^3}]\), \(\mathbf J_f\,[\mathrm{A/m^2}]\), \(u\,[\mathrm{J/m^3}]\), \(\mathbf S\,[\mathrm{W/m^2}]\), \(\mathbf J_f\cdot\mathbf E\,[\mathrm{W/m^3}]\), \(\varepsilon\,[\mathrm{F/m}]\), \(\sigma\,[\mathrm{S/m}]\), and \(\tau=\varepsilon/\sigma\,[\mathrm{s}]\).</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-3" data-keywords="dielectric interface E tangential D normal bound surface charge polarization">
+<span class="chapter-number">SESSION B / PROBLEM 3 / 30 min / 10 POINTS</span>
+<h2>Dielectric interface</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>A planar boundary at \(z=0\) separates linear dielectrics. Below (\(z&lt;0\)), \(\varepsilon_1=2\varepsilon_0\); above (\(z&gt;0\)), \(\varepsilon_2=5\varepsilon_0\). There is no free surface charge. Immediately below the interface,</p>
+\[\mathbf E_1=(3\hat{\mathbf x}+4\hat{\mathbf z})\ \mathrm{V/m}.\]
+<p>Take \(\hat{\mathbf n}=+\hat{\mathbf z}\) from region 1 to region 2.</p>
+<ol type="a"><li>Derive the \(E_t\) and \(D_n\) conditions using Maxwell's integral equations.</li><li>Find \(\mathbf E_2\), verifying the continuous components.</li><li>Determine the net bound surface charge from \(\mathbf P_i=(\varepsilon_i-\varepsilon_0)\mathbf E_i\).</li><li>Explain why \(E_n\) can jump even when \(\sigma_f=0\).</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Interface laws</h4>
+<p>Apply Faraday's static integral law to a vanishing rectangular loop spanning the interface:</p>
+\[\oint\mathbf E\cdot d\boldsymbol\ell=0
+\quad\Rightarrow\quad
+\boxed{\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=\mathbf0}.\]
+<p>Apply Gauss's law for \(\mathbf D\) to a vanishing Gaussian pillbox:</p>
+\[\oint\mathbf D\cdot d\mathbf a=Q_{f,\rm enc}
+\quad\Rightarrow\quad
+\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f=0}.\]
+<h4>(b) Determine the field above</h4>
+<p>From tangential \(\mathbf E\) continuity, \(E_{2x}=E_{1x}=3\ \mathrm{V/m}\). Normal \(\mathbf D\) continuity requires</p>
+\[\varepsilon_2E_{2z}=\varepsilon_1E_{1z}
+\quad\Rightarrow\quad
+E_{2z}=\frac{\varepsilon_1}{\varepsilon_2}(4\ \mathrm{V/m})
+=\frac25(4\ \mathrm{V/m})=1.6\ \mathrm{V/m}.\]
+\[\boxed{\mathbf E_2=(3\hat{\mathbf x}+1.6\hat{\mathbf z})\ \mathrm{V/m}}.\]
+<p>Check:</p>
+\[D_{1z}=2\varepsilon_0(4\ \mathrm{V/m})
+=8\varepsilon_0\ \mathrm{V/m}
+=D_{2z}=5\varepsilon_0(1.6\ \mathrm{V/m}).\]
+<p>Each \(D_z\) is in \(\mathrm{C/m^2}\).</p>
+<h4>(c) Bound charge on the two sides</h4>
+<p>Polarization is \(\mathbf P_i=(\varepsilon_i-\varepsilon_0)\mathbf E_i\). The outward normal of region 1 is \(+\hat{\mathbf z}\), but that of region 2 is \(-\hat{\mathbf z}\):</p>
+\[\sigma_b=\mathbf P_1\cdot\hat{\mathbf z}
++\mathbf P_2\cdot(-\hat{\mathbf z})
+=P_{1z}-P_{2z}.\]
+\[P_{1z}=(2\varepsilon_0-\varepsilon_0)(4\ \mathrm{V/m})
+=4\varepsilon_0\ \mathrm{V/m},\]
+\[P_{2z}=(5\varepsilon_0-\varepsilon_0)(1.6\ \mathrm{V/m})
+=6.4\varepsilon_0\ \mathrm{V/m}.\]
+\[\boxed{\sigma_b=-2.4\varepsilon_0\ (1\ \mathrm{V/m})
+\approx-2.13\times10^{-11}\ \mathrm{C/m^2}}.\]
+<h4>(d) Physical interpretation</h4>
+<p>Zero free surface charge requires \(D_{2n}=D_{1n}\), not \(E_{2n}=E_{1n}\). Because \(D_n=\varepsilon E_n\), different permittivities generally give different normal electric fields.</p>
+<p class="units-note"><strong>SI check:</strong> \(\mathbf E\,[\mathrm{V/m}]\), \(\mathbf D,\mathbf P,\sigma_b\,[\mathrm{C/m^2}]\), \(\varepsilon_i\,[\mathrm{F/m}]\); \(\varepsilon_0(\mathrm{V/m})=\mathrm{C/m^2}\).</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-4" data-keywords="magnetic material interface normal B tangential H surface current permeability">
+<span class="chapter-number">SESSION B / PROBLEM 4 / 30 min / 10 POINTS</span>
+<h2>Magnetic interface and free surface current</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>At \(z=0\), medium 1 (\(z&lt;0\)) has \(\mu_1=2\mu_0\) and medium 2 (\(z&gt;0\)) has \(\mu_2=4\mu_0\). The magnetic flux density below is</p>
+\[\mathbf B_1=(0.60\hat{\mathbf x}+0.80\hat{\mathbf z})\ \mathrm{T}.\]
+<p>Take the interface normal \(\hat{\mathbf n}=\hat{\mathbf z}\).</p>
+<ol type="a"><li>Derive the boundary conditions for \(B_n\) and \(H_t\) from the static Maxwell equations.</li><li>Determine \(\mathbf B_2\) with no free surface current.</li><li>If \(\mathbf K_f=K\hat{\mathbf y}\), find \(B_{2x}\) in terms of \(K,\mu_1,\mu_2,B_{1x}\).</li><li>Explain why the jump in \(H_t\) depends on free rather than total currents.</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Derive magnetic jump conditions</h4>
+<p>Gauss's law for magnetism \(\nabla\cdot\mathbf B=0\), applied to a pillbox, yields</p>
+\[\boxed{\hat{\mathbf n}\cdot(\mathbf B_2-\mathbf B_1)=0},\quad
+B_{2z}=B_{1z}.\]
+<p>In magnetostatics, \(\nabla\times\mathbf H=\mathbf J_f\). A vanishing rectangular loop crossing a free sheet current gives</p>
+\[\boxed{\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_f}.\]
+<h4>(b) No sheet current</h4>
+<p>With \(\mathbf K_f=\mathbf0\), tangential \(H\) is continuous. Since \(H=B/\mu\):</p>
+\[H_{2x}=H_{1x}=\frac{0.60\ \mathrm T}{2\mu_0},\qquad
+B_{2x}=\mu_2H_{2x}=\frac{\mu_2}{\mu_1}(0.60\ \mathrm T)=1.20\ \mathrm T.\]
+<p>Normal \(B\) remains \(0.80\ \mathrm T\):</p>
+\[\boxed{\mathbf B_2=(1.20\hat{\mathbf x}+0.80\hat{\mathbf z})\ \mathrm{T}}.\]
+<h4>(c) Add free surface current</h4>
+<p>Let \(\mathbf K_f=K\hat{\mathbf y}\). Since \(\hat{\mathbf z}\times\hat{\mathbf x}=\hat{\mathbf y}\),</p>
+\[\hat{\mathbf z}\times(\mathbf H_2-\mathbf H_1)
+=(H_{2x}-H_{1x})\hat{\mathbf y}=K\hat{\mathbf y}.\]
+<p>Thus</p>
+\[H_{2x}=H_{1x}+K=\frac{B_{1x}}{\mu_1}+K,\]
+\[\boxed{B_{2x}=\mu_2\left(\frac{B_{1x}}{\mu_1}+K\right)},\qquad
+\boxed{B_{2z}=B_{1z}=0.80\ \mathrm T}.\]
+<h4>(d) Free versus bound current</h4>
+<p>The macroscopic relation \(\mathbf B=\mu_0(\mathbf H+\mathbf M)\) incorporates the magnetization response. Maxwell's macroscopic law \(\nabla\times\mathbf H=\mathbf J_f\) therefore counts only <em>free</em> current. If instead using \(\nabla\times\mathbf B/\mu_0\), one must account for both bound and free currents.</p>
+<p class="units-note"><strong>SI check:</strong> \(\mathbf B\,[\mathrm{T}]\), \(\mathbf H,K\,[\mathrm{A/m}]\), \(\mu_1,\mu_2\,[\mathrm{H/m}]\). Each term \(B_{1x}/\mu_1+K\) has units \(\mathrm{A/m}\), and multiplying by \(\mu_2\) returns tesla.</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-5" data-keywords="magnetized sphere magnetization bound volume current bound surface current demagnetizing field dipole scalar potential">
+<span class="chapter-number">SESSION C / PROBLEM 5 / 35 min / 10 POINTS</span>
+<h2>Uniformly magnetized sphere</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>A sphere of radius \(a\) in vacuum has prescribed spatially uniform magnetization \(\mathbf M=M_0\hat{\mathbf z}\). There are no free currents. In spherical coordinates, measure polar angle \(\theta\) from \(+\hat{\mathbf z}\).</p>
+<ol type="a"><li>Find \(\mathbf J_b=\nabla\times\mathbf M\) and \(\mathbf K_b=\mathbf M\times\hat{\mathbf r}\).</li><li>Explain the scalar potential \(\mathbf H=-\nabla\Phi_m\) and use the finite/decaying dipole forms \(\Phi_{\rm in}=Ar\cos\theta\), \(\Phi_{\rm out}=C\cos\theta/r^2\).</li><li>Apply continuity of \(H_\theta\) and \(B_r\) at \(r=a\) to find \(A,C\).</li><li>Determine \(\mathbf H_{\rm in}\), \(\mathbf B_{\rm in}\), and the equivalent external magnetic dipole moment \(\mathbf m\).</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Bound current densities</h4>
+<p>Uniform magnetization has zero curl, so</p>
+\[\boxed{\mathbf J_b=\nabla\times\mathbf M=\mathbf0}.\]
+<p>On the surface, \(\hat{\mathbf z}=\cos\theta\hat{\mathbf r}-\sin\theta\hat{\boldsymbol\theta}\). Thus</p>
+\[\mathbf K_b=\mathbf M\times\hat{\mathbf r}
+=M_0(\cos\theta\hat{\mathbf r}-\sin\theta\hat{\boldsymbol\theta})\times\hat{\mathbf r}.\]
+<p>Since \(\hat{\boldsymbol\theta}\times\hat{\mathbf r}=-\hat{\boldsymbol\phi}\),</p>
+\[\boxed{\mathbf K_b=M_0\sin\theta\,\hat{\boldsymbol\phi}}.\]
+<h4>(b) Scalar potential and Laplace equation</h4>
+<p>No free current means \(\nabla\times\mathbf H=\mathbf0\); in the simply connected interior and exterior regions write \(\mathbf H=-\nabla\Phi_m\). Away from the surface, \(\nabla\cdot\mathbf B=0\) and uniform \(\mathbf M\) give \(\nabla^2\Phi_m=0\). The axially symmetric \(\ell=1\) terms finite at the origin and decaying at infinity are</p>
+\[\boxed{\Phi_{\rm in}=Ar\cos\theta},\qquad
+\boxed{\Phi_{\rm out}=\frac{C\cos\theta}{r^2}}.\]
+<h4>(c) Apply the two boundary conditions</h4>
+<p>Differentiate in spherical coordinates:</p>
+\[H_r=-\frac{\partial\Phi_m}{\partial r},\qquad
+H_\theta=-\frac1r\frac{\partial\Phi_m}{\partial\theta}.\]
+<p>Inside, \(H_{r,\rm in}=-A\cos\theta\), \(H_{\theta,\rm in}=A\sin\theta\). Outside, \(H_{r,\rm out}=2C\cos\theta/r^3\), \(H_{\theta,\rm out}=C\sin\theta/r^3\).</p>
+<p>No free sheet current makes \(H_\theta\) continuous at \(r=a\):</p>
+\[A\sin\theta=\frac{C}{a^3}\sin\theta
+\quad\Rightarrow\quad C=Aa^3.\]
+<p>Normal \(\mathbf B\) is continuous, and inside \(\mathbf B=\mu_0(\mathbf H+\mathbf M)\):</p>
+\[\mu_0\frac{2C}{a^3}\cos\theta
+=\mu_0(-A+M_0)\cos\theta.\]
+<p>Substitute \(C=Aa^3\):</p>
+\[2A=-A+M_0\quad\Rightarrow\quad
+\boxed{A=\frac{M_0}{3}},\qquad
+\boxed{C=\frac{M_0a^3}{3}}.\]
+<h4>(d) Uniform interior fields and external dipole moment</h4>
+<p>As \(r\cos\theta=z\), \(\Phi_{\rm in}=Az\), so</p>
+\[\boxed{\mathbf H_{\rm in}=-\frac{M_0}{3}\hat{\mathbf z}},\qquad
+\boxed{\mathbf B_{\rm in}=\mu_0(\mathbf H_{\rm in}+\mathbf M)
+=\frac{2\mu_0M_0}{3}\hat{\mathbf z}}.\]
+<p>The external magnetic scalar dipole potential is \(\Phi_{\rm out}=m\cos\theta/(4\pi r^2)\). Matching coefficients gives</p>
+\[\boxed{\mathbf m=4\pi C\hat{\mathbf z}
+=\frac{4\pi a^3}{3}M_0\hat{\mathbf z}
+=V_{\rm sphere}\mathbf M}.\]
+<p>Demagnetizing factor for a uniformly magnetized sphere: \(\boxed{N_d=1/3}\). The demagnetizing field is antiparallel to \(\mathbf M\).</p>
+<p class="units-note"><strong>SI check:</strong> \(M_0,\mathbf H\,[\mathrm{A/m}]\), \(\mathbf B\,[\mathrm T]\), \(a\,[\mathrm m]\), \(\Phi_m\,[\mathrm A]\), \(A\,[\mathrm{A/m}]\), \(C,\mathbf m\,[\mathrm{A\,m^2}]\), \(\mathbf K_b\,[\mathrm{A/m}]\), \(\mathbf J_b\,[\mathrm{A/m^2}]\). The demagnetizing factor is dimensionless.</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-6" data-keywords="plane electromagnetic wave dielectric wavelength speed impedance poynting magnetic field intensity">
+<span class="chapter-number">SESSION D / PROBLEM 6 / 30 min / 10 POINTS</span>
+<h2>Plane electromagnetic wave in a dielectric</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>A homogeneous, lossless, nondispersive dielectric has permittivity \(\varepsilon\), permeability \(\mu\), no free charge or current, and an electric wave propagating along \(+\hat{\mathbf z}\):</p>
+\[\mathbf E(z,t)=E_0\cos(kz-\omega t)\hat{\mathbf x}.\]
+<ol type="a"><li>Derive the electric wave equation from Maxwell's curl laws.</li><li>Find \(v,\eta,\mathbf B,\mathbf H\) and their directions.</li><li>Derive the cycle-average Poynting vector.</li><li>For \(\varepsilon=4\varepsilon_0,\mu=\mu_0,E_0=100\ \mathrm{V/m}\), vacuum wavelength \(\lambda_0=600\ \mathrm{nm}\), find the medium wavelength, \(B_0\), and mean intensity.</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Derive the wave equation</h4>
+<p>In the source-free uniform medium,</p>
+\[\nabla\times\mathbf E=-\mu\frac{\partial\mathbf H}{\partial t},\qquad
+\nabla\times\mathbf H=\varepsilon\frac{\partial\mathbf E}{\partial t}.\]
+<p>Curl Faraday's law and substitute Ampère–Maxwell:</p>
+\[\nabla\times(\nabla\times\mathbf E)
+=-\mu\frac{\partial}{\partial t}(\nabla\times\mathbf H)
+=-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}.\]
+<p>Use \(\nabla\times(\nabla\times\mathbf E)=\nabla(\nabla\cdot\mathbf E)-\nabla^2\mathbf E\) and \(\nabla\cdot\mathbf E=0\):</p>
+\[\boxed{\nabla^2\mathbf E-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}=\mathbf0}.\]
+<p>For the harmonic plane wave \(k^2=\mu\varepsilon\omega^2\), hence</p>
+\[\boxed{v=\frac\omega k=\frac1{\sqrt{\mu\varepsilon}}},\qquad
+\boxed{\eta=\sqrt{\frac\mu\varepsilon}=\mu v}.\]
+<h4>(b) Find the magnetic field directions</h4>
+<p>For \(\mathbf E=E_x(z,t)\hat{\mathbf x}\), its curl has the \(y\)-component \(\partial_zE_x=-kE_0\sin(kz-\omega t)\). Faraday's law therefore requires \(\mathbf B\parallel+\hat{\mathbf y}\) and \(B_0=E_0/v\).</p>
+\[\boxed{\mathbf B(z,t)=\frac{E_0}{v}\cos(kz-\omega t)\hat{\mathbf y}},\]
+\[\boxed{\mathbf H(z,t)=\frac{E_0}{\eta}\cos(kz-\omega t)\hat{\mathbf y}}.\]
+<p>Since \(\hat{\mathbf x}\times\hat{\mathbf y}=\hat{\mathbf z}\), energy propagates along \(+\hat{\mathbf z}\).</p>
+<h4>(c) Average power flow</h4>
+\[\mathbf S=\mathbf E\times\mathbf H
+=\frac{E_0^2}{\eta}\cos^2(kz-\omega t)\hat{\mathbf z}.\]
+<p>As \(\langle\cos^2\rangle=1/2\),</p>
+\[\boxed{\langle\mathbf S\rangle=\frac{E_0^2}{2\eta}\hat{\mathbf z}}.\]
+<h4>(d) Numerical example</h4>
+<p>With \(\varepsilon_r=4\) and \(\mu_r=1\),</p>
+\[n=\sqrt{\varepsilon_r\mu_r}=2,\quad
+\boxed{v=\frac c2\approx1.50\times10^8\ \mathrm{m/s}},\]
+\[\boxed{\eta=\frac{\eta_0}{2}\approx188.5\ \Omega}.\]
+<p>Frequency is unchanged at the interface, so</p>
+\[\boxed{\lambda=\frac{\lambda_0}{n}
+=\frac{600\ \mathrm{nm}}{2}=300\ \mathrm{nm}}.\]
+<p>The magnetic amplitude is</p>
+\[\boxed{B_0=\frac{100\ \mathrm{V/m}}{1.50\times10^8\ \mathrm{m/s}}
+=6.67\times10^{-7}\ \mathrm T}.\]
+<p>And mean intensity is</p>
+\[\boxed{\langle S\rangle=\frac{(100\ \mathrm{V/m})^2}{2(188.5\ \Omega)}
+\approx26.5\ \mathrm{W/m^2}}.\]
+<p class="units-note"><strong>SI check:</strong> \(E_0\,[\mathrm{V/m}]\), \(B_0\,[\mathrm T]\), \(H_0\,[\mathrm{A/m}]\), \(\lambda\,[\mathrm m]\), \(v\,[\mathrm{m/s}]\), \(\eta\,[\Omega]\), and energy flux \(\langle\mathbf S\rangle\,[\mathrm{W/m^2}]\).</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-7" data-keywords="reflection transmission normal incidence fresnel coefficients impedance phase reversal power reflectance">
+<span class="chapter-number">SESSION D / PROBLEM 7 / 30 min / 10 POINTS</span>
+<h2>Normal-incidence Fresnel coefficients</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>A monochromatic plane wave is normally incident from vacuum (medium 1) onto a lossless nonmagnetic dielectric (medium 2) with \(\varepsilon_{r2}=4\). The interface is \(z=0\); the incident wave propagates along \(+\hat{\mathbf z}\) and is \(\hat{\mathbf x}\)-polarized. There is no free surface current.</p>
+<ol type="a"><li>Write incident, reflected and transmitted electric fields in terms of amplitudes \(E_i,E_r,E_t\), and state the magnetic directions.</li><li>Apply tangential \(\mathbf E,\mathbf H\) continuity to derive \(r=E_r/E_i\) and \(t=E_t/E_i\) in terms of \(\eta_1,\eta_2\).</li><li>For \(n_1=1,n_2=2\), calculate \(r,t,R,T\).</li><li>Check energy conservation and interpret the negative \(r\).</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Field phasors and propagation directions</h4>
+<p>Use the time convention \(e^{-i\omega t}\). The electric phasors are</p>
+\[\widetilde{\mathbf E}_i=E_ie^{ik_1z}\hat{\mathbf x},\quad
+\widetilde{\mathbf E}_r=E_re^{-ik_1z}\hat{\mathbf x},\quad
+\widetilde{\mathbf E}_t=E_te^{ik_2z}\hat{\mathbf x}.\]
+<p>For each wave, \(\widetilde{\mathbf H}=\hat{\mathbf k}\times\widetilde{\mathbf E}/\eta\). Propagation directions are \(+\hat{\mathbf z},-\hat{\mathbf z},+\hat{\mathbf z}\), so</p>
+\[\widetilde{\mathbf H}_i=\frac{E_i}{\eta_1}e^{ik_1z}\hat{\mathbf y},\quad
+\widetilde{\mathbf H}_r=-\frac{E_r}{\eta_1}e^{-ik_1z}\hat{\mathbf y},\quad
+\widetilde{\mathbf H}_t=\frac{E_t}{\eta_2}e^{ik_2z}\hat{\mathbf y}.\]
+<h4>(b) Impose Maxwell's tangential boundary conditions</h4>
+<p>At \(z=0\), tangential electric-field continuity gives</p>
+\[E_i+E_r=E_t.\]
+<p>With no free sheet current, tangential magnetic-field continuity gives</p>
+\[\frac{E_i-E_r}{\eta_1}=\frac{E_t}{\eta_2}.\]
+<p>Define \(r=E_r/E_i\), \(t=E_t/E_i\). Dividing by \(E_i\) produces \(1+r=t\) and \((1-r)/\eta_1=t/\eta_2\). Solve:</p>
+\[\boxed{r=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}},\qquad
+\boxed{t=\frac{2\eta_2}{\eta_1+\eta_2}}.\]
+<h4>(c) Numerical reflection and transmission</h4>
+<p>For nonmagnetic media, \(\eta=\eta_0/n\). Thus \(\eta_1=\eta_0\), \(\eta_2=\eta_0/2\):</p>
+\[\boxed{r=-\frac13},\qquad\boxed{t=\frac23}.\]
+<p>Power fractions are not simply the field-amplitude fractions. With real positive impedances,</p>
+\[\boxed{R=|r|^2=\frac19\approx11.1\%},\]
+\[\boxed{T=\frac{\eta_1}{\eta_2}|t|^2
+=2\cdot\frac49=\frac89\approx88.9\%}.\]
+<h4>(d) Conservation and phase</h4>
+\[\boxed{R+T=\frac19+\frac89=1}.\]
+<p>The negative \(r\) means a phase reversal of \(\pi\) for the reflected <em>electric field</em> relative to the incident field at the interface. Reflected <em>power</em> is nonnegative.</p>
+<p class="units-note"><strong>SI check:</strong> \(\eta_1,\eta_2\,[\Omega]\), \(E_i,E_r,E_t\,[\mathrm{V/m}]\). The ratios \(r,t,R,T\) are dimensionless, as are percentages.</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+
+<section class="chapter practice-problem" id="problem-8" data-keywords="skin depth ohmic conductor magnetic wave attenuation complex wave number good conductor copper electromagnetic">
+<span class="chapter-number">SESSION D / PROBLEM 8 / 35 min / 10 POINTS</span>
+<h2>Skin depth in a good conductor</h2>
+<div class="exam-question"><p class="eyebrow">QUESTION</p><p>A monochromatic plane wave enters a thick homogeneous Ohmic conductor in the \(+\hat{\mathbf z}\) direction. The material satisfies \(\mathbf D=\varepsilon\mathbf E\), \(\mathbf B=\mu\mathbf H\), \(\mathbf J=\sigma\mathbf E\), with no free volume charge. Use harmonic dependence \(e^{-i\omega t}\).</p>
+<ol type="a"><li>Derive the damped electric-field wave equation.</li><li>With \(\mathbf E\propto e^{i(kz-\omega t)}\), find the complex dispersion \(k^2\).</li><li>For a good conductor, \(\sigma\gg\omega\varepsilon\), show \(k\approx(1+i)/\delta\), \(\delta=\sqrt{2/(\omega\mu\sigma)}\); interpret \(\delta\).</li><li>For copper with \(\sigma=5.8\times10^7\ \mathrm{S/m}\), \(\mu=\mu_0\), and \(f=1.0\ \mathrm{MHz}\), find \(\delta\) and the depth where average power is 1% of its surface value.</li></ol></div>
+<details class="worked-solution"><summary><span>Reveal worked solution · Parts (a)–(d)</span></summary><div class="steps"><h4>(a) Derive the conducting-medium wave equation</h4>
+<p>Maxwell's curl equations and Ohm's law read</p>
+\[\nabla\times\mathbf E=-\mu\frac{\partial\mathbf H}{\partial t},\qquad
+\nabla\times\mathbf H=\sigma\mathbf E+\varepsilon\frac{\partial\mathbf E}{\partial t}.\]
+<p>Take the curl of Faraday's law:</p>
+\[\nabla\times(\nabla\times\mathbf E)
+=-\mu\sigma\frac{\partial\mathbf E}{\partial t}
+-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}.\]
+<p>As the medium is uniform and charge-free, \(\nabla\cdot\mathbf E=0\). The identity \(\nabla\times(\nabla\times\mathbf E)=\nabla(\nabla\cdot\mathbf E)-\nabla^2\mathbf E\) yields</p>
+\[\boxed{\nabla^2\mathbf E-\mu\varepsilon\frac{\partial^2\mathbf E}{\partial t^2}
+-\mu\sigma\frac{\partial\mathbf E}{\partial t}=\mathbf0}.\]
+<h4>(b) Complex wavenumber</h4>
+<p>For \(\mathbf E\propto e^{i(kz-\omega t)}\), the operators act as \(\partial_t\to-i\omega\), \(\partial_t^2\to-\omega^2\), and \(\partial_z^2\to-k^2\). Substitute:</p>
+\[-k^2+\mu\varepsilon\omega^2+i\mu\sigma\omega=0,\]
+\[\boxed{k^2=\mu\varepsilon\omega^2+i\mu\sigma\omega}.\]
+<h4>(c) Good-conductor approximation and amplitude decay</h4>
+<p>If \(\sigma\gg\omega\varepsilon\), the Ohmic term dominates: \(k^2\simeq i\mu\sigma\omega\). Since \(\sqrt{i}=(1+i)/\sqrt2\), choose the root with positive imaginary part for decay into \(z&gt;0\):</p>
+\[\boxed{k\simeq(1+i)\sqrt{\frac{\omega\mu\sigma}{2}}
+=\frac{1+i}{\delta}},\qquad
+\boxed{\delta=\sqrt{\frac{2}{\omega\mu\sigma}}}.\]
+<p>Then \(e^{ikz}=e^{iz/\delta}e^{-z/\delta}\): field <em>amplitude</em> falls by \(1/e\) at \(z=\delta\). Time-averaged power flux instead decreases as \(e^{-2z/\delta}\).</p>
+<h4>(d) Copper example and 1% power depth</h4>
+<p>Use \(\omega=2\pi f=2\pi\times10^6\ \mathrm{rad/s}\), \(\mu=\mu_0=4\pi\times10^{-7}\ \mathrm{H/m}\), and \(\sigma=5.8\times10^7\ \mathrm{S/m}\):</p>
+\[\delta=\sqrt{\frac{2}{(2\pi\times10^6)(4\pi\times10^{-7})(5.8\times10^7)}}.\]
+\[\boxed{\delta\approx6.61\times10^{-5}\ \mathrm m=66.1\ \mu\mathrm m}.\]
+<p>To find the depth \(z\) where the *transmitted surface power* has fallen to 1%,</p>
+\[\frac{\langle S(z)\rangle}{\langle S(0)\rangle}
+=e^{-2z/\delta}=0.01.\]
+<p>Taking logarithms,</p>
+\[-\frac{2z}{\delta}=\ln(0.01)=-\ln(100)
+\quad\Rightarrow\quad z=\frac{\delta}{2}\ln(100).\]
+\[\boxed{z\approx2.302585\,\delta\approx1.52\times10^{-4}\ \mathrm m
+=152\ \mu\mathrm m}.\]
+<p>This is relative to power just <em>inside</em> the conductor, not the initial incident power before interface reflection. Doubling frequency decreases skin depth by \(1/\sqrt2\) if \(\mu,\sigma\) remain unchanged.</p>
+<p class="units-note"><strong>SI check:</strong> conductivity \(\sigma\,[\mathrm{S/m}]\), frequency \(f\,[\mathrm{Hz}]\), \(\omega\,[\mathrm{rad/s}]\), \(\mu\,[\mathrm{H/m}]\), \(k\,[\mathrm{m^{-1}}]\), \(\delta,z\,[\mathrm m]\), and power flux \(\langle S\rangle\,[\mathrm{W/m^2}]\). The ratio of powers is dimensionless.</p></div></details>
+<p class="small"><a href="#top-problems">Back to problem index</a></p>
+</section>
+
+<section class="chapter" id="conceptual-checks" data-keywords="rapid conceptual oral exam checks displacement current interface poynting energy skin depth reflection magnetization">
+<span class="chapter-number">AFTER THE PROBLEM SET / ORAL-EXAM CHECKS</span>
+<h2>Eight rapid conceptual checks</h2>
+<p>These correspond to the final page of the uploaded worksheet. Read each statement and explain <em>why</em> it holds before expanding the answer.</p>
+<details class="concept-check"><summary>1. Changing electric fields and circulating magnetic fields</summary><div class="steps"><p>Even when no conduction current crosses a chosen surface, time-varying electric flux contributes to Maxwell–Ampère's law through \(\varepsilon_0\,d\Phi_E/dt\). That contribution produces a magnetic-field circulation.</p></div></details>
+<details class="concept-check"><summary>2. Normal electric fields at dielectric interfaces</summary><div class="steps"><p>Without free surface charge, \(D_n\) is continuous, but \(E_n=D_n/\varepsilon\) generally changes when permittivity changes. Electrostatic \(E_t\) is continuous.</p></div></details>
+<details class="concept-check"><summary>3. Normal magnetic fields at material interfaces</summary><div class="steps"><p>\(B_n\) is continuous because \(\nabla\cdot\mathbf B=0\); if no free surface current is present, \(H_t\) is continuous. \(B_t=\mu H_t\) can still change across a permeability discontinuity.</p></div></details>
+<details class="concept-check"><summary>4. Magnetization and bound currents</summary><div class="steps"><p>\(\nabla\times\mathbf B/\mu_0\) responds to total current; the macroscopic form \(\nabla\times\mathbf H=\mathbf J_f\) incorporates bound-current response in \(\mathbf M\) and explicitly uses free current.</p></div></details>
+<details class="concept-check"><summary>5. Wave speed versus impedance</summary><div class="steps"><p>\(v=1/\sqrt{\mu\varepsilon}\,[\mathrm{m/s}]\), while \(\eta=\sqrt{\mu/\varepsilon}\,[\Omega]\). These are different physical quantities, even though both depend on \(\varepsilon,\mu\).</p></div></details>
+<details class="concept-check"><summary>6. Negative reflection coefficient and energy conservation</summary><div class="steps"><p>A negative \(r\) indicates a reflected electric field phase reversal, not negative power. At normal incidence into lossless media, \(R=|r|^2\) and \(T=(\eta_1/\eta_2)|t|^2\); they satisfy \(R+T=1\).</p></div></details>
+<details class="concept-check"><summary>7. Skin depth and power decay</summary><div class="steps"><p>The skin depth \(\delta\) is the \(1/e\) field-<em>amplitude</em> attenuation length. Under the local plane-wave approximation, power decays as \(e^{-2z/\delta}\); its \(1/e\) depth is \(\delta/2\).</p></div></details>
+<details class="concept-check"><summary>8. Interpreting \(\mathbf J\cdot\mathbf E\) in Poynting's theorem</summary><div class="steps"><p>If \(\mathbf J\cdot\mathbf E&gt;0\), work is being done by fields on matter. In a passive Ohmic conductor this is dissipated as heat. Hence the field-energy balance contains \(-\mathbf J\cdot\mathbf E\).</p></div></details>
+</section>
+<p id="empty" class="intro" hidden>No matching problem. Clear the search field to see the full worksheet.</p>
+<footer>
+<p><strong>Electromagnetism · Field Notes</strong> — Comprehensive exam preparation</p>
+<p>The problems and solution progression follow the uploaded worksheet. SI units and physical assumptions are supplied throughout. Equations can scroll sideways on small screens.</p>
+<nav class="site-nav" aria-label="Website pages"><a href="./index.html">Maxwell</a><a href="./boundary-conditions.html">Boundary conditions</a><a href="./electrostatics.html">Electrostatics</a><a href="./electromagnetics.html">Electromagnetics</a><a aria-current="page" href="./practice.html">EM Practice</a></nav>
+<a href="#content">Back to top ↑</a>
+</footer>
+</main>
+</body></html>
