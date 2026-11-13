@@ -41,16 +41,29 @@
         <button id="decrease" aria-label="Decrease text size">A−</button>
         <button id="increase" aria-label="Increase text size">A+</button>
       </div>
-      <nav class="nav" aria-label="On this page"><a href="#foundations">Potential</a><a href="#poisson">Poisson</a><a href="#plates">Laplace example</a><a href="#charge">Poisson example</a><a href="#interfaces">Interfaces</a></nav>
+      <nav class="nav" aria-label="On this page"><a href="#foundations">Potential</a><a href="#poisson">Poisson</a><a href="#plates">Laplace example</a><a href="#charge">Poisson example</a><a href="#interfaces">Interfaces</a><a href="#si-units">Units</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
   <main id="content" class="shell">
     
 <div class="intro"><strong>Electrostatics</strong> describes electric fields produced by time-independent charge distributions. Here \(\partial/\partial t=0\), \(\nabla\times\mathbf E=0\), and the electric field can be represented using a scalar potential \(V\). This page treats both vacuum and dielectrics.</div>
+<details class="si-guide" id="si-units"><summary>SI units and physical constants</summary><div class="steps">
+<p><strong>Fields:</strong> \(\mathbf E\): electric field, \(\mathrm{V/m}=\mathrm{N/C}\); \(\mathbf D\): displacement, \(\mathrm{C/m^2}\); \(\mathbf B\): flux density, tesla \(\mathrm{T}=\mathrm{Wb/m^2}\); \(\mathbf H\): field intensity, \(\mathrm{A/m}\); \(V\): electric potential, volts \(\mathrm{V}\).</p>
+<p><strong>Sources:</strong> \(Q\): charge, coulombs \(\mathrm{C}\); \(\rho,\rho_f\): volume charge density, \(\mathrm{C/m^3}\); \(\sigma_f\): surface charge density, \(\mathrm{C/m^2}\); \(\mathbf J,\mathbf J_f\): current density, \(\mathrm{A/m^2}\); \(\mathbf K_f\): surface current density, \(\mathrm{A/m}\).</p>
+<p><strong>Materials:</strong> \(\varepsilon,\varepsilon_0\): permittivity, \(\mathrm{F/m}\); \(\mu,\mu_0\): permeability, \(\mathrm{H/m}\); \(\mathbf P\): polarization, \(\mathrm{C/m^2}\); \(\mathbf M\): magnetization, \(\mathrm{A/m}\); \(\sigma\): conductivity, \(\mathrm{S/m}\); \(\eta\): wave impedance, ohms \(\Omega\). Relative permittivity, relative permeability and refractive index \(n\) are dimensionless.</p>
+<p><strong>Vacuum constants:</strong></p>
+\[\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m},\quad
+\mu_0\approx1.257\times10^{-6}\ \mathrm{H/m}\]
+\[c=299\,792\,458\ \mathrm{m/s},\quad
+\eta_0\approx377\ \Omega\]
+<p>The vacuum speed of light \(c\) is exact by SI definition; the other displayed values are rounded.</p>
+<p><strong>Space and waves:</strong> lengths \(\mathrm{m}\), area \(\mathrm{m^2}\), time \(\mathrm{s}\); \(\omega\): angular frequency, \(\mathrm{rad/s}\); \(k\): wavenumber, \(\mathrm{rad/m}\); \(v\): propagation speed, \(\mathrm{m/s}\). Angles in radians are dimensionless in SI. Logarithms and exponentials must have dimensionless arguments.</p>
+<p><strong>Energy:</strong> energy density \(u\): \(\mathrm{J/m^3}\); Poynting vector \(\mathbf S\): \(\mathrm{W/m^2}\); power delivered to charges per volume \(\mathbf J\cdot\mathbf E\): \(\mathrm{W/m^3}\). Magnetic flux \(\Phi_B\): webers \(\mathrm{Wb}\); displacement flux \(\Phi_D\): coulombs \(\mathrm{C}\).</p>
+</div></details>
 <section class="chapter" id="foundations" data-keywords="gauss coulomb charge source conservative potential gradient work">
 <span class="chapter-number">01 / FIELD AND POTENTIAL</span>
-<h2>From Gauss's law to electric potential</h2>
+<h2>From Gauss's law to electric potential</h2><p class="units-note"><strong>Variables:</strong> electric potential \(V\) in \(\mathrm{V}\), electric field \(\mathbf E\) in \(\mathrm{V/m}\), charge density \(\rho\) in \(\mathrm{C/m^3}\), and \(\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m}\).</p>
 <div class="equation">
 <h3>Governing equations</h3>
 \[\boxed{\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}},\qquad
@@ -80,7 +93,7 @@
 </section>
 <section class="chapter" id="poisson" data-keywords="poisson laplace vacuum dielectric permittivity divergence differential equation boundary">
 <span class="chapter-number">02 / BOUNDARY-VALUE EQUATIONS</span>
-<h2>Derive Poisson's and Laplace's equations</h2>
+<h2>Derive Poisson's and Laplace's equations</h2><p class="units-note"><strong>Dimensional check:</strong> \(\nabla^2V\) and \(\rho/\varepsilon\) both have units \(\mathrm{V/m^2}\). In vacuum use \(\varepsilon_0\) in \(\mathrm{F/m}\); in a uniform linear dielectric use \(\varepsilon\) in \(\mathrm{F/m}\).</p>
 <details open><summary>Vacuum · from Gauss's law to Poisson</summary><div class="steps">
 <p>Start with Gauss's law and the electrostatic potential:</p>
 \[\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0},\qquad\mathbf E=-\nabla V.\]
@@ -102,7 +115,7 @@
 </section>
 <section class="chapter" id="plates" data-keywords="parallel plates separation variables laplace 1d potential voltage field capacitance example">
 <span class="chapter-number">03 / SOLVED LAPLACE PROBLEM</span>
-<h2>Two parallel plates</h2>
+<h2>Two parallel plates</h2><p class="units-note"><strong>Given units:</strong> \(a,x\) are lengths in \(\mathrm{m}\), \(V_0\) is a potential in \(\mathrm{V}\), and \(\varepsilon\) is in \(\mathrm{F/m}\). The answers have units \([V]=\mathrm{V}\), \([\mathbf E]=\mathrm{V/m}\), and \([\sigma_f]=\mathrm{C/m^2}\).</p>
 <p>Two infinite conducting plates are at \(x=0\) and \(x=a\), with \(V(0)=0\), \(V(a)=V_0\). The dielectric between them is homogeneous and contains no free volume charge. Edge effects are neglected.</p>
 <details open><summary>Step-by-step solution and surface charge</summary><div class="steps">
 <p>By translational symmetry the potential depends only on \(x\), and Laplace's equation becomes</p>
@@ -114,13 +127,13 @@
 \[\boxed{\mathbf E=-\nabla V=-\frac{V_0}{a}\hat{\mathbf x}}.\]
 <p>For a linear dielectric \(\mathbf D=\varepsilon\mathbf E\), the free charge density on a conductor face is \(\sigma_f=\mathbf D_{\mathrm{outside}}\cdot\hat{\mathbf n}_{\mathrm{out}}\). At \(x=0\) the conductor normal into the gap is \(+\hat{\mathbf x}\); at \(x=a\) it is \(-\hat{\mathbf x}\):</p>
 \[\boxed{\sigma_{x=0}=-\frac{\varepsilon V_0}{a}},\qquad
-\boxed{\sigma_{x=a}=+\frac{\varepsilon V_0}{a}}.\]
+\boxed{\sigma_{x=a}=+\frac{\varepsilon V_0}{a}}.\]<p class="units-note"><strong>Answer unit check:</strong> \(V_0x/a\) is in \(\mathrm{V}\), \(V_0/a\) in \(\mathrm{V/m}\), and \(\varepsilon V_0/a\) in \(\mathrm{C/m^2}\).</p>
 <p><strong>Check:</strong> when the right plate is at higher potential, the electric field points leftward, from the positive plate to the negative plate.</p>
 </div></details>
 </section>
 <section class="chapter" id="charge" data-keywords="uniform rho poisson dirichlet second derivative source">
 <span class="chapter-number">04 / SOLVED POISSON PROBLEM</span>
-<h2>Uniform volume charge between plates</h2>
+<h2>Uniform volume charge between plates</h2><p class="units-note"><strong>Given units:</strong> \(\rho_f\) in \(\mathrm{C/m^3}\), \(\varepsilon\) in \(\mathrm{F/m}\), and \(a,x\) in \(\mathrm{m}\). The answers are \(V(x)\) in \(\mathrm{V}\) and \(\mathbf E(x)\) in \(\mathrm{V/m}\).</p>
 <p>Keep \(V(0)=0\), \(V(a)=V_0\), but now add a uniform free volume charge density \(\rho_f\) in a homogeneous dielectric with permittivity \(\varepsilon\).</p>
 <details open><summary>Solve the potential and electric field explicitly</summary><div class="steps">
 \[\frac{d^2V}{dx^2}=-\frac{\rho_f}{\varepsilon}.\]
@@ -132,13 +145,13 @@
 C_1=\frac{V_0}{a}+\frac{\rho_fa}{2\varepsilon}.\]
 <p>Therefore</p>
 \[\boxed{V(x)=\frac{V_0x}{a}+\frac{\rho_f}{2\varepsilon}(ax-x^2)}.\]
-\[\boxed{\mathbf E(x)=\left[-\frac{V_0}{a}+\frac{\rho_f}{\varepsilon}\left(x-\frac{a}{2}\right)\right]\hat{\mathbf x}}.\]
+\[\boxed{\mathbf E(x)=\left[-\frac{V_0}{a}+\frac{\rho_f}{\varepsilon}\left(x-\frac{a}{2}\right)\right]\hat{\mathbf x}}.\]<p class="units-note"><strong>Answer unit check:</strong> each term of \(V(x)\) has units \(\mathrm{V}\), while both \(V_0/a\) and \((\rho_f/\varepsilon)x\) have units \(\mathrm{V/m}\). These terms can be added because their dimensions agree.</p>
 <p><strong>Check:</strong> taking \(\rho_f\to0\) recovers the Laplace problem.</p>
 </div></details>
 </section>
 <section class="chapter" id="interfaces" data-keywords="conductor normal tangential dielectric boundary surface charge potential uniqueness">
 <span class="chapter-number">05 / BOUNDARY CONDITIONS AND UNIQUENESS</span>
-<h2>How boundary data determine the solution</h2>
+<h2>How boundary data determine the solution</h2><p class="units-note"><strong>Interface units:</strong> \(V_i\) in \(\mathrm{V}\); \(\partial_n V_i\) in \(\mathrm{V/m}\); \(\varepsilon_i\partial_n V_i\) and surface charge \(\sigma_f\) in \(\mathrm{C/m^2}\).</p>
 <div class="equation">
 <h3>Electrostatic interface</h3>
 \[\boxed{V_2=V_1},\qquad

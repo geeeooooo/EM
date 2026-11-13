@@ -41,16 +41,29 @@
         <button id="decrease" aria-label="Decrease text size">A−</button>
         <button id="increase" aria-label="Increase text size">A+</button>
       </div>
-      <nav class="nav" aria-label="On this page"><a href="#maxwell-dynamic">Maxwell</a><a href="#wave">Waves</a><a href="#helmholtz">Helmholtz</a><a href="#plane-wave">Plane wave</a><a href="#energy">Energy</a><a href="#interface-waves">Interfaces</a></nav>
+      <nav class="nav" aria-label="On this page"><a href="#maxwell-dynamic">Maxwell</a><a href="#wave">Waves</a><a href="#helmholtz">Helmholtz</a><a href="#plane-wave">Plane wave</a><a href="#energy">Energy</a><a href="#interface-waves">Interfaces</a><a href="#si-units">Units</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
   <main id="content" class="shell">
     
 <div class="intro"><strong>Electromagnetics</strong> extends electrostatics to time-dependent electric and magnetic fields. Here the changing fields couple through Faraday's law and Ampère–Maxwell's law, permitting electromagnetic-wave propagation. The starting equations are the same Maxwell equations explored on the <a href="./index.html#vacuum">main page</a>.</div>
+<details class="si-guide" id="si-units"><summary>SI units and physical constants</summary><div class="steps">
+<p><strong>Fields:</strong> \(\mathbf E\): electric field, \(\mathrm{V/m}=\mathrm{N/C}\); \(\mathbf D\): displacement, \(\mathrm{C/m^2}\); \(\mathbf B\): flux density, tesla \(\mathrm{T}=\mathrm{Wb/m^2}\); \(\mathbf H\): field intensity, \(\mathrm{A/m}\); \(V\): electric potential, volts \(\mathrm{V}\).</p>
+<p><strong>Sources:</strong> \(Q\): charge, coulombs \(\mathrm{C}\); \(\rho,\rho_f\): volume charge density, \(\mathrm{C/m^3}\); \(\sigma_f\): surface charge density, \(\mathrm{C/m^2}\); \(\mathbf J,\mathbf J_f\): current density, \(\mathrm{A/m^2}\); \(\mathbf K_f\): surface current density, \(\mathrm{A/m}\).</p>
+<p><strong>Materials:</strong> \(\varepsilon,\varepsilon_0\): permittivity, \(\mathrm{F/m}\); \(\mu,\mu_0\): permeability, \(\mathrm{H/m}\); \(\mathbf P\): polarization, \(\mathrm{C/m^2}\); \(\mathbf M\): magnetization, \(\mathrm{A/m}\); \(\sigma\): conductivity, \(\mathrm{S/m}\); \(\eta\): wave impedance, ohms \(\Omega\). Relative permittivity, relative permeability and refractive index \(n\) are dimensionless.</p>
+<p><strong>Vacuum constants:</strong></p>
+\[\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m},\quad
+\mu_0\approx1.257\times10^{-6}\ \mathrm{H/m}\]
+\[c=299\,792\,458\ \mathrm{m/s},\quad
+\eta_0\approx377\ \Omega\]
+<p>The vacuum speed of light \(c\) is exact by SI definition; the other displayed values are rounded.</p>
+<p><strong>Space and waves:</strong> lengths \(\mathrm{m}\), area \(\mathrm{m^2}\), time \(\mathrm{s}\); \(\omega\): angular frequency, \(\mathrm{rad/s}\); \(k\): wavenumber, \(\mathrm{rad/m}\); \(v\): propagation speed, \(\mathrm{m/s}\). Angles in radians are dimensionless in SI. Logarithms and exponentials must have dimensionless arguments.</p>
+<p><strong>Energy:</strong> energy density \(u\): \(\mathrm{J/m^3}\); Poynting vector \(\mathbf S\): \(\mathrm{W/m^2}\); power delivered to charges per volume \(\mathbf J\cdot\mathbf E\): \(\mathrm{W/m^3}\). Magnetic flux \(\Phi_B\): webers \(\mathrm{Wb}\); displacement flux \(\Phi_D\): coulombs \(\mathrm{C}\).</p>
+</div></details>
 <section class="chapter" id="maxwell-dynamic" data-keywords="maxwell time varying vacuum matter sources continuity current charge">
 <span class="chapter-number">01 / TIME-DEPENDENT EQUATIONS</span>
-<h2>Coupled electric and magnetic fields</h2>
+<h2>Coupled electric and magnetic fields</h2><p class="units-note"><strong>Macroscopic SI fields:</strong> \(\mathbf D\) in \(\mathrm{C/m^2}\), \(\mathbf B\) in \(\mathrm{T}\), \(\mathbf E\) in \(\mathrm{V/m}\), \(\mathbf H\) in \(\mathrm{A/m}\); free \(\rho_f\) in \(\mathrm{C/m^3}\), and \(\mathbf J_f\) in \(\mathrm{A/m^2}\).</p>
 <div class="equation">
 <h3>Macroscopic Maxwell equations</h3>
 \[\begin{aligned}
@@ -72,7 +85,7 @@
 </section>
 <section class="chapter" id="wave" data-keywords="wave equation homogeneous linear isotropic source free curl identity speed refractive index">
 <span class="chapter-number">02 / WAVE EQUATIONS</span>
-<h2>Derive the electromagnetic wave equation</h2>
+<h2>Derive the electromagnetic wave equation</h2><p class="units-note"><strong>Material parameters:</strong> \(\varepsilon\) in \(\mathrm{F/m}\), \(\mu\) in \(\mathrm{H/m}\); vacuum \(\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m}\), \(\mu_0\approx1.257\times10^{-6}\ \mathrm{H/m}\); \(v=1/\sqrt{\mu\varepsilon}\) in \(\mathrm{m/s}\).</p>
 <p>Assume a source-free region, \(\rho_f=0\), \(\mathbf J_f=0\), and a homogeneous, isotropic, linear, nondispersive medium with time-independent scalar \(\varepsilon,\mu\). Hence \(\mathbf D=\varepsilon\mathbf E\) and \(\mathbf B=\mu\mathbf H\).</p>
 <details open><summary>Electric-field wave equation · every major step</summary><div class="steps">
 <p>Start from Faraday's law and take a curl:</p>
@@ -121,13 +134,13 @@
 <p>Curl Faraday's law, substitute this expression, and use \(\nabla\cdot\mathbf E=0\). For the magnetic equation, instead curl the expression above and use Faraday's law and \(\nabla\cdot\mathbf B=0\):</p>
 \[\boxed{\nabla^2\mathbf E-\mu\varepsilon\,\partial_t^2\mathbf E-\mu\sigma\,\partial_t\mathbf E=\mathbf0},\]
 \[\boxed{\nabla^2\mathbf B-\mu\varepsilon\,\partial_t^2\mathbf B-\mu\sigma\,\partial_t\mathbf B=\mathbf0}.\]
-<p>The extra first-time-derivative term represents dissipative electromagnetic attenuation in an Ohmic conductor. These simple constant-coefficient forms do not apply universally to dispersive, inhomogeneous or anisotropic matter.</p>
+<p>The extra first-time-derivative term represents dissipative electromagnetic attenuation in an Ohmic conductor. These simple constant-coefficient forms do not apply universally to dispersive, inhomogeneous or anisotropic matter.</p><p class="units-note"><strong>Conductivity unit:</strong> the Ohmic \(\sigma\) here has units \(\mathrm{S/m}\), not \(\mathrm{C/m^2}\) (which is the unit of surface charge density \(\sigma_f\)). Accordingly \(\mu\sigma\,\partial_t\mathbf E\) has the same units as \(\nabla^2\mathbf E\).</p>
 </div></details>
 </section>
 
 <section class="chapter" id="helmholtz" data-keywords="Helmholtz electric magnetic E B phasor frequency time harmonic complex wavenumber propagation oscillation">
 <span class="chapter-number">03 / HELMHOLTZ EQUATIONS</span>
-<h2>Derive the Helmholtz equations for \(\mathbf E\) and \(\mathbf B\)</h2>
+<h2>Derive the Helmholtz equations for \(\mathbf E\) and \(\mathbf B\)</h2><p class="units-note"><strong>Frequency-domain units:</strong> \(\omega\) in \(\mathrm{rad/s}\), \(k\) in \(\mathrm{rad/m}\), \(k^2\) in \(\mathrm{m^{-2}}\). The phasor \(\widetilde{\mathbf E}\) is in \(\mathrm{V/m}\), and \(\widetilde{\mathbf B}\) in \(\mathrm{T}\). Both \(\nabla^2\) and \(k^2\) carry inverse-square-length units.</p>
 <p>The wave equations describe fields changing in <strong>space and time</strong>. For a fixed angular frequency \(\omega\), write the known time dependence separately; the remaining spatial fields satisfy a <strong>Helmholtz equation</strong>.</p>
 <div class="equation"><h3>Define the phasors</h3>
 \[\boxed{\mathbf E(\mathbf r,t)=\operatorname{Re}
@@ -181,7 +194,7 @@
 </section>
 <section class="chapter" id="plane-wave" data-keywords="transverse plane wave E B H cross products right hand rule omega k impedance direction">
 <span class="chapter-number">04 / PLANE WAVES</span>
-<h2>Wave direction versus field direction</h2>
+<h2>Wave direction versus field direction</h2><p class="units-note"><strong>Plane-wave variables:</strong> \(E_0\) in \(\mathrm{V/m}\), \(B_0\) in \(\mathrm{T}\), \(v=\omega/k\) in \(\mathrm{m/s}\), \(\eta=\sqrt{\mu/\varepsilon}\) in ohms \(\Omega\). The phase \(kz-\omega t\) is dimensionless (radians).</p>
 <div class="equation">
 <h3>Plane wave traveling in \(+\hat{\mathbf z}\)</h3>
 \[\mathbf E(z,t)=E_0\cos(kz-\omega t)\,\hat{\mathbf x}\]
@@ -204,7 +217,7 @@
 </section>
 <section class="chapter" id="energy" data-keywords="poynting theorem conservation energy density current work flux electric magnetic">
 <span class="chapter-number">05 / ENERGY STORAGE AND TRANSPORT</span>
-<h2>Derive Poynting's theorem</h2>
+<h2>Derive Poynting's theorem</h2><p class="units-note"><strong>Energy and power units:</strong> \(u\) in \(\mathrm{J/m^3}\), \(\mathbf S=\mathbf E\times\mathbf H\) in \(\mathrm{W/m^2}\), \(\mathbf J_f\cdot\mathbf E\) in \(\mathrm{W/m^3}\), and the total energy \(\int_{\mathcal V}u\,dV\) in joules \(\mathrm{J}\).</p>
 <p>In a linear, isotropic, nondispersive medium with time-independent \(\varepsilon\) and \(\mu\), electromagnetic energy density and flux have particularly simple forms.</p>
 <details open><summary>From Maxwell's equations to energy conservation</summary><div class="steps">
 <p>Start with the vector identity</p>
@@ -273,7 +286,7 @@ u_B=\frac{B^2}{2\mu}=\frac{\varepsilon E^2}{2}.\]
 </section>
 <section class="chapter" id="interface-waves" data-keywords="normal incidence fresnel reflection transmission impedance interface boundary conditions">
 <span class="chapter-number">06 / WAVES AT AN INTERFACE</span>
-<h2>Reflection and transmission at normal incidence</h2>
+<h2>Reflection and transmission at normal incidence</h2><p class="units-note"><strong>Fresnel quantities:</strong> wave impedances \(\eta_1,\eta_2\) in ohms \(\Omega\), field amplitudes \(E_i,E_r,E_t\) in \(\mathrm{V/m}\), field-amplitude ratios \(r,t\) dimensionless, and power fractions \(R,T\) dimensionless.</p>
 <p>Consider a plane wave traveling from a lossless isotropic medium 1 into medium 2 across the plane \(z=0\), with no free surface charge or current. Their wave impedances are \(\eta_1,\eta_2\). At normal incidence, tangential \(\mathbf E\) and \(\mathbf H\) are continuous.</p>
 <details open><summary>Derive electric-field reflection and transmission coefficients</summary><div class="steps">
 <p>Let \(E_i\), \(E_r\), \(E_t\) be complex phasor amplitudes of the incident, reflected and transmitted electric fields, all along \(\hat{\mathbf x}\). Then \(\mathbf H\) for a \(+\hat{\mathbf z}\)-traveling wave is \(+\hat{\mathbf y}E/\eta\), while the reflected wave travels in \(-\hat{\mathbf z}\) and therefore has \(\mathbf H_r=-\hat{\mathbf y}E_r/\eta_1\).</p>

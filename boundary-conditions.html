@@ -41,7 +41,7 @@
         <button id="decrease" aria-label="Decrease text size">A−</button>
         <button id="increase" aria-label="Increase text size">A+</button>
       </div>
-      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a><a href="#snell">Snell</a><a href="#worksheet-examples">Examples (8)</a></nav>
+      <nav class="nav" aria-label="On this page"><a href="#overview">Four rules</a><a href="#pillbox">Pillbox</a><a href="#loop">Loops</a><a href="#electrostatic">Electrostatics</a><a href="#dynamic">Waves</a><a href="#snell">Snell</a><a href="#worksheet-examples">Examples (8)</a><a href="#si-units">Units</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
@@ -51,9 +51,22 @@
   <strong>What a boundary condition tells us.</strong> It determines which field components can change discontinuously across the interface of two media, and what causes those changes. These rules come directly from the <em>integral forms</em> of Maxwell's equations.
   <p class="small">Geometry: the interface is \(z=0\). Medium 1 occupies \(z&lt;0\); medium 2 occupies \(z&gt;0\). The normal \(\hat{\mathbf n}=\hat{\mathbf z}\) points <strong>from 1 toward 2</strong>. The limiting values of each field are \(\mathbf F_1\) and \(\mathbf F_2\). Free surface charge and current densities are \(\sigma_f\) and \(\mathbf K_f\).</p>
 </div>
+<details class="si-guide" id="si-units"><summary>SI units and physical constants</summary><div class="steps">
+<p><strong>Fields:</strong> \(\mathbf E\): electric field, \(\mathrm{V/m}=\mathrm{N/C}\); \(\mathbf D\): displacement, \(\mathrm{C/m^2}\); \(\mathbf B\): flux density, tesla \(\mathrm{T}=\mathrm{Wb/m^2}\); \(\mathbf H\): field intensity, \(\mathrm{A/m}\); \(V\): electric potential, volts \(\mathrm{V}\).</p>
+<p><strong>Sources:</strong> \(Q\): charge, coulombs \(\mathrm{C}\); \(\rho,\rho_f\): volume charge density, \(\mathrm{C/m^3}\); \(\sigma_f\): surface charge density, \(\mathrm{C/m^2}\); \(\mathbf J,\mathbf J_f\): current density, \(\mathrm{A/m^2}\); \(\mathbf K_f\): surface current density, \(\mathrm{A/m}\).</p>
+<p><strong>Materials:</strong> \(\varepsilon,\varepsilon_0\): permittivity, \(\mathrm{F/m}\); \(\mu,\mu_0\): permeability, \(\mathrm{H/m}\); \(\mathbf P\): polarization, \(\mathrm{C/m^2}\); \(\mathbf M\): magnetization, \(\mathrm{A/m}\); \(\sigma\): conductivity, \(\mathrm{S/m}\); \(\eta\): wave impedance, ohms \(\Omega\). Relative permittivity, relative permeability and refractive index \(n\) are dimensionless.</p>
+<p><strong>Vacuum constants:</strong></p>
+\[\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m},\quad
+\mu_0\approx1.257\times10^{-6}\ \mathrm{H/m}\]
+\[c=299\,792\,458\ \mathrm{m/s},\quad
+\eta_0\approx377\ \Omega\]
+<p>The vacuum speed of light \(c\) is exact by SI definition; the other displayed values are rounded.</p>
+<p><strong>Space and waves:</strong> lengths \(\mathrm{m}\), area \(\mathrm{m^2}\), time \(\mathrm{s}\); \(\omega\): angular frequency, \(\mathrm{rad/s}\); \(k\): wavenumber, \(\mathrm{rad/m}\); \(v\): propagation speed, \(\mathrm{m/s}\). Angles in radians are dimensionless in SI. Logarithms and exponentials must have dimensionless arguments.</p>
+<p><strong>Energy:</strong> energy density \(u\): \(\mathrm{J/m^3}\); Poynting vector \(\mathbf S\): \(\mathrm{W/m^2}\); power delivered to charges per volume \(\mathbf J\cdot\mathbf E\): \(\mathrm{W/m^3}\). Magnetic flux \(\Phi_B\): webers \(\mathrm{Wb}\); displacement flux \(\Phi_D\): coulombs \(\mathrm{C}\).</p>
+</div></details>
 <section class="chapter" id="overview" data-keywords="overview four boundary conditions normal tangential discontinuity surface sources">
  <span class="chapter-number">01 / FOUR INTERFACE CONDITIONS</span>
- <h2>At a glance</h2>
+ <h2>At a glance</h2><p class="units-note"><strong>Units:</strong> \(D_n,\sigma_f\) in \(\mathrm{C/m^2}\); \(B_n\) in \(\mathrm{T}\); \(E_t\) in \(\mathrm{V/m}\); \(H_t,K_f\) in \(\mathrm{A/m}\). A unit normal is dimensionless.</p>
  <div class="equation">
  <h3>Normal components · Gaussian pillbox</h3>
  \[\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f}\]
@@ -70,7 +83,7 @@
 </section>
 <section class="chapter" id="pillbox" data-keywords="gaussian pillbox divergence theorem normal charge D B">
  <span class="chapter-number">02 / GAUSSIAN PILLBOX</span>
- <h2>Derive the normal conditions</h2>
+ <h2>Derive the normal conditions</h2><p class="units-note"><strong>Geometry:</strong> pillbox area \(A\) in \(\mathrm{m^2}\), height \(h\) in \(\mathrm{m}\), enclosed charge \(Q_{f,\mathrm{enc}}\) in \(\mathrm{C}\). Hence \(D_n A\) has units \(\mathrm{C}\).</p>
  <div class="math-panel"><h3>Construct the pillbox</h3>
  <p>Choose a cylinder of cross-sectional area \(A\), with thickness \(h\), crossing \(z=0\). Its <strong>top face</strong> is in medium 2 and has outward normal \(+\hat{\mathbf n}\). Its <strong>bottom face</strong> is in medium 1 and has outward normal \(-\hat{\mathbf n}\).</p>
  <p>When \(h\to 0\), the lateral area is proportional to \(h\); its flux tends to zero for bounded fields. The top and bottom fluxes remain finite.</p>
@@ -96,7 +109,7 @@
 </section>
 <section class="chapter" id="loop" data-keywords="stokes rectangular loop faraday ampere tangential E H K free current">
  <span class="chapter-number">03 / AMPERIAN AND FARADAY LOOPS</span>
- <h2>Derive the tangential conditions</h2>
+ <h2>Derive the tangential conditions</h2><p class="units-note"><strong>Loop units:</strong> \(\ell,h\) in \(\mathrm{m}\), \(\oint\mathbf E\cdot d\boldsymbol\ell\) in \(\mathrm{V}\), \(\oint\mathbf H\cdot d\boldsymbol\ell\) and \(I_f\) in amperes \(\mathrm{A}\).</p>
  <div class="math-panel">
  <h3>Construct the loop</h3>
  <p>Take a rectangular loop with length \(\ell\) parallel to any tangential unit vector \(\hat{\mathbf t}\) and height \(h\) across the interface. Orient its upper edge in \(+\hat{\mathbf t}\), its lower edge in \(-\hat{\mathbf t}\), and its area normal as \(\hat{\mathbf n}\times\hat{\mathbf t}\).</p>
@@ -131,7 +144,7 @@
 </section>
 <section class="chapter" id="electrostatic" data-keywords="electrostatic conductor dielectric potential V laplace poisson surface charge">
  <span class="chapter-number">04 / ELECTROSTATIC INTERFACES</span>
- <h2>Apply the boundary conditions to electrostatics</h2>
+ <h2>Apply the boundary conditions to electrostatics</h2><p class="units-note"><strong>Potential and derivatives:</strong> \(V\) in volts \(\mathrm{V}\), \(\partial V/\partial n\) in \(\mathrm{V/m}\), and \(\varepsilon\,\partial V/\partial n\) in \(\mathrm{C/m^2}\), the same unit as \(\sigma_f\).</p>
  <p>In electrostatics, \(\partial\mathbf B/\partial t=0\), so \(\nabla\times\mathbf E=0\) and \(\mathbf E=-\nabla V\).</p>
  <div class="equation"><h3>Potential at a regular dielectric interface</h3>
   \[\boxed{V_2=V_1},\qquad\boxed{D_{2n}-D_{1n}=\sigma_f}.\]
@@ -171,7 +184,7 @@
 </section>
 <section class="chapter" id="dynamic" data-keywords="electromagnetic wave impedance reflection magnetic surface current moving interface time dependent">
  <span class="chapter-number">05 / DYNAMIC FIELDS AND MAGNETIC INTERFACES</span>
- <h2>Boundary conditions in electromagnetics</h2>
+ <h2>Boundary conditions in electromagnetics</h2><p class="units-note"><strong>Wave constants:</strong> \(\varepsilon\) in \(\mathrm{F/m}\), \(\mu\) in \(\mathrm{H/m}\), impedance \(\eta=\sqrt{\mu/\varepsilon}\) in ohms \(\Omega\). Amplitude reflection and transmission coefficients are dimensionless.</p>
  <p>The same four macroscopic conditions apply to time-varying electromagnetic fields under the ordinary regularity assumptions, because the shrinking pillbox and loop make finite volume and displacement-flux terms vanish.</p>
  <div class="math-panel"><h3>Be careful about which fields are continuous</h3>
  <p>With no free surface charge or current, \(D_n\), \(B_n\), \(E_t\), and \(H_t\) are continuous. It does <em>not</em> follow that all components of \(\mathbf E\), \(\mathbf D\), \(\mathbf B\), or \(\mathbf H\) are continuous. For linear isotropic materials, \(D_n=\varepsilon E_n\) and \(B_n=\mu H_n\) explain why normal \(E\) and normal \(H\) can change.</p></div>
@@ -199,7 +212,7 @@
 
 <section class="chapter" id="snell" data-keywords="Snell law refraction reflection wave boundary phase matching refractive index Maxwell electric magnetic interface">
 <span class="chapter-number">06 / WAVE REFRACTION</span>
-<h2>Maxwell boundary conditions versus Snell's law</h2>
+<h2>Maxwell boundary conditions versus Snell's law</h2><p class="units-note"><strong>Snell variables:</strong> refractive indices \(n_1,n_2\) are dimensionless; angles \(\theta\) are in radians (dimensionless in SI); \(k\) in \(\mathrm{rad/m}\), \(\omega\) in \(\mathrm{rad/s}\), and \(c\) in \(\mathrm{m/s}\).</p>
 <p><strong>They are related but are not the same.</strong> The four Maxwell interface conditions govern <em>field components</em>. They also apply to static fields. Snell's law governs the <em>direction of refracted waves</em>, and follows from applying field continuity and phase matching to a monochromatic wave at an ordinary uniform interface.</p>
 <div class="equation"><h3>Maxwell's interface conditions</h3>
 \[\boxed{\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_f},\quad
@@ -233,7 +246,7 @@
 </section>
 <section class="chapter" id="worksheet-examples" data-keywords="worked examples worksheet laplace electrostatic boundary values cartesian cylindrical spherical eight problems potential electric field">
  <span class="chapter-number">06 / WORKED EXAMPLES</span>
- <h2>Electrostatic boundary-value problems</h2>
+ <h2>Electrostatic boundary-value problems</h2><p class="units-note"><strong>For every worked answer:</strong> potential \(V,V_0\) in \(\mathrm{V}\); \(\mathbf E\) in \(\mathrm{V/m}\); lengths in \(\mathrm{m}\); angles in radians. Each logarithm takes a dimensionless ratio of lengths.</p>
  <p>These <strong>eight examples</strong> follow the accompanying MS Physics <em>Boundary Conditions Worksheet With Solutions</em>, Problems 1–8, in their original sequence. They concern <strong>Laplace boundary-value problems</strong>: conductor potentials at specified boundaries determine the electric field in a charge-free region. This is related to, but distinct from, the pillbox and loop <em>jump conditions</em> derived above.</p>
  <div class="math-panel">
   <h3>Method for every problem</h3>
@@ -255,7 +268,7 @@
   <h4>4. Differentiate to find the field</h4>
   \[\mathbf E=-\nabla V=-\frac{dV}{dx}\hat{\mathbf x}.\]
   <div class="equation"><h3>Final answer</h3>
-  \[\boxed{V(x)=\frac{V_0x}{d},\qquad \mathbf E=-\frac{V_0}{d}\hat{\mathbf x}.}\]
+  \[\boxed{V(x)=\frac{V_0x}{d},\qquad \mathbf E=-\frac{V_0}{d}\hat{\mathbf x}.}\]<p class="units-note"><strong>Final answer units:</strong> Potential \([V(x)]=\mathrm{V}\); field \([\mathbf E]=\mathrm{V/m}\). The fraction \(x/d\) is dimensionless; \(V_0/d\) is in \(\mathrm{V/m}\).</p>
   </div>
   <p><strong>Physical check:</strong> for \(V_0&gt;0\), the field points from the higher-potential wall at \(x=d\) toward the grounded wall, and its magnitude is constant.</p>
  </div></details>
@@ -278,7 +291,7 @@
   \[V(z)=\begin{cases}\dfrac{V_0z}{h},&amp;0\le z\le h,\\[4pt]
   V_0\left(2-\dfrac zh\right),&amp;h\le z\le 2h,\end{cases}\]
   \[\mathbf E(z)=\begin{cases}-\dfrac{V_0}{h}\hat{\mathbf z},&amp;0&lt;z&lt;h,\\[4pt]
-  +\dfrac{V_0}{h}\hat{\mathbf z},&amp;h&lt;z&lt;2h.\end{cases}\]
+  +\dfrac{V_0}{h}\hat{\mathbf z},&amp;h&lt;z&lt;2h.\end{cases}\]<p class="units-note"><strong>Final answer units:</strong> Potentials \([V_1]=[V_2]=\mathrm{V}\); fields \([\mathbf E_1]=[\mathbf E_2]=\mathrm{V/m}\). \(V_0/h\) is a voltage divided by a length.</p>
   </div>
   <p><strong>Physical check:</strong> for \(V_0&gt;0\), the electric field points away from the middle conductor into both gaps. Its normal component may jump across a charged conducting sheet.</p>
  </div></details>
@@ -302,7 +315,7 @@
   \[\nabla V=\frac{V_0}{d}\left(\cos\alpha\,\hat{\mathbf x}+\sin\alpha\,\hat{\mathbf y}\right).\]
   <div class="equation"><h3>Final answer</h3>
   \[\boxed{V(x,y)=\frac{V_0}{d}(x\cos\alpha+y\sin\alpha)}\]
-  \[\boxed{\mathbf E=-\frac{V_0}{d}\left(\cos\alpha\,\hat{\mathbf x}+\sin\alpha\,\hat{\mathbf y}\right).}\]
+  \[\boxed{\mathbf E=-\frac{V_0}{d}\left(\cos\alpha\,\hat{\mathbf x}+\sin\alpha\,\hat{\mathbf y}\right).}\]<p class="units-note"><strong>Final answer units:</strong> Potential \([V]=\mathrm{V}\); field \([\mathbf E]=\mathrm{V/m}\). \(x,y,d\) are in \(\mathrm{m}\), while \(\alpha\), \(\sin\alpha\) and \(\cos\alpha\) are dimensionless.</p>
   </div>
   <p><strong>Physical check:</strong> the field is perpendicular to both plates; \(|\mathbf E|=|V_0|/d\). Rotating the plates changes field direction, not magnitude.</p>
  </div></details>
@@ -327,7 +340,7 @@
   \[\mathbf E=-\frac{dV}{dr}\hat{\mathbf r}=-\frac Ar\hat{\mathbf r}.\]
   <div class="equation"><h3>Final answer</h3>
   \[\boxed{V(r)=V_0\frac{\ln(b/r)}{\ln(b/a)}}\]
-  \[\boxed{\mathbf E(r)=\frac{V_0}{r\ln(b/a)}\hat{\mathbf r}.}\]
+  \[\boxed{\mathbf E(r)=\frac{V_0}{r\ln(b/a)}\hat{\mathbf r}.}\]<p class="units-note"><strong>Final answer units:</strong> Potential \([V(r)]=\mathrm{V}\); field \([\mathbf E]=\mathrm{V/m}\). The arguments \(b/r\) and \(b/a\) of the logarithms are dimensionless.</p>
   </div>
   <p><strong>Physical check:</strong> if \(V_0&gt;0\), the field points radially outward and falls as \(1/r\), unlike the \(1/r^2\) field between concentric spheres.</p>
  </div></details>
@@ -349,7 +362,7 @@
   \[\mathbf E=-\frac1r\frac{dV}{d\phi}\hat{\boldsymbol\phi}.\]
   <div class="equation"><h3>Final answer</h3>
   \[\boxed{V(\phi)=\frac{2V_0}{\pi}\left(\phi-\frac\pi6\right)}\]
-  \[\boxed{\mathbf E(r,\phi)=-\frac{2V_0}{\pi r}\hat{\boldsymbol\phi}.}\]
+  \[\boxed{\mathbf E(r,\phi)=-\frac{2V_0}{\pi r}\hat{\boldsymbol\phi}.}\]<p class="units-note"><strong>Final answer units:</strong> Potential \([V(\phi)]=\mathrm{V}\); field \([\mathbf E]=\mathrm{V/m}\). Angles are in radians (dimensionless), and \(1/r\) contributes \(\mathrm{m^{-1}}\).</p>
   </div>
   <p><strong>Physical check:</strong> an angular increment \(d\phi\) corresponds to an arc length \(r\,d\phi\), explaining the factor \(1/r\) in the field even though the potential depends only on \(\phi\). The idealized field diverges near the sharp meeting edge \(r=0\).</p>
  </div></details>
@@ -379,7 +392,7 @@
   \[\mathbf E(r)=\begin{cases}
   -\dfrac{V_0}{r\ln(b/a)}\hat{\mathbf r},&amp;a&lt;r&lt;b,\\[5pt]
   +\dfrac{V_0}{r\ln(c/b)}\hat{\mathbf r},&amp;b&lt;r&lt;c.
-  \end{cases}\]
+  \end{cases}\]<p class="units-note"><strong>Final answer units:</strong> Potentials \([V_1]=[V_2]=\mathrm{V}\); fields \([\mathbf E_1]=[\mathbf E_2]=\mathrm{V/m}\). All logarithm arguments are dimensionless length ratios.</p>
   </div>
   <p><strong>Physical check:</strong> for \(V_0&gt;0\), the field points away from the middle conductor, inward in the inner gap and outward in the outer gap.</p>
  </div></details>
@@ -405,7 +418,7 @@
   =\frac{C}{r^2}\hat{\mathbf r}.\]
   <div class="equation"><h3>Final answer</h3>
   \[\boxed{V(r)=V_0\frac{1/r-1/b}{1/a-1/b}}\]
-  \[\boxed{\mathbf E(r)=\frac{V_0ab}{(b-a)r^2}\hat{\mathbf r}.}\]
+  \[\boxed{\mathbf E(r)=\frac{V_0ab}{(b-a)r^2}\hat{\mathbf r}.}\]<p class="units-note"><strong>Final answer units:</strong> Potential \([V]=\mathrm{V}\); field \([\mathbf E]=\mathrm{V/m}\). \(ab/[(b-a)r^2]\) has units \(\mathrm{m^{-1}}\).</p>
   </div>
   <p><strong>Physical check:</strong> the spherical field decays as \(1/r^2\), whereas the field between infinitely long concentric cylinders decays as \(1/r\). The difference follows from the radial scale factors in the respective Laplacians.</p>
  </div></details>
@@ -433,7 +446,7 @@
   =-\frac{A}{r\sin\theta}\hat{\boldsymbol\theta}.\]
   <div class="equation"><h3>Final answer</h3>
   \[\boxed{V(\theta)=V_0\frac{\ln\tan(\theta/2)}{\ln\tan(\theta_0/2)}}\]
-  \[\boxed{\mathbf E(r,\theta)=-\frac{V_0}{r\sin\theta\,\ln\tan(\theta_0/2)}\hat{\boldsymbol\theta}.}\]
+  \[\boxed{\mathbf E(r,\theta)=-\frac{V_0}{r\sin\theta\,\ln\tan(\theta_0/2)}\hat{\boldsymbol\theta}.}\]<p class="units-note"><strong>Final answer units:</strong> Potential \([V]=\mathrm{V}\); field \([\mathbf E]=\mathrm{V/m}\). Angular and logarithmic factors are dimensionless; \(1/r\) contributes \(\mathrm{m^{-1}}\).</p>
   </div>
   <p><strong>Physical check:</strong> for \(0&lt;\theta_0&lt;\pi/2\), \(\ln\tan(\theta_0/2)&lt;0\); therefore when \(V_0&gt;0\), the electric field points in \(+\hat{\boldsymbol\theta}\), from the cone toward the grounded plane. The idealization produces a \(1/r\) singularity near the sharp apex.</p>
  </div></details>

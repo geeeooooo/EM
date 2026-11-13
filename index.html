@@ -43,7 +43,7 @@
       </div>
       <nav class="nav" aria-label="Sections">
         <a href="#toolkit">Theorems</a><a href="#vacuum">Vacuum</a><a href="#matter">Matter</a><a href="#sources">D and H</a><a href="#applications">Applications</a><a href="./electromagnetics.html#helmholtz">Helmholtz</a><a href="./electromagnetics.html#energy">Energy</a>
-      </nav>
+      <a href="#si-units">Units</a></nav>
       <p class="math-status" id="math-status" role="status">Equations use MathJax. An internet connection is needed for first load.</p>
     </div>
   </header>
@@ -52,9 +52,22 @@
       <strong>How to read this site.</strong> Every derivation begins with an equation and explains how it becomes its other form. Expand the steps you need. Displayed equations may be scrolled horizontally on a small watch screen.
       <p class="small"><strong>Conventions:</strong> SI units; \(\partial\mathcal V\) denotes a closed surface enclosing volume \(\mathcal V\); \(\partial\mathcal S\) denotes the boundary curve of an oriented surface \(\mathcal S\); \(d\mathbf a=\hat{\mathbf n}\,dA\). Surface/contour orientations obey the right-hand rule. Unless stated otherwise, surfaces and contours are fixed in space.</p>
     </div>
-    <section class="chapter" id="toolkit" data-keywords="divergence stokes theorem flux curl circulation volume arbitrary surface conversion differential integral">
+    <details class="si-guide" id="si-units"><summary>SI units and physical constants</summary><div class="steps">
+<p><strong>Fields:</strong> \(\mathbf E\): electric field, \(\mathrm{V/m}=\mathrm{N/C}\); \(\mathbf D\): displacement, \(\mathrm{C/m^2}\); \(\mathbf B\): flux density, tesla \(\mathrm{T}=\mathrm{Wb/m^2}\); \(\mathbf H\): field intensity, \(\mathrm{A/m}\); \(V\): electric potential, volts \(\mathrm{V}\).</p>
+<p><strong>Sources:</strong> \(Q\): charge, coulombs \(\mathrm{C}\); \(\rho,\rho_f\): volume charge density, \(\mathrm{C/m^3}\); \(\sigma_f\): surface charge density, \(\mathrm{C/m^2}\); \(\mathbf J,\mathbf J_f\): current density, \(\mathrm{A/m^2}\); \(\mathbf K_f\): surface current density, \(\mathrm{A/m}\).</p>
+<p><strong>Materials:</strong> \(\varepsilon,\varepsilon_0\): permittivity, \(\mathrm{F/m}\); \(\mu,\mu_0\): permeability, \(\mathrm{H/m}\); \(\mathbf P\): polarization, \(\mathrm{C/m^2}\); \(\mathbf M\): magnetization, \(\mathrm{A/m}\); \(\sigma\): conductivity, \(\mathrm{S/m}\); \(\eta\): wave impedance, ohms \(\Omega\). Relative permittivity, relative permeability and refractive index \(n\) are dimensionless.</p>
+<p><strong>Vacuum constants:</strong></p>
+\[\varepsilon_0\approx8.854\times10^{-12}\ \mathrm{F/m},\quad
+\mu_0\approx1.257\times10^{-6}\ \mathrm{H/m}\]
+\[c=299\,792\,458\ \mathrm{m/s},\quad
+\eta_0\approx377\ \Omega\]
+<p>The vacuum speed of light \(c\) is exact by SI definition; the other displayed values are rounded.</p>
+<p><strong>Space and waves:</strong> lengths \(\mathrm{m}\), area \(\mathrm{m^2}\), time \(\mathrm{s}\); \(\omega\): angular frequency, \(\mathrm{rad/s}\); \(k\): wavenumber, \(\mathrm{rad/m}\); \(v\): propagation speed, \(\mathrm{m/s}\). Angles in radians are dimensionless in SI. Logarithms and exponentials must have dimensionless arguments.</p>
+<p><strong>Energy:</strong> energy density \(u\): \(\mathrm{J/m^3}\); Poynting vector \(\mathbf S\): \(\mathrm{W/m^2}\); power delivered to charges per volume \(\mathbf J\cdot\mathbf E\): \(\mathrm{W/m^3}\). Magnetic flux \(\Phi_B\): webers \(\mathrm{Wb}\); displacement flux \(\Phi_D\): coulombs \(\mathrm{C}\).</p>
+</div></details>
+<section class="chapter" id="toolkit" data-keywords="divergence stokes theorem flux curl circulation volume arbitrary surface conversion differential integral">
       <span class="chapter-number">01 / MATHEMATICAL TOOLKIT</span>
-      <h2>Why differential and integral forms are equivalent</h2>
+      <h2>Why differential and integral forms are equivalent</h2><p class="units-note"><strong>Unit check:</strong> each spatial derivative contributes inverse metres \(\mathrm{m^{-1}}\); a surface integral introduces \(\mathrm{m^2}\) and a line integral introduces \(\mathrm{m}\).</p>
       <p><strong>Differential form</strong> states a local relation at every point; <strong>integral form</strong> states the corresponding total flux or circulation over a finite region. Two theorems bridge the descriptions.</p>
       <div class="math-panel">
         <h3>Reading the operators physically</h3>
@@ -97,7 +110,7 @@
     </section>
     <section class="chapter" id="vacuum" data-keywords="vacuum maxwell rho charge current divergence gauss magnetic faraday ampere displacement integral differential">
       <span class="chapter-number">02 / VACUUM</span>
-      <h2>Maxwell's equations in vacuum</h2>
+      <h2>Maxwell's equations in vacuum</h2><p class="units-note"><strong>Units introduced:</strong> \(\rho\): \(\mathrm{C/m^3}\); \(\mathbf J\): \(\mathrm{A/m^2}\); \(\mathbf E\): \(\mathrm{V/m}\); \(\mathbf B\): tesla \(\mathrm{T}\); \(\varepsilon_0\): \(\mathrm{F/m}\); \(\mu_0\): \(\mathrm{H/m}\).</p>
       <p>Here \(\rho\) and \(\mathbf J\) are the <strong>total charge and current densities</strong>. “In vacuum” describes the vacuum field equations; sources such as isolated charged particles or wires may still be present.</p>
       <div class="equation"><h3>I. Gauss's law · Electric</h3><span class="form-label">Differential</span>\[\boxed{\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}}\]<span class="form-label">Integral</span>\[\boxed{\oint_{\partial\mathcal V}\mathbf E\cdot d\mathbf a=\frac{Q_{\mathrm{enc}}}{\varepsilon_0}}\]<p>Electric charge produces electric flux.</p><div class="meaning"><h4>Physical meaning</h4><p><strong>Local meaning:</strong> \(\nabla\cdot\mathbf E\) measures whether electric field has a net outward flux per unit volume around a point. Positive charge is a local source of electric flux; negative charge is a sink.</p><p><strong>Global meaning:</strong> the net electric flux through a <em>closed</em> surface depends only on the total charge enclosed—not the surface shape or charges outside. Zero enclosed charge means zero <em>net</em> flux, not necessarily zero \(\mathbf E\) at the surface.</p></div></div>
       <details><summary>Derive both directions · Electric Gauss</summary><div class="steps">
@@ -161,7 +174,7 @@
 
     <section class="chapter" id="matter" data-keywords="materials matter macroscopic fields free charge current D H polarization magnetization maxwell derivation differential integral">
       <span class="chapter-number">03 / MATERIALS</span>
-      <h2>Maxwell's equations in matter</h2>
+      <h2>Maxwell's equations in matter</h2><p class="units-note"><strong>Units introduced:</strong> \(\mathbf D\): \(\mathrm{C/m^2}\); \(\mathbf H\): \(\mathrm{A/m}\); \(\rho_f\): \(\mathrm{C/m^3}\); \(\mathbf J_f\): \(\mathrm{A/m^2}\). These make the two sides of each macroscopic Maxwell equation dimensionally consistent.</p>
       <p>Macroscopic electromagnetism separates <strong>free</strong> sources from charges and currents bound within polarized/magnetized matter. The fields \(\mathbf E\) and \(\mathbf B\) remain physical; \(\mathbf D\) and \(\mathbf H\) package material response.</p>
       <div class="equation"><h3>I. Electric Gauss, in matter</h3><span class="form-label">Differential</span>\[\boxed{\nabla\cdot\mathbf D=\rho_f}\]<span class="form-label">Integral</span>\[\boxed{\oint_{\partial\mathcal V}\mathbf D\cdot d\mathbf a=Q_{f,\mathrm{enc}}}\]<div class="meaning"><h4>Physical meaning</h4><p><strong>Local meaning:</strong> only <em>free</em> charge is an explicit source of \(\nabla\cdot\mathbf D\). Polarization \(\mathbf P\) incorporates the effects of bound charges through \(\mathbf D=\varepsilon_0\mathbf E+\mathbf P\).</p><p><strong>Global meaning:</strong> net \(\mathbf D\)-flux through a closed surface equals enclosed free charge. Bound charge still influences the actual electric field \(\mathbf E\); \(\nabla\cdot\mathbf D=0\) does <em>not</em> imply \(\mathbf D=0\) or \(\mathbf E=0\). For the total enclosed charge, use \(\oint\mathbf E\cdot d\mathbf a=Q_{\mathrm{total,enc}}/\varepsilon_0\).</p></div></div>
       <details><summary>Derive both directions · D and free charge</summary><div class="steps">
@@ -197,7 +210,7 @@
 
     <section class="chapter" id="sources" data-keywords="polarization magnetization bound charge bound current free total D H constitutive relations epsilon mu linear isotropic">
       <span class="chapter-number">04 / MATERIAL RESPONSE</span>
-      <h2>Where \(\mathbf D\) and \(\mathbf H\) come from</h2>
+      <h2>Where \(\mathbf D\) and \(\mathbf H\) come from</h2><p class="units-note"><strong>Material constants:</strong> \(\mathbf P\) (polarization) is \(\mathrm{C/m^2}\), \(\mathbf M\) (magnetization) is \(\mathrm{A/m}\), \(\varepsilon\) is \(\mathrm{F/m}\), and \(\mu\) is \(\mathrm{H/m}\).</p>
       <div class="math-panel">\[\boxed{\mathbf D=\varepsilon_0\mathbf E+\mathbf P},
       \qquad\boxed{\mathbf H=\frac{\mathbf B}{\mu_0}-\mathbf M}.\]
       <p>\(\mathbf P\): electric dipole moment per volume (polarization). \(\mathbf M\): magnetic dipole moment per volume (magnetization).</p></div>
@@ -231,7 +244,7 @@
 
     <section class="chapter" id="applications" data-keywords="boundary conditions wave equation electromagnetic waves energy poynting normal tangential surface charge current">
       <span class="chapter-number">05 / APPLICATIONS</span>
-      <h2>Immediate results of Maxwell's equations</h2><div class="math-panel"><h3>Further derivations and applications</h3>
+      <h2>Immediate results of Maxwell's equations</h2><p class="units-note"><strong>Common answers:</strong> electric field \(\mathrm{V/m}\), magnetic field \(\mathrm{T}\), phase speed \(\mathrm{m/s}\), field energy per volume \(\mathrm{J/m^3}\), and energy transferred per area per time \(\mathrm{W/m^2}\).</p><div class="math-panel"><h3>Further derivations and applications</h3>
 <p>Read <a href="./boundary-conditions.html#snell">how Maxwell's interface conditions lead to Snell's law</a>, then review the <a href="./electromagnetics.html#wave">wave equations for electric and magnetic fields</a>, <a href="./electromagnetics.html#helmholtz">both Helmholtz equations</a>, and <a href="./electromagnetics.html#energy">electromagnetic energy density and Poynting's energy-transfer theorem</a>.</p></div>
       <div class="math-panel">
         <h3>Boundary conditions at an interface</h3>

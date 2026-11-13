@@ -160,3 +160,13 @@ footer .site-nav { margin: 12px 0; }
   .site-nav { gap: 5px; }
   .site-nav a { font-size: .81em; padding: 7px 8px; }
 }
+
+/* Inline dimensional analysis and the collapsible SI quick-reference. */
+.si-guide { margin: 0 0 22px; border-color: var(--border); }
+.si-guide > summary { font-weight: 700; }
+.si-guide .steps { border-top: 1px solid var(--border-soft); }
+.units-note { border-left: 2px solid #fff; padding: 7px 0 7px 11px; margin: 12px 0 !important; color: #fff; font-size: .9em !important; line-height: 1.5; }
+.inline-unit { color: #fff; font-size: .92em; }
+@media (max-width:420px) {
+ .units-note { padding-left: 8px; font-size: .89em !important; }
+}
