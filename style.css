@@ -186,3 +186,11 @@ footer .site-nav { margin: 12px 0; }
 .concept-check .steps{font-size:.95em}
 @media(max-width:420px){.exam-question{padding:10px}.practice-controls{gap:5px}.practice-controls button{padding:7px 9px;font-size:.87em}}
 @media(max-width:270px){.practice-controls{flex-direction:column}.practice-controls button{width:100%;text-align:left}.exam-question ol{padding-left:1.1em}}
+
+/* Concept-first electromagnetism: explanatory principle cards before derivations. */
+.theorem-intro{border-left:2px solid #fff;padding:10px 13px;margin:15px 0 18px;background:transparent}
+.theorem-intro h3{font-size:1.03em;line-height:1.36;margin:0 0 9px}
+.theorem-intro p{font-size:.94em;line-height:1.57;margin:0 0 10px}
+.theorem-intro p:last-child{margin-bottom:0}
+.theorem-intro a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:440px){.theorem-intro{padding:7px 8px;margin:12px 0 16px}.theorem-intro h3{font-size:1em}.theorem-intro p{font-size:.92em}}
